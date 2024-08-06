@@ -1,0 +1,89 @@
+* {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+h1 {
+  color: deeppink;
+  font-size: 2rem;
+  line-height: 2;
+  font-family: "Bodoni Moda SC", serif;
+  font-optical-sizing: auto;
+  font-weight: 400px;
+  font-style: normal;
+}
+
+/* rem is the font sizing unit */
+
+h2 {
+  color: rgb(106, 164, 19);
+  font-weight: lighter;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+h3 {
+  color: darkblue;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+p {
+  color: darkblue;
+  border: 1px dashed rosybrown;
+  padding: 30px;
+  line-height: 1.5;
+  /* background colour */
+  /* background-color: antiquewhite; */
+  background-image: linear-gradient(#fff, #ffd4f7);
+
+  /* font: open sans */
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 150;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.my-class {
+  color: hotpink;
+}
+
+#my-id {
+  color: mediumpurple;
+}
+
+p > strong {
+  color: tomato;
+}
+
+.open-sans {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
+
+article {
+  text-align: center;
+  /* border: 1px solid rgb(93, 226, 170); */
+  border-width: 2px;
+  border-style: double;
+  border-color: blueviolet;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 50px;
+  background-color: antiquewhite;
+}
+
+a {
+  color: blue;
+  line-height: 3;
+}
+
+a:hover {
+  color: darkgreen;
+}
