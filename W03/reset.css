@@ -30,7 +30,7 @@ picture,
 svg,
 video {
   display: block;
-  max-width: 100%;
+  max-width: 1;
 }
 
 h1,
@@ -43,7 +43,7 @@ h6 {
 }
 
 p {
-  max-width: 75ch;
+  max-width: 100%;
   text-wrap: pretty; /* Prevents orphans on lines */
 }
 
