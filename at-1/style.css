@@ -1,0 +1,16 @@
+/* basic layout guide */
+* {
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: antiquewhite;
+}
+
+/* header styles */
+h2 {
+  font-size: 1rem;
+}
+
+/* paragraph */
+p {
+  font-size: 0.9rem;
+}
