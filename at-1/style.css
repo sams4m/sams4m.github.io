@@ -1,4 +1,4 @@
-/* GLOBAL */
+/* GLOBAL ---------------------------------------------------------------------------*/
 * {
   background-color: #cef846;
   /* global font montserrat */
@@ -7,11 +7,11 @@
   font-weight: 100;
   font-style: normal;
 }
-/* CLASSES */
+/* BLOCK STYLING --------------------------------------------------------------------*/
 /* Header block styling */
 .header {
   text-align: center;
-  padding-top: 7%;
+  padding-top: 6%;
   margin-left: 15%;
   margin-right: 15%;
 }
@@ -25,7 +25,7 @@
   margin-bottom: 200px;
 }
 
-/* TEXT STYLE GUIDE */
+/* TEXT STYLE GUIDE ---------------------------------------------------------------*/
 /* header styles */
 h1 {
   font-weight: 700;
@@ -64,36 +64,33 @@ p {
   color: #2e2e2e;
   line-height: 1.5;
   text-align: left;
-  padding-bottom: 50px;
+  padding-bottom: 80px;
 }
 p:hover {
   color: #5e32fe;
   font-weight: 600;
 }
 
-/* HYPERLINKS */
+/* HYPERLINKS -------------------------------------------------------------------*/
 a {
-  color: #757575;
-  font-weight: 400;
+  color: #0d3dfc;
+  font-weight: 300;
   line-height: 3;
 }
 
 a:hover {
   color: #f839e5;
+  font-weight: 400;
 }
 
-/* BORDER */
+/* IMG BORDER -------------------------------------------------------------------*/
 .border {
   border-width: 1px;
   border-style: dotted;
   color: #a0bf37;
 }
 
-/* TABLE */
-.table {
-  margin: auto;
-  text-align: left;
-}
+/* TABLE ------------------------------------------------------------------------*/
 .row {
   display: flex;
   column-gap: 40px;
