@@ -6,3 +6,8 @@
 body {
   padding: 40px;
 }
+
+p {
+  padding: 10%;
+  border: 1px solid red;
+}

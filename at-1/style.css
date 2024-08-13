@@ -9,7 +9,7 @@
 }
 /* BLOCK STYLING --------------------------------------------------------------------*/
 /* Header block styling */
-header {
+.header {
   text-align: center;
   padding-top: 6%;
   margin-left: 15%;
@@ -17,7 +17,7 @@ header {
 }
 
 /* body block styling */
-body {
+.body {
   text-align: left;
   margin-left: 20%;
   margin-right: 20%;
@@ -25,7 +25,7 @@ body {
 }
 
 /* footer block styling */
-footer {
+.footer {
   text-align: center;
   margin-left: 15%;
   margin-right: 15%;
