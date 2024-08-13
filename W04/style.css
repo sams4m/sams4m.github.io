@@ -1,13 +1,36 @@
 * {
-  margin-left: 5%;
-  margin-right: 5%;
+  background-color: dimgray;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: inline-block;
+  text-align: center;
+  /* global font montserrat */
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  color: antiquewhite;
 }
 
 body {
-  padding: 40px;
+  text-align: center;
+  display: flex;
 }
 
 p {
-  padding: 10%;
-  border: 1px solid red;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  border: 1px solid;
+  padding: 5%;
+  min-height: 50px;
+  text-align: center;
+  line-height: 50px;
+  /* expands if you have content over 100px, but min is 100px */
+  /* min-height: 100px; */
+  background-color: rgb(88, 69, 60);
+}
+
+span {
+  font-weight: bold;
+  background-color: rgb(88, 69, 60);
 }
