@@ -12,6 +12,13 @@ Therefore, contrasting bold colours were utilised.
   font-weight: 100;
   font-style: normal;
 }
+
+/* fonts */
+@font-face {
+  font-family: Cube; /* Name your font family */
+  src: url("fonts/Cube.ttf"); /* Locate the .ttf file within your directory*/
+}
+
 /* BLOCK STYLING --------------------------------------------------------------------*/
 /* Header block styling */
 .header {
@@ -43,26 +50,50 @@ Therefore, contrasting bold colours were utilised.
 }
 
 /* TEXT STYLE GUIDE ---------------------------------------------------------------*/
-/* header styles */
+/* HEADER 1 */
 h1 {
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #2e2e2e;
-  font-kerning: normal;
-  line-height: 4;
-  font-size: 2rem;
+  font-size: 2.8rem;
+  font-weight: 800;
+  /* different font: Cutive */
+  /* font-family: "Cutive Mono", monospace;
+  font-weight: 400;
+  font-style: normal; */
 
+  font-family: "Cube", sans-serif;
+
+  color: #0d3dfc;
+  text-align: left;
+  padding-left: 10%;
+  text-transform: uppercase;
+
+  line-height: 1;
+}
+
+/* HEADER 2 */
+h2 {
+  /* text style */
+  text-transform: uppercase;
+  font-kerning: normal;
+  line-height: 1;
+  font-size: 1.2rem;
+  color: #0d3dfc;
+  text-align: left;
   /* font */
   font-family: "Gruppo", sans-serif;
   font-weight: 300;
   font-style: normal;
-}
-h1:hover {
-  color: #0d3dfc;
-  font-weight: 500;
+
+  /* layout */
+  padding-left: 10%;
+  padding-bottom: 100px;
 }
 
-h2 {
+/* h1:hover {
+  font-weight: 500;
+} */
+
+/* HEADER 3 */
+h3 {
   font-weight: bold;
   font-size: 1rem;
   text-transform: uppercase;
@@ -70,7 +101,7 @@ h2 {
   text-align: left;
 }
 
-h2:hover {
+h3:hover {
   color: #0d3dfc;
   font-size: 1.1rem;
 }
@@ -85,7 +116,6 @@ p {
   padding-bottom: 80px;
 }
 p:hover {
-  color: #5e32fe;
   font-weight: 600;
 }
 
