@@ -36,6 +36,11 @@ Therefore, contrasting bold colours were utilised.
   margin-right: 15%;
   margin-bottom: 200px;
 }
+.footer-p {
+  font-size: 0.7rem;
+  text-align: center;
+  color: #f839e5;
+}
 
 /* TEXT STYLE GUIDE ---------------------------------------------------------------*/
 /* header styles */
