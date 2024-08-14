@@ -1,6 +1,16 @@
-/* Styling Comments:
-I wanted to embody a similar energy to Palat Tuntaopas' Portfolio.
-Therefore, contrasting bold colours were utilised.
+/* Styling Foreword:
+I wanted to embody a similar energy to Palat Tuntaopas' Portfolio in my website design.
+Therefore, for inspiration and reference, I had inspeted and viewed the source code behind 
+the website to get an understanding on how the website built up.
+Stylistically, similar bold colours had been used to convey that bright maximalist energy.
+Font wise, the same 'Cube' font seen in Tuntaopas' portfolio had been used as header 1, as 
+a statement font. All other texts use Open Sans (sourced from Google Fonts) for high 
+readability and clean cut design.
+I also wanted to bring in some of the interaction design of Tuntaopas that I found the most 
+satisfying and interesting, though limited due to using only html and css. 
+
+I want to try create a website that combines both my own design aethetic and Tuntaopas', a 
+design choice which runs a fine line between maxinalist and minimalist. Fun but functional.
  */
 
 /* GLOBAL ---------------------------------------------------------------------------*/
@@ -15,8 +25,8 @@ Therefore, contrasting bold colours were utilised.
 
 /* fonts */
 @font-face {
-  font-family: Cube; /* Name your font family */
-  src: url("fonts/Cube.ttf"); /* Locate the .ttf file within your directory*/
+  font-family: Cube; /* Name font family */
+  src: url("fonts/cube.ttf"); /* Locate the .ttf file within directory*/
 }
 
 /* BLOCK STYLING --------------------------------------------------------------------*/
@@ -43,11 +53,6 @@ Therefore, contrasting bold colours were utilised.
   margin-right: 15%;
   margin-bottom: 200px;
 }
-.footer-p {
-  font-size: 0.7rem;
-  text-align: center;
-  color: #f839e5;
-}
 
 /* TEXT STYLE GUIDE ---------------------------------------------------------------*/
 /* HEADER 1 */
@@ -69,6 +74,10 @@ h1 {
   line-height: 1;
 }
 
+h1:hover {
+  text-transform: lowercase;
+}
+
 /* HEADER 2 */
 h2 {
   /* text style */
@@ -88,23 +97,19 @@ h2 {
   padding-bottom: 100px;
 }
 
-/* h1:hover {
-  font-weight: 500;
-} */
-
 /* HEADER 3 */
 h3 {
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1rem;
   text-transform: uppercase;
   color: #f839e5;
   text-align: left;
 }
 
-h3:hover {
+/* h3:hover {
   color: #0d3dfc;
   font-size: 1.1rem;
-}
+} */
 
 /* paragraph */
 p {
@@ -112,11 +117,17 @@ p {
   font-weight: 400;
   color: #2e2e2e;
   line-height: 1.5;
-  text-align: left;
-  padding-bottom: 80px;
+  align-content: left;
 }
-p:hover {
+
+/* p:hover {
   font-weight: 600;
+} */
+
+.footer-p {
+  font-size: 0.7rem;
+  text-align: center;
+  color: #f839e5;
 }
 
 /* HYPERLINKS -------------------------------------------------------------------*/
@@ -159,4 +170,101 @@ a:hover {
 
 .column {
   flex: 1;
+}
+
+/* BLOCK INTERACTION ----------------------------------------------------------*/
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+/* COLUMN ----------------------------------------------------*/
+.box-col {
+  margin-bottom: 80px;
+}
+
+.box-col:hover {
+  position: relative; /* allow for contents to adjust when hover occurs */
+  z-index: 0;
+  padding: 3%;
+  overflow: hidden; /* clipping content */
+  /* flex style */
+  display: flex;
+  justify-content: center; /* pinning everything to center */
+  align-items: center; /* pinning everything to center */
+  flex-direction: column;
+  /* gap: 40px; */
+
+  /* movement */
+  &::before {
+    content: "";
+    position: absolute; /* pins position of roating border */
+    z-index: -5;
+    /* box to create 'moving border' */
+    width: 400%;
+    height: 400%;
+    background-repeat: no-repeat;
+    background-size: 50% 50%; /* size of box */
+    background-image: linear-gradient(
+      #0d3dfc,
+      #00c2cb
+    ); /* gradient colour of border */
+    animation: rotate 8s linear infinite; /* rotation */
+  }
+
+  &::after {
+    content: "";
+    position: absolute; /* pins position of roating border */
+    z-index: -1;
+    /* box style */
+    width: calc(100% - 5px);
+    height: calc(100% - 5px);
+    /* static bg */
+    background: #cef846;
+  }
+}
+
+/* ROW ------------------------------------------------------*/
+.box-row {
+  margin-bottom: 80px;
+}
+
+.box-row:hover {
+  position: relative; /* allow for contents to adjust when hover occurs */
+  z-index: 0;
+  padding: 3%;
+  overflow: hidden; /* clipping content */
+  display: flex;
+  justify-content: center; /* pinning everything to center */
+  align-items: center; /* pinning everything to center */
+  gap: 5%;
+
+  /* moving border */
+  &::before {
+    content: "";
+    position: absolute; /* pins position of roating border */
+    z-index: -5;
+    /* box to create 'moving border' */
+    width: 400%;
+    height: 400%;
+    background-repeat: no-repeat;
+    background-size: 50% 50%; /* size of box */
+    background-image: linear-gradient(
+      #0d3dfc,
+      #00c2cb
+    ); /* gradient colour of border */
+    animation: rotate 8s linear infinite; /* rotation */
+  }
+
+  &::after {
+    content: "";
+    position: absolute; /* pins position of roating border */
+    z-index: -1;
+    /* box style */
+    width: calc(100% - 5px);
+    height: calc(100% - 5px);
+    /* static bg */
+    background: #cef846;
+  }
 }
