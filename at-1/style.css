@@ -26,7 +26,7 @@ design choice which runs a fine line between maxinalist and minimalist. Fun but 
 /* fonts ----------------------------------------------------------------------------*/
 @font-face {
   font-family: Cube;
-  src: url("./fonts/cube.ttf"); /* .ttf file within directory*/
+  src: url("./fonts/cube.woff"); /* .ttf file within directory*/
 }
 
 /* BLOCK STYLING --------------------------------------------------------------------*/
