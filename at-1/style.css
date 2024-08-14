@@ -23,10 +23,10 @@ design choice which runs a fine line between maxinalist and minimalist. Fun but 
   font-style: normal;
 }
 
-/* fonts */
+/* fonts ----------------------------------------------------------------------------*/
 @font-face {
-  font-family: Cube; /* Name font family */
-  src: url("./fonts/cube.ttf"); /* Locate the .ttf file within directory*/
+  font-family: Cube;
+  src: url("./fonts/cube.ttf"); /* .ttf file within directory*/
 }
 
 /* BLOCK STYLING --------------------------------------------------------------------*/
@@ -207,7 +207,7 @@ a:hover {
     width: 400%;
     height: 400%;
     background-repeat: no-repeat;
-    background-size: 50% 50%; /* size of box */
+    background-size: 50% 50%; /* box transformation */
     background-image: linear-gradient(
       #0d3dfc,
       #00c2cb
@@ -251,7 +251,7 @@ a:hover {
     width: 400%;
     height: 400%;
     background-repeat: no-repeat;
-    background-size: 50% 50%; /* size of box */
+    background-size: 50% 50%; /* box transformation */
     background-image: linear-gradient(
       #0d3dfc,
       #00c2cb
