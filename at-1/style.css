@@ -117,7 +117,7 @@ p {
   font-weight: 400;
   color: #2e2e2e;
   line-height: 1.5;
-  align-content: left;
+  text-align: left;
 }
 
 /* p:hover {
