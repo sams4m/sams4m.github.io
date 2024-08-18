@@ -32,17 +32,23 @@ design choice which runs a fine line between maxinalist and minimalist. Fun but 
 /* sourced from dafont.com, free for personal and commercial use */
 
 /* HTML BODY STYLING --------------------------------------------------------------- */
+/* body styling */
 body {
   margin-top: 7%;
   margin-left: 15%;
   margin-right: 15%;
+  margin-bottom: 2%;
 }
 
-/* BLOCK STYLING --------------------------------------------------------------------*/
+/* article styling */
+article {
+  padding-bottom: 80px;
+}
+
+/* BLOCK STYLING IN BODY ------------------------------------------------------------*/
 /* Header block styling */
 .header {
   text-align: center;
-  padding-bottom: 5pxi;
 }
 /* body block styling */
 .body {
@@ -55,12 +61,6 @@ body {
 /* footer block styling */
 .footer {
   text-align: center;
-  margin-bottom: 200px;
-}
-
-/* article block styling */
-article {
-  padding-bottom: 80px;
 }
 
 /* TEXT STYLE GUIDE ---------------------------------------------------------------*/
@@ -81,6 +81,9 @@ h1 {
   text-align: left;
   text-transform: uppercase;
 }
+
+/* the hover element was to bring the same cheeky interactive energy from Tuntaopas' 
+work into my own */
 
 h1:hover {
   text-transform: lowercase;
@@ -123,11 +126,10 @@ p {
   text-align: left;
 }
 
-/* p:hover {
-  font-weight: 600;
-} */
-
+/* foot note */
 .footer-p {
+  /* keeping the same global font, montserrat, for style consistency */
+  /* styling */
   font-size: 0.7rem;
 
   color: #f839e5;
@@ -150,18 +152,22 @@ a:hover {
   text-decoration: overline;
 }
 
-/* IMG BORDER -------------------------------------------------------------------*/
+/* IMG STYLING -----------------------------------------------------------------*/
 .image {
   border-width: 1px;
   border-style: dotted;
   color: #a0bf37;
-  max-width: 100%;
-  display: flex;
+  max-width: 99.7%;
+  align-self: center;
 }
 
-/* PADDING SPACE  ------------------------------------------------------------*/
+/* PADDING SPACE  --------------------------------------------------------------*/
 .space80 {
   margin-bottom: 80px;
+}
+
+.space2 {
+  margin-bottom: 2%;
 }
 
 /* FLEX ------------------------------------------------------------------------*/
@@ -179,6 +185,23 @@ a:hover {
   flex: 1;
   text-align: center;
 }
+
+/* Similar to the hover element in H1, I wanted to incorporate more of the same cheeky 
+interactive energy from Tuntaopas' work into my own. Though limited by what has been
+taught and what can be done on html + css alone, I came across an article upon research
+named '10 Simple CSS and JavaScript Micro-interactions for Buttons', and was inspired
+by the 'Border animation on a round button' and wanted to try create a rotating border
+for the paragraph blocks upon hover. Following the example and changing to what I need,
+I created a border that appear upon hover, with a minimal gradient blue appearance.
+
+The intention is to create an interaction that highlights the fun web interaction nature
+that Tuntaopas showcases in their work but also doesn't take away from the  reading 
+experience.
+
+url to 10 Simple CSS and JavaScript Micro-interactions for Buttons article:
+
+https://www.sitepoint.com/button-micro-interactions/
+*/
 
 /* BLOCK INTERACTION ----------------------------------------------------------*/
 @keyframes rotate {
