@@ -31,27 +31,30 @@ design choice which runs a fine line between maxinalist and minimalist. Fun but 
 }
 /* sourced from dafont.com, free for personal and commercial use */
 
+/* HTML BODY STYLING --------------------------------------------------------------- */
+body {
+  margin-top: 7%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
 /* BLOCK STYLING --------------------------------------------------------------------*/
 /* Header block styling */
 .header {
   text-align: center;
-  padding-top: 6%;
-  margin-left: 15%;
-  margin-right: 15%;
+  padding-bottom: 5pxi;
 }
 /* body block styling */
 .body {
   text-align: left;
   margin-top: 120px;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 6%;
+  margin-right: 6%;
 }
 
 /* footer block styling */
 .footer {
   text-align: center;
-  margin-left: 15%;
-  margin-right: 15%;
   margin-bottom: 200px;
 }
 
@@ -62,6 +65,9 @@ article {
 
 /* TEXT STYLE GUIDE ---------------------------------------------------------------*/
 /* HEADER 1 */
+/* The font was inspired from Tuntaopas' portfolio after inspecting the source code
+behind their website. I thought it only fitting seeing as this is a review of their
+portfolio. */
 h1 {
   /* font */
   font-family: "Cube";
@@ -69,7 +75,7 @@ h1 {
   /* styling */
   font-size: 2.8rem;
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.5;
 
   color: #0d3dfc;
   text-align: left;
@@ -82,9 +88,7 @@ h1:hover {
 
 /* HEADER 2 */
 h2 {
-  /* font  */
-  /* font-family: "Gruppo", sans-serif; */
-
+  /* keeping the same global font, montserrat, for style consistency */
   /* styling */
   font-size: 1.1rem;
   font-style: oblique;
@@ -98,6 +102,7 @@ h2 {
 
 /* HEADER 3 */
 h3 {
+  /* keeping the same global font, montserrat, for style consistency */
   /* styling */
   font-size: 1rem;
   font-weight: 600;
@@ -107,13 +112,9 @@ h3 {
   text-transform: uppercase;
 }
 
-/* h3:hover {
-  color: #0d3dfc;
-  font-size: 1.1rem;
-} */
-
 /* paragraph */
 p {
+  /* keeping the same global font, montserrat, for style consistency */
   /* styling */
   font-size: 0.9rem;
   line-height: 1.5;
@@ -158,7 +159,12 @@ a:hover {
   display: flex;
 }
 
-/* FLEX TABLE -------------------------------------------------------------------*/
+/* PADDING SPACE  ------------------------------------------------------------*/
+.space80 {
+  margin-bottom: 80px;
+}
+
+/* FLEX ------------------------------------------------------------------------*/
 .row {
   display: flex;
   justify-content: space-between;
@@ -166,6 +172,7 @@ a:hover {
   margin-top: auto;
   align-items: flex-start;
   padding-bottom: 80px;
+  margin-bottom: 80px;
 }
 
 .column {
@@ -180,7 +187,7 @@ a:hover {
   }
 }
 
-/* COLUMN ----------------------------------------------------*/
+/* COLUMN ----------------------------------------*/
 .box-col {
   margin-bottom: 80px;
 }
@@ -226,7 +233,7 @@ a:hover {
   }
 }
 
-/* ROW ------------------------------------------------------*/
+/* ROW -------------------------------------------*/
 .box-row {
   margin-bottom: 80px;
 }
