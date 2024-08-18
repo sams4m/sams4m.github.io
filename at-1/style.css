@@ -127,6 +127,16 @@ p {
   text-align: left;
 }
 
+/* header subscript */
+.header-subscript {
+  /* keeping the same global font, montserrat, for style consistency */
+  /* styling */
+  font-size: 0.7rem;
+
+  color: #2e2e2e;
+  text-align: left;
+}
+
 /* footnote */
 .footer-p {
   /* keeping the same global font, montserrat, for style consistency */
