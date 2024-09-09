@@ -3,7 +3,10 @@
   background: url(./static/background.png);
   background-repeat: repeat;
   background-color: rgb(20, 20, 20);
-  margin: 10%;
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
 
   /* global font montserrat */
   font-family: "Montserrat", sans-serif;
@@ -26,9 +29,18 @@
 
 h1 {
   font-family: baunk;
-  font-size: 2.2rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #c6c6c6;
+}
+
+h2 {
+  font-family: baunk;
+  font-size: 1.8rem;
   font-weight: 300;
   color: #b4d562;
+
+  text-align: left;
 }
 
 p {
