@@ -1,0 +1,50 @@
+* {
+  background-color: rgb(229, 229, 229);
+  margin: 5%;
+
+  /* global font montserrat */
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  color: rgb(49, 49, 49);
+}
+
+body {
+  display: flex;
+  text-align: center;
+  margin: auto;
+  max-width: 1000px;
+  justify-content: center;
+  align-items: center;
+  /* color: #3c2a21; */
+  font-size: 1.1rem;
+}
+
+.outer {
+  border: 2px dashed rgb(49, 49, 49);
+  width: 600px;
+  min-height: 200px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.outer > * {
+  padding: 5px;
+}
+
+input {
+  padding-bottom: 20px;
+}
+
+.grade {
+  font-size: 1.4rem;
+  color: coral;
+}
+
+.fgrade {
+  font-size: 1.4rem;
+  color: crimson;
+}
