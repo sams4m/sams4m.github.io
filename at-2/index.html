@@ -15,5 +15,74 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <h1>🎀🤍 study with me 🤍🎀</h1>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="full-container">
+      <!-- <img src="static/firefly-sunset.jpg" alt="peaceful light of sunset on the sea and tree branches"> -->
+      <section class="visual">
+        <video id="current-video" autoplay muted loop>
+          <source src="static/rain.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </section>
+      <section class="visual-btns">
+        <button id="rain-btn" class="visual-btn-style">🌧️</button>
+        <button id="flower-btn" class="visual-btn-style">🌼</button>
+        <button id="water-btn" class="visual-btn-style">🌊</button>
+        <button id="rainbow-btn" class="visual-btn-style">🌈</button>
+      </section>
+      <section class="media-ctrl">
+        <!-- PLAY BUTTON -->
+        <button id="play-btn">
+          <img
+            id="play-img"
+            src="https://img.icons8.com/?size=100&id=q3fMyXaHxuVc&format=png&color=74412e"
+            alt="Play Button"
+            width="24"
+            height="24"
+          />
+        </button>
+
+        <!-- PROGRESS BAR -->
+        <div class="progress-bar">
+          <span id="progress-bar-fill"></span>
+        </div>
+
+        <!-- SKIP BUTTON -->
+        <button id="skip-btn">
+          <img
+            id="play-img"
+            src="https://img.icons8.com/?size=100&id=101920&format=png&color=74412e"
+            alt="Play Button"
+            width="24"
+            height="24"
+          />
+        </button>
+      </section>
+
+      <section class="current-song">
+        <!-- CURRENTLY PLAYING SONG -->
+        <p>Currently playing:</p>
+        <span id="current-song"></span>
+      </section>
+
+      <section class="view-playlist-style">
+        <!-- VIEW PLAYLIST -->
+        <button id="view-playlist">view full playlist</button>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        Videos sourced from Pixabay free for use under the Pixabay Content
+        License
+      </p>
+    </footer>
+  </body>
 </html>

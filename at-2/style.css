@@ -1,16 +1,156 @@
-* {
-  background-color: dimgray;
-  margin: 10%;
+/* VARS */
+:root {
+  --primary-bg-color: #eedcb0;
+  --primary-text-color: #74412e;
+  --alt-bg-color: #744127;
+  --alt-text-color: #eedcb0;
+  --highlight-color: #60a9a7;
+}
 
+/* GLOBAL STYLE */
+* {
   /* global font montserrat */
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  color: antiquewhite;
+
+  margin: 0;
+  padding: 0;
 }
 
+/* TEXT STYLE */
 h1 {
-  font-size: 2rem;
-  font-weight: 400;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 0.7rem;
+}
+
+/* BODY STYLE */
+body {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* HEADER FOOTERSTYLE */
+header,
+footer {
+  background-color: var(--alt-bg-color);
+  color: var(--alt-text-color);
+  padding: 1%;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+section {
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+/* Create a container for the main content */
+.full-container {
+  width: 90%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Create a container for the main content */
+.resize-container {
+  max-width: 100%;
+  padding: 10%;
+}
+
+/* DIV CONTENT STYLES */
+/* MEDIA */
+.visual {
+  max-width: 900px;
+  aspect-ratio: 4/2.5;
+  display: flex;
+  justify-content: center;
+}
+
+/* BUTTONS */
+.visual-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 100%;
+
+  button:hover {
+    background-color: var(--primary-bg-color);
+    border: 1px solid;
+    border-color: var(--highlight-color);
+
+    transition: 0.5s;
+  }
+}
+
+.visual-btn-style {
+  background-color: var(--alt-bg-color);
+  padding: 7%;
+  border-radius: 10%;
+  border: 0;
+}
+
+/* CONTROLS */
+.media-ctrl {
+  width: 970px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background-color: var(--alt-bg-color);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  display: block;
+  height: 100%;
+  background-color: var(--highlight-color);
+  width: 0;
+  /* allow for smooth transition */
+  transition: width 0.3s ease;
+}
+
+/* SONG */
+.current-song {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* PLAYLIST */
+.view-playlist-style {
+  button {
+    font-size: 0.7rem;
+    color: var(--primary-text-color);
+  }
+
+  button:hover {
+    color: var(--highlight-color);
+  }
 }
