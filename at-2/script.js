@@ -64,8 +64,6 @@ function chooseVisual(no) {
   currentVideo.play();
 }
 
-// MUSIC CONTROLS
-
 // PROGRESS BAR FOR MUSIC
 currentSong = document.querySelector("#current-song");
 
@@ -89,26 +87,136 @@ function showProgress() {
 // SONG LIST
 const songs = [
   {
-    name: "rain",
+    songIndex: "0",
+    name: "Rain Thoughts",
     src: "audio/rain-thoughts.mp3",
     // Song by
   },
 
   {
-    name: "ginger",
+    songIndex: "1",
+    name: "Blue Ginger",
     src: "audio/blue-ginger.mp3",
     // Song by
   },
 
   {
-    name: "saltwater",
+    songIndex: "2",
+    name: "Saltwater and Sunscreen",
     src: "audio/saltwater-and-sunscreen.mp3",
     // Song by
   },
 
   {
-    name: "chill",
+    songIndex: "3",
+    name: "Chill out",
     src: "audio/chill-out.mp3",
     // Song by
   },
+
+  {
+    songIndex: "4",
+    name: "Parachute",
+    src: "audio/parachute.mp3",
+    // Song by
+  },
 ];
+
+// MUSIC CONTROLS
+// initial song playing by default -- rain
+const playingSong = new Audio("audio/rain-thoughts.mp3");
+console.log(playingSong);
+
+// initial songindex = 0
+let songi = 0;
+
+const playBtn = document.querySelector("#play-btn");
+console.log(playBtn);
+const playImg = document.querySelector("#play-img");
+
+const skipBtn = document.querySelector("#skip-btn");
+console.log(skipBtn);
+const skipImg = document.querySelector("#skip-img");
+
+const prevBtn = document.querySelector("#prev-btn");
+console.log(prevBtn);
+const prevImg = document.querySelector("#prev-img");
+
+const loopBtn = document.querySelector("#loop-btn");
+console.log(loopBtn);
+const loopImg = document.querySelector("#loop-img");
+
+// event listeners
+// PREVIOUS
+prevBtn.addEventListener("click", function () {
+  togglePrev(songi - 1);
+});
+// PLAY
+playBtn.addEventListener("click", togglePlay);
+// SKIP
+skipBtn.addEventListener("click", function () {
+  toggleSkip(songi + 1);
+});
+
+// ----------------------------------------------------------------------------------------//
+// FUNCTIONS
+// PREVIOUS
+function togglePrev(num) {
+  if (num < 5) {
+    playingSong.src = songs[num].src;
+
+    playingSong.load();
+    playingSong.play();
+
+    songi++;
+  } else if (num === 5) {
+    num = 0;
+    playingSong.src = songs[num].src;
+
+    playingSong.load();
+    playingSong.play();
+
+    songi = num;
+  } else if (num === -1) {
+    num = 4;
+    playingSong.src = songs[num].src;
+
+    playingSong.load();
+    playingSong.play();
+
+    songi = num;
+  }
+}
+
+// PLAY
+function togglePlay() {
+  if (playingSong.paused || playingSong.ended) {
+    playingSong.play();
+    playImg.src =
+      "https://img.icons8.com/?size=100&id=85963&format=png&color=74412e";
+  } else {
+    playingSong.pause();
+    playImg.src =
+      "https://img.icons8.com/?size=100&id=85165&format=png&color=74412e";
+  }
+}
+
+// SKIP
+function toggleSkip(num) {
+  if (num < 5) {
+    playingSong.src = songs[num].src;
+
+    playingSong.load();
+    playingSong.play();
+
+    songi++;
+  } else if (num === 5) {
+    num = 0;
+    playingSong.src = songs[num].src;
+
+    playingSong.load();
+    playingSong.play();
+
+    songi = num;
+  }
+}

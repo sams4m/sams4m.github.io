@@ -27,7 +27,7 @@ h1 {
 }
 
 p {
-  font-size: 0.7rem;
+  font-size: 1rem;
 }
 
 /* BODY STYLE */
@@ -41,14 +41,26 @@ body {
 }
 
 /* HEADER FOOTERSTYLE */
-header,
-footer {
+header {
   background-color: var(--alt-bg-color);
   color: var(--alt-text-color);
-  padding: 1%;
+  padding: 2%;
   margin: 0;
   text-align: center;
   width: 100%;
+}
+
+footer {
+  background-color: var(--alt-bg-color);
+  color: var(--alt-text-color);
+  padding: 2%;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+
+  p {
+    font-size: 0.7rem;
+  }
 }
 
 section {
@@ -156,7 +168,7 @@ button {
   width: 89%;
 
   button {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: var(--primary-text-color);
   }
 
