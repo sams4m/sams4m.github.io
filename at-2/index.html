@@ -18,18 +18,20 @@
   <body>
     <!-- HEADER -->
     <header>
-      <h1>🎀🤍 study with me 🤍🎀</h1>
+      <h1>✨🎀🤍 s t u d y &nbsp; w i t h &nbsp; m e 🤍🎀✨</h1>
     </header>
 
     <!-- MAIN CONTENT -->
     <main class="full-container">
       <!-- <img src="static/firefly-sunset.jpg" alt="peaceful light of sunset on the sea and tree branches"> -->
+      <!-- VISUAL -->
       <section class="visual">
         <video id="current-video" autoplay muted loop>
           <source src="static/rain.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </section>
+      <!-- CHANGE VISUAL BUTTONS -->
       <section class="visual-btns">
         <button id="rain-btn" class="visual-btn-style">🌧️</button>
         <button id="flower-btn" class="visual-btn-style">🌼</button>
@@ -37,33 +39,66 @@
         <button id="rainbow-btn" class="visual-btn-style">🌈</button>
       </section>
       <section class="media-ctrl">
+        <!-- SHUFFLE BUTTON -->
+        <button id="shuffle-btn"></button>
+          <img
+            id="shuffle-img"
+            src="https://img.icons8.com/?size=100&id=103574&format=png&color=74412e"
+            alt="Shuffle Button"
+            width="20"
+            height="20"
+          />
+        </button>
+        <!-- PREVIOUS BUTTON -->
+        <button id="prev-btn">
+          <img
+            id="p-img"
+            src="https://img.icons8.com/?size=100&id=102053&format=png&color=74412e"
+            alt="Previous Button"
+            width="24"
+            height="24"
+          />
+        </button>
+
         <!-- PLAY BUTTON -->
         <button id="play-btn">
           <img
             id="play-img"
-            src="https://img.icons8.com/?size=100&id=q3fMyXaHxuVc&format=png&color=74412e"
+            src="https://img.icons8.com/?size=100&id=85165&format=png&color=74412e"
             alt="Play Button"
             width="24"
             height="24"
           />
         </button>
-
-        <!-- PROGRESS BAR -->
-        <div class="progress-bar">
-          <span id="progress-bar-fill"></span>
-        </div>
-
+        
+        
         <!-- SKIP BUTTON -->
         <button id="skip-btn">
           <img
-            id="play-img"
-            src="https://img.icons8.com/?size=100&id=101920&format=png&color=74412e"
-            alt="Play Button"
+            id="skip-img"
+            src="https://img.icons8.com/?size=100&id=102077&format=png&color=74412e"
+            alt="Skip Button"
             width="24"
             height="24"
           />
         </button>
+
+        <!-- REPEAT SONG -->
+        <button id="repeat-btn">
+          <img
+            id="repeat-img"
+            src="https://img.icons8.com/?size=100&id=83204&format=png&color=74412e"
+            alt="Skip Button"
+            width="18"
+            height="18"
+          />
+        </button>
       </section>
+
+      <!-- PROGRESS BAR -->
+       <section class="progress-bar">
+          <span id="progress-bar-fill"></span>
+       </section>
 
       <section class="current-song">
         <!-- CURRENTLY PLAYING SONG -->
@@ -71,9 +106,12 @@
         <span id="current-song"></span>
       </section>
 
-      <section class="view-playlist-style">
+      <section class="gestures">
         <!-- VIEW PLAYLIST -->
         <button id="view-playlist">view full playlist</button>
+
+        <!-- MINIMISE -->
+         <button id="mini-player">Mini player</button>
       </section>
     </main>
 

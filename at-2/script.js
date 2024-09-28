@@ -64,6 +64,8 @@ function chooseVisual(no) {
   currentVideo.play();
 }
 
+// MUSIC CONTROLS
+
 // PROGRESS BAR FOR MUSIC
 currentSong = document.querySelector("#current-song");
 
