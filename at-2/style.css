@@ -1,8 +1,25 @@
 /* Written by: Samantha Lugay
 Student Number: s4087814 */
+/* Style Foreword: 
+As the study media player theme was chosen, I wanted to implement a chill and relaxation colour
+scheme. With this in mind, I decided to implement a retro coffee colour scheme, with a contrasting 
+blue as the highlight colour. I wanted the colour to have a relatively high contrast to show something
+is 'active'. Given that it's a relaxation media player, I wanted the interface to have as little media 
+controls as possible to limit distractions and encourage productivity. There is a focus mode available 
+too which will remove all media controls and only showcase the visuals for some calming imagery 
+psychological stimulation with studies showing people perform simple tasks better when they are in an 
+optimal arousal state.(Nickerson, 2023) Following that idea, I've also incorporated buttons for
+different visuals for users to select the one they'd prefer the most.
+
+Inactive media controls have a lower opacity to add another layer of visual indication that the control
+is not activated.
+
+Optimal Arousal Theory: https://www.simplypsychology.org/what-is-the-yerkes-dodson-law.html
+*/
 /* ------------------------------------------------------------------------------------------- */
 /* VARS */
 /* main colour variables linked here so if colours need to be changed they're changed once only */
+
 :root {
   --primary-bg-color: #eedcb0;
   --primary-text-color: #74412e;
@@ -22,8 +39,11 @@ Student Number: s4087814 */
   margin: 0;
   padding: 0;
 }
+/* Montserrat was chosen as a simple and high readability font. It will allow for accessibility
+whilst keeping the design itself minimal and distraction minimal. */
 
 /* ------------------------------------------------------------------------------------------- */
+/* UNIVERSAL HTML BODY STYLE */
 /* TEXT STYLE */
 h1 {
   font-size: 1rem;
@@ -45,7 +65,7 @@ body {
   justify-content: space-between;
 }
 
-/* HEADER FOOTERSTYLE */
+/* HEADER STYLE */
 header {
   background-color: var(--alt-bg-color);
   color: var(--alt-text-color);
@@ -55,6 +75,7 @@ header {
   width: 100%;
 }
 
+/* FOOTERSTYLE */
 footer {
   background-color: var(--alt-bg-color);
   color: var(--alt-text-color);
@@ -68,11 +89,13 @@ footer {
   }
 }
 
+/* SECTION STYLE */
 section {
   padding-top: 2%;
   padding-bottom: 2%;
 }
 
+/* BUTTON STYLE */
 button {
   background-color: transparent;
   border: none;
@@ -84,7 +107,7 @@ button {
 
 /* ------------------------------------------------------------------------------------------- */
 /* CLASS STYLES */
-/* Create a container for the main content */
+/* Container for the main content */
 .full-container {
   max-width: 90%;
   padding-top: 10%;
@@ -96,14 +119,8 @@ button {
   justify-content: space-between;
 }
 
-/* Create a container for the main content */
-.resize-container {
-  max-width: 100%;
-  padding: 10%;
-}
-
 /* DIV CONTENT STYLES */
-/* MEDIA */
+/* VISUAL MEDIA */
 .visual {
   max-width: 900px;
   width: 89%;
@@ -112,7 +129,8 @@ button {
   justify-content: center;
 }
 
-/* BUTTONS */
+/* VISUAL BUTTONS */
+/* visual buttons container style */
 .visual-btns {
   display: flex;
   flex-direction: row;
@@ -126,6 +144,7 @@ button {
   }
 }
 
+/* visual button style */
 .visual-btn-style {
   background-color: var(--primary-bg-color);
   padding: 7%;
@@ -134,7 +153,8 @@ button {
   border-color: var(--alt-bg-color);
 }
 
-/* CONTROLS */
+/* MEDIA CONTROLS */
+/* media controls container style */
 .media-ctrl {
   display: flex;
   flex-direction: row;
@@ -145,10 +165,13 @@ button {
   transition: 0.4s;
 }
 
+/* media controls when inactive */
 .media-ctrl-inactive {
   opacity: 50%;
 }
 
+/* PROGRESS BAR */
+/* progress bar container */
 .progress-bar {
   width: 70%;
   height: 3px;
@@ -161,6 +184,7 @@ button {
   padding-bottom: 0;
 }
 
+/* progress bar fill style */
 .progress-bar span {
   display: block;
   height: 100%;
@@ -170,13 +194,14 @@ button {
   transition: width 0.3s ease;
 }
 
-/* SONG */
+/* SONG NAME DISPLAY CONTAINER*/
 .current-song {
   display: flex;
   justify-content: space-between;
 }
 
-/* PLAYLIST */
+/* OTHER GESTURES: playlist and focus mode */
+/* continer */
 .gestures {
   display: flex;
   flex-direction: row;
@@ -195,6 +220,7 @@ button {
   }
 }
 
+/* playlist container */
 .playlist {
   width: 85%;
   display: flex;
@@ -206,6 +232,7 @@ button {
   white-space: pre-wrap;
 }
 
+/* playlist style */
 .playlist span {
   font-size: 0.8rem;
   font-weight: 500;
