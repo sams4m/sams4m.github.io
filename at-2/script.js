@@ -30,6 +30,7 @@ const visuals = [
 ];
 // visuals sourced from Pixabay free for use under the Pixabay Content License
 
+//----------------------------------------------------------------------------------------//
 // VISUAL BUTTONS
 const rainBtn = document.querySelector("#rain-btn");
 console.log(rainBtn);
@@ -64,71 +65,67 @@ function chooseVisual(no) {
   currentVideo.play();
 }
 
-// PROGRESS BAR FOR MUSIC
-currentSong = document.querySelector("#current-song");
-
-currentSong.addEventListener("timeupdate", showProgress);
-
-const progressBar = document.querySelector("#progress-bar-fill");
-
-function showProgress() {
-  // getting the progress
-  const currentTime = currentSong.currentTime;
-  console.log("current time", currentTime.toFixed(2)); //to 2 decimal points
-
-  const progress = (currentTime / myVideo.duration) * 100; //percentage value
-  console.log("progress", progress.toFixed(2));
-
-  //showing the progress on the bar
-  progressBar.style.width = progress + "%";
-}
-
+//----------------------------------------------------------------------------------------//
 // MUSIC
 // SONG LIST
 const songs = [
   {
-    songIndex: "0",
+    songIndex: "1",
     name: "Rain Thoughts",
     src: "audio/rain-thoughts.mp3",
-    // Song by
-  },
-
-  {
-    songIndex: "1",
-    name: "Blue Ginger",
-    src: "audio/blue-ginger.mp3",
+    isFav: false,
     // Song by
   },
 
   {
     songIndex: "2",
-    name: "Saltwater and Sunscreen",
-    src: "audio/saltwater-and-sunscreen.mp3",
+    name: "Blue Ginger",
+    src: "audio/blue-ginger.mp3",
+    isFav: false,
     // Song by
   },
 
   {
     songIndex: "3",
-    name: "Chill out",
-    src: "audio/chill-out.mp3",
+    name: "Saltwater and Sunscreen",
+    src: "audio/saltwater-and-sunscreen.mp3",
+    isFav: false,
     // Song by
   },
 
   {
     songIndex: "4",
+    name: "Chill out",
+    src: "audio/chill-out.mp3",
+    isFav: false,
+    // Song by
+  },
+
+  {
+    songIndex: "5",
     name: "Parachute",
     src: "audio/parachute.mp3",
+    isFav: false,
     // Song by
   },
 ];
 
-// MUSIC CONTROLS
+//----------------------------------------------------------------------------------------//
+// MEDIA CONTROLS
 // initial song playing by default -- rain
 const playingSong = new Audio("audio/rain-thoughts.mp3");
 console.log(playingSong);
 
-// initial songindex = 0
+// initial song array index = 0
 let songi = 0;
+
+const addBtn = document.querySelector("#add-btn");
+console.log(addBtn);
+const addImg = document.querySelector("#add-img");
+
+const prevBtn = document.querySelector("#prev-btn");
+console.log(prevBtn);
+const prevImg = document.querySelector("#prev-img");
 
 const playBtn = document.querySelector("#play-btn");
 console.log(playBtn);
@@ -138,46 +135,79 @@ const skipBtn = document.querySelector("#skip-btn");
 console.log(skipBtn);
 const skipImg = document.querySelector("#skip-img");
 
-const prevBtn = document.querySelector("#prev-btn");
-console.log(prevBtn);
-const prevImg = document.querySelector("#prev-img");
-
 const loopBtn = document.querySelector("#loop-btn");
 console.log(loopBtn);
 const loopImg = document.querySelector("#loop-img");
 
 // event listeners
+// SONG END
+playingSong.addEventListener("ended", playNext);
+
+// ADD TO FAV
+addBtn.addEventListener("click", addFavourite);
+
 // PREVIOUS
 prevBtn.addEventListener("click", function () {
-  togglePrev(songi - 1);
+  togglePrev(songs[songi].songIndex - 1);
 });
+
 // PLAY
 playBtn.addEventListener("click", togglePlay);
+
 // SKIP
 skipBtn.addEventListener("click", function () {
   toggleSkip(songi + 1);
 });
 
-// ----------------------------------------------------------------------------------------//
-// FUNCTIONS
+//LOOP
+loopBtn.addEventListener("click", loopSong);
+
+//----------------------------------------------------------------------------------------//
+// MEDIA CONTROL FUNCTIONS
+// AUTO PLAY NEXT SONG
+function playNext() {
+  songi++;
+
+  playingSong.src = songs[songi].src;
+
+  if (songs[songi].isFav == true) {
+    addImg.src =
+      "https://img.icons8.com/?size=100&id=85096&format=png&color=60a9a7";
+  } else {
+    addImg.src =
+      "https://img.icons8.com/?size=100&id=85096&format=png&color=74412e";
+  }
+
+  playingSong.load();
+  playingSong.play();
+}
+
+// ADD TO FAVOURITE
+function addFavourite() {
+  console.log("add to favourites button clicked.");
+
+  if (songs[songi].isFav == flase) {
+    songs[songi].isFav = true;
+    addImg.src =
+      "https://img.icons8.com/?size=100&id=85096&format=png&color=60a9a7";
+  } else {
+    songs[num].isFav == false;
+    addImg.src =
+      "https://img.icons8.com/?size=100&id=85096&format=png&color=74412e";
+  }
+}
+
 // PREVIOUS
 function togglePrev(num) {
-  if (num < 5) {
-    playingSong.src = songs[num].src;
+  console.log("previous button clicked.");
+  if (num < 6 && num > 0) {
+    playingSong.src = songs[num - 1].src;
 
     playingSong.load();
     playingSong.play();
 
-    songi++;
-  } else if (num === 5) {
-    num = 0;
-    playingSong.src = songs[num].src;
-
-    playingSong.load();
-    playingSong.play();
-
-    songi = num;
-  } else if (num === -1) {
+    songi = num - 1;
+  } else if (num === 0) {
     num = 4;
     playingSong.src = songs[num].src;
 
@@ -186,16 +216,24 @@ function togglePrev(num) {
 
     songi = num;
   }
+  // ensure pause icon active
+  playImg.src =
+    "https://img.icons8.com/?size=100&id=85963&format=png&color=74412e";
 }
 
 // PLAY
 function togglePlay() {
+  console.log("play button clicked.");
   if (playingSong.paused || playingSong.ended) {
     playingSong.play();
+
+    // change to pause icon
     playImg.src =
       "https://img.icons8.com/?size=100&id=85963&format=png&color=74412e";
   } else {
     playingSong.pause();
+
+    // revert to play icon
     playImg.src =
       "https://img.icons8.com/?size=100&id=85165&format=png&color=74412e";
   }
@@ -203,7 +241,8 @@ function togglePlay() {
 
 // SKIP
 function toggleSkip(num) {
-  if (num < 5) {
+  console.log("skip button clicked.");
+  if (num < 4) {
     playingSong.src = songs[num].src;
 
     playingSong.load();
@@ -216,7 +255,50 @@ function toggleSkip(num) {
 
     playingSong.load();
     playingSong.play();
-
-    songi = num;
   }
+
+  // ensure pause icon active
+  playImg.src =
+    "https://img.icons8.com/?size=100&id=85963&format=png&color=74412e";
+
+  songi = num;
+}
+
+//LOOP
+function loopSong() {
+  console.log("loop button clicked.");
+  if ((playingSong.loop = false)) {
+    playingSong.loop = true;
+
+    // change icon colour
+    loopImg.src =
+      "https://img.icons8.com/?size=100&id=83204&format=png&color=60a9a7";
+  } else {
+    playingSong.loop = false;
+
+    // revert icon colour
+    loopImg.src =
+      "https://img.icons8.com/?size=100&id=83204&format=png&color=74412e";
+  }
+}
+
+//----------------------------------------------------------------------------------------//
+// PROGRESS BAR FOR MUSIC
+playingSong.addEventListener("timeupdate", showProgress);
+
+const progressBarFill = document.querySelector("#progress-bar-fill");
+
+function showProgress() {
+  // getting the progress
+  const currentTime = playingSong.currentTime;
+  console.log("current time", currentTime.toFixed(2)); //to 2 decimal points
+
+  const duration = playingSong.duration;
+  console.log("duration", duration.toFixed(2));
+
+  const progress = (currentTime / playingSong.duration) * 100; //percentage value
+  console.log("progress", progress.toFixed(2));
+
+  //showing the progress on the bar
+  progressBarFill.style.width = progress + "%";
 }
