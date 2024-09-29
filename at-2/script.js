@@ -187,18 +187,12 @@ loopBtn.addEventListener("click", loopSong);
 // MEDIA CONTROL FUNCTIONS
 // AUTO PLAY NEXT SONG
 function playNext() {
+  //update song array index
   songi++;
-  console.log("next song playing.");
+  console.log("song index updated:", songi);
 
+  // update song source
   playingSong.src = songs[songi].src;
-
-  if (songs[songi].isFav === true) {
-    addImg.src =
-      "https://img.icons8.com/?size=100&id=85096&format=png&color=60a9a7";
-  } else {
-    addImg.src =
-      "https://img.icons8.com/?size=100&id=85096&format=png&color=74412e";
-  }
 
   playingSong.load();
   playingSong.play();
@@ -243,6 +237,7 @@ function togglePrev(num) {
 
   if (num <= songs.length && num > 0) {
     // if the current song index is between 1 to max length
+    //update song source
     playingSong.src = songs[num - 1].src;
 
     playingSong.load();
@@ -250,35 +245,38 @@ function togglePrev(num) {
 
     // checking heart button status
     if (heartStatus === 1) {
-      // if heart button active, update song name
+      // if active update song name
       currentSong.textContent = songs[num - 1].name;
     } else if (heartStatus === 0) {
       // otherwise empty
       currentSong.textContent = null;
     }
 
-    //update song index
+    //update song array index
     songi = num - 1;
+    console.log("song index updated:", songi);
   } else if (num === 0) {
     // if current song index is 0; first song, previous song = last song
     //update num to be the last song array index
-    //num = songs.length;
-    playingSong.src = songs[songs.length].src;
+    num = songs.length - 1;
+    //update song source
+    playingSong.src = songs[num].src;
 
     playingSong.load();
     playingSong.play();
 
     // checking heart button status
     if (heartStatus === 1) {
-      // if heart button active, update song name
+      // if active update song name
       currentSong.textContent = songs[num].name;
     } else if (heartStatus === 0) {
       // otherwise empty
       currentSong.textContent = null;
     }
 
-    //update song index
-    songi = songs.length;
+    //update song array index
+    songi = num;
+    console.log("song index updated:", songi);
   }
   // ensure pause icon active
   playImg.src =
@@ -310,6 +308,7 @@ function toggleSkip(num) {
   console.log("skip button clicked.");
   if (num < songs.length) {
     // if song index less than or equal to array length
+    //update song ource
     playingSong.src = songs[num].src;
 
     playingSong.load();
@@ -317,15 +316,16 @@ function toggleSkip(num) {
 
     // checking heart button status
     if (heartStatus === 1) {
+      // if active update song name
       currentSong.textContent = songs[num].name;
     } else if (heartStatus === 0) {
+      // otherwise empty
       currentSong.textContent = null;
     }
-
-    songi++;
   } else if (num === songs.length) {
     // if song index equal to array length, ie. last song, go back to first
     num = 0;
+    //update song source
     playingSong.src = songs[num].src;
 
     playingSong.load();
@@ -333,8 +333,10 @@ function toggleSkip(num) {
 
     // checking heart button status
     if (heartStatus === 1) {
+      // if active update song name
       currentSong.textContent = songs[num].name;
     } else if (heartStatus === 0) {
+      // otherwise empty
       currentSong.textContent = null;
     }
   }
@@ -343,7 +345,9 @@ function toggleSkip(num) {
   playImg.src =
     "https://img.icons8.com/?size=100&id=85963&format=png&color=74412e";
 
+  //update song array index
   songi = num;
+  console.log("song index updated:", songi);
 }
 
 //LOOP; set function to true or false
@@ -375,20 +379,23 @@ function loopSong() {
 
 //----------------------------------------------------------------------------------------//
 // PROGRESS BAR FOR MUSIC
-// event listener
-playingSong.addEventListener("timeupdate", showProgress);
-
 // link to html id
 const progressBarFill = document.querySelector("#progress-bar-fill");
 
+// event listener
+playingSong.addEventListener("timeupdate", showProgress);
+
+// progress calculation function
 function showProgress() {
-  // getting the progress
+  // get current play time of song
   const currentTime = playingSong.currentTime;
   console.log("current time", currentTime.toFixed(2)); //to 2 decimal points
 
+  // get duration of song
   const duration = playingSong.duration;
   console.log("duration", duration.toFixed(2));
 
+  // calculate percentage of song played
   const progress = (currentTime / playingSong.duration) * 100; //percentage value
   console.log("progress", progress.toFixed(2));
 
@@ -397,18 +404,21 @@ function showProgress() {
 }
 
 //----------------------------------------------------------------------------------------//
-// GESTURES
+// OTHER GESTURES; playlist and focus mode
 // link to html id
+// play list button
 const viewPlaylist = document.querySelector("#view-playlist");
 console.log(viewPlaylist);
 
+// focus mode button
 const focusMode = document.querySelector("#focus-mode");
 console.log(focusMode);
 
+// playlist span
 const fullPlaylist = document.querySelector("#full-playlist");
 console.log(fullPlaylist);
 
-// is playlist view active; set initial to false
+// playlist view status; set initial to inactive
 let viewList = 0;
 
 // event listeners
@@ -422,22 +432,24 @@ function showPlaylist() {
 
   if (viewList === 0) {
     // turn playlist view active
-    // loop through songs array for names
+    // loop through songs array for names and print
     for (let i = 0; i < songs.length; i++) {
       fullPlaylist.textContent += "🩵 " + (i + 1) + ". " + songs[i].name + "\n";
     }
 
-    viewList = 1; //list active
+    // set list to active
+    viewList = 1;
   } else if (viewList === 1) {
-    // close list
+    // remove list
     fullPlaylist.textContent = null;
 
-    viewList = 0; //list inactive
+    // set list to inactive
+    viewList = 0;
   }
 }
 
 // FOCUS MODE
-// resizes to only show video at full screen
+// resizes to show visuals at full screen
 function toggleFullScreen() {
   console.log("focus mode clicked.");
 
