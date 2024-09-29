@@ -10,25 +10,25 @@ console.log(currentVideo);
 const visuals = [
   {
     name: "rain",
-    src: "static/rain.mp4",
+    src: "https://cdn.pixabay.com/video/2022/02/07/106980-674703577_large.mp4",
     // Video by Joe_hackney from Pixabay
   },
 
   {
     name: "flower",
-    src: "static/flower.mp4",
+    src: "https://cdn.pixabay.com/video/2022/01/05/103485-664408936_large.mp4",
     // Video by Christian Bodhi from Pixabay
   },
 
   {
     name: "water",
-    src: "static/water.mp4",
+    src: "https://cdn.pixabay.com/video/2024/06/22/217749_large.mp4",
     // Video by Engin_Akyurt from Pixabay
   },
 
   {
     name: "rainbow",
-    src: "static/rainbow.mp4",
+    src: "https://cdn.pixabay.com/video/2019/02/16/21460-318172490_large.mp4",
     // Video by Christian Bodhi from Pixabay
   },
 ];
