@@ -1,3 +1,6 @@
+/* Written by: Samantha Lugay
+Student Number: s4087814 */
+/* ------------------------------------------------------------------------------------------- */
 /* VARS */
 /* main colour variables linked here so if colours need to be changed they're changed once only */
 :root {
@@ -73,6 +76,10 @@ section {
 button {
   background-color: transparent;
   border: none;
+
+  button:hover {
+    transition: 0.4s;
+  }
 }
 
 /* ------------------------------------------------------------------------------------------- */
@@ -116,8 +123,6 @@ button {
     background-color: var(--highlight-color);
     border: 1px solid;
     border-color: var(--highlight-color);
-
-    transition: 0.4s;
   }
 }
 
@@ -136,6 +141,12 @@ button {
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
+
+  transition: 0.4s;
+}
+
+.media-ctrl-inactive {
+  opacity: 50%;
 }
 
 .progress-bar {
@@ -174,7 +185,7 @@ button {
 
   button {
     font-size: 0.8rem;
-    font-weight: 500;
+    font-weight: 600;
     opacity: 80%;
     color: var(--primary-text-color);
   }
@@ -191,6 +202,7 @@ button {
   justify-content: left;
 
   line-height: 2;
+  color: var(--primary-text-color);
   white-space: pre-wrap;
 }
 

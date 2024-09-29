@@ -1,3 +1,6 @@
+// Written by: Samantha Lugay
+// Student Number: s4087814
+//----------------------------------------------------------------------------------------//
 // VIDEO VISUALS
 // link to html id
 const currentVideo = document.querySelector("#current-video");
@@ -198,6 +201,10 @@ function activeHeart() {
 
   if (heartStatus === 0) {
     heartStatus = 1;
+
+    //opacity 100%
+    heartImg.classList.remove("media-ctrl-inactive");
+
     // changing heart btn colour
     heartImg.src =
       "https://img.icons8.com/?size=100&id=JD2A4WXqotI8&format=png&color=60a9a7";
@@ -206,6 +213,11 @@ function activeHeart() {
     currentSong.textContent = songs[songi].name;
   } else if (heartStatus === 1) {
     heartStatus = 0;
+
+    //opacity 50%
+    heartImg.classList.add("media-ctrl-inactive");
+
+    // changing heart btn colour
     heartImg.src =
       "https://img.icons8.com/?size=100&id=JD2A4WXqotI8&format=png&color=74412e";
 
@@ -317,12 +329,18 @@ function loopSong() {
     // loop song
     playingSong.loop = true;
 
+    //opacity 100%
+    loopImg.classList.remove("media-ctrl-inactive");
+
     // change icon colour
     loopImg.src =
       "https://img.icons8.com/?size=100&id=qxrv0RToYAHt&format=png&color=60a9a7";
   } else {
     // remove loop song
     playingSong.loop = false;
+
+    // opacity 50%
+    loopImg.classList.add("media-ctrl-inactive");
 
     // revert icon colour
     loopImg.src =
@@ -379,9 +397,17 @@ function showPlaylist() {
 
   if (viewList === 0) {
     // turn playlist view active
+    // loop through songs array for names
     for (let i = 0; i < songs.length; i++) {
-      fullPlaylist.textContent += "- " + songs[i].name + "\n";
+      fullPlaylist.textContent += "🩵 " + (i + 1) + ". " + songs[i].name + "\n";
     }
+
+    viewList = 1; //list active
+  } else if (viewList === 1) {
+    // close list
+    fullPlaylist.textContent = null;
+
+    viewList = 0; //list inactive
   }
 }
 
