@@ -1,4 +1,5 @@
 // VIDEO VISUALS
+// link to html id
 const currentVideo = document.querySelector("#current-video");
 console.log(currentVideo);
 
@@ -32,6 +33,7 @@ const visuals = [
 
 //----------------------------------------------------------------------------------------//
 // VISUAL BUTTONS
+// link to html id
 const rainBtn = document.querySelector("#rain-btn");
 console.log(rainBtn);
 
@@ -44,6 +46,7 @@ console.log(waterBtn);
 const rainbowBtn = document.querySelector("#rainbow-btn");
 console.log(rainbowBtn);
 
+// event listeners
 rainBtn.addEventListener("click", function () {
   chooseVisual(0); //first video
 });
@@ -57,6 +60,7 @@ rainbowBtn.addEventListener("click", function () {
   chooseVisual(3);
 });
 
+//function
 function chooseVisual(no) {
   currentVideo.src = visuals[no].src;
   console.log(currentVideo.src);
@@ -73,7 +77,6 @@ const songs = [
     songIndex: "1",
     name: "Rain Thoughts",
     src: "audio/rain-thoughts.mp3",
-    isFav: false,
     // Song by
   },
 
@@ -81,7 +84,7 @@ const songs = [
     songIndex: "2",
     name: "Blue Ginger",
     src: "audio/blue-ginger.mp3",
-    isFav: false,
+
     // Song by
   },
 
@@ -89,7 +92,7 @@ const songs = [
     songIndex: "3",
     name: "Saltwater and Sunscreen",
     src: "audio/saltwater-and-sunscreen.mp3",
-    isFav: false,
+
     // Song by
   },
 
@@ -97,7 +100,7 @@ const songs = [
     songIndex: "4",
     name: "Chill out",
     src: "audio/chill-out.mp3",
-    isFav: false,
+
     // Song by
   },
 
@@ -105,7 +108,7 @@ const songs = [
     songIndex: "5",
     name: "Parachute",
     src: "audio/parachute.mp3",
-    isFav: false,
+
     // Song by
   },
 ];
@@ -119,9 +122,16 @@ console.log(playingSong);
 // initial song array index = 0
 let songi = 0;
 
-const addBtn = document.querySelector("#add-btn");
-console.log(addBtn);
-const addImg = document.querySelector("#add-img");
+// initial heart button status
+let heartStatus = 0;
+
+// link to html id
+const heartBtn = document.querySelector("#heart-btn");
+console.log(heartBtn);
+const heartImg = document.querySelector("#heart-img");
+
+const currentSong = document.querySelector("#current-song");
+console.log(currentSong);
 
 const prevBtn = document.querySelector("#prev-btn");
 console.log(prevBtn);
@@ -143,8 +153,8 @@ const loopImg = document.querySelector("#loop-img");
 // SONG END
 playingSong.addEventListener("ended", playNext);
 
-// ADD TO FAV
-addBtn.addEventListener("click", addFavourite);
+// HEART; shows song name
+heartBtn.addEventListener("click", activeHeart);
 
 // PREVIOUS
 prevBtn.addEventListener("click", function () {
@@ -170,7 +180,7 @@ function playNext() {
 
   playingSong.src = songs[songi].src;
 
-  if (songs[songi].isFav == true) {
+  if (songs[songi].isFav === true) {
     addImg.src =
       "https://img.icons8.com/?size=100&id=85096&format=png&color=60a9a7";
   } else {
@@ -182,18 +192,25 @@ function playNext() {
   playingSong.play();
 }
 
-// ADD TO FAVOURITE
-function addFavourite() {
+// HEART BUTTON
+function activeHeart() {
   console.log("add to favourites button clicked.");
 
-  if (songs[songi].isFav == flase) {
-    songs[songi].isFav = true;
-    addImg.src =
-      "https://img.icons8.com/?size=100&id=85096&format=png&color=60a9a7";
-  } else {
-    songs[num].isFav == false;
-    addImg.src =
-      "https://img.icons8.com/?size=100&id=85096&format=png&color=74412e";
+  if (heartStatus === 0) {
+    heartStatus = 1;
+    // changing heart btn colour
+    heartImg.src =
+      "https://img.icons8.com/?size=100&id=JD2A4WXqotI8&format=png&color=60a9a7";
+
+    // show song name
+    currentSong.textContent = songs[songi].name;
+  } else if (heartStatus === 1) {
+    heartStatus = 0;
+    heartImg.src =
+      "https://img.icons8.com/?size=100&id=JD2A4WXqotI8&format=png&color=74412e";
+
+    // remove song name
+    currentSong.textContent = null;
   }
 }
 
@@ -206,6 +223,13 @@ function togglePrev(num) {
     playingSong.load();
     playingSong.play();
 
+    // checking heart button status
+    if (heartStatus === 1) {
+      currentSong.textContent = songs[num - 1].name;
+    } else if (heartStatus === 0) {
+      currentSong.textContent = null;
+    }
+
     songi = num - 1;
   } else if (num === 0) {
     num = 4;
@@ -213,6 +237,13 @@ function togglePrev(num) {
 
     playingSong.load();
     playingSong.play();
+
+    // checking heart button status
+    if (heartStatus === 1) {
+      currentSong.textContent = songs[num].name;
+    } else if (heartStatus === 0) {
+      currentSong.textContent = null;
+    }
 
     songi = num;
   }
@@ -242,11 +273,18 @@ function togglePlay() {
 // SKIP
 function toggleSkip(num) {
   console.log("skip button clicked.");
-  if (num < 4) {
+  if (num < 5) {
     playingSong.src = songs[num].src;
 
     playingSong.load();
     playingSong.play();
+
+    // checking heart button status
+    if (heartStatus === 1) {
+      currentSong.textContent = songs[num].name;
+    } else if (heartStatus === 0) {
+      currentSong.textContent = null;
+    }
 
     songi++;
   } else if (num === 5) {
@@ -255,6 +293,13 @@ function toggleSkip(num) {
 
     playingSong.load();
     playingSong.play();
+
+    // checking heart button status
+    if (heartStatus === 1) {
+      currentSong.textContent = songs[num].name;
+    } else if (heartStatus === 0) {
+      currentSong.textContent = null;
+    }
   }
 
   // ensure pause icon active
@@ -264,28 +309,33 @@ function toggleSkip(num) {
   songi = num;
 }
 
-//LOOP
+//LOOP; set function to true or false
+// default loop is set to false
 function loopSong() {
   console.log("loop button clicked.");
-  if ((playingSong.loop = false)) {
+  if (playingSong.loop === false) {
+    // loop song
     playingSong.loop = true;
 
     // change icon colour
     loopImg.src =
-      "https://img.icons8.com/?size=100&id=83204&format=png&color=60a9a7";
+      "https://img.icons8.com/?size=100&id=qxrv0RToYAHt&format=png&color=60a9a7";
   } else {
+    // remove loop song
     playingSong.loop = false;
 
     // revert icon colour
     loopImg.src =
-      "https://img.icons8.com/?size=100&id=83204&format=png&color=74412e";
+      "https://img.icons8.com/?size=100&id=qxrv0RToYAHt&format=png&color=74412e";
   }
 }
 
 //----------------------------------------------------------------------------------------//
 // PROGRESS BAR FOR MUSIC
+// event listener
 playingSong.addEventListener("timeupdate", showProgress);
 
+// link to html id
 const progressBarFill = document.querySelector("#progress-bar-fill");
 
 function showProgress() {
@@ -301,4 +351,50 @@ function showProgress() {
 
   //showing the progress on the bar
   progressBarFill.style.width = progress + "%";
+}
+
+//----------------------------------------------------------------------------------------//
+// GESTURES
+// link to html id
+const viewPlaylist = document.querySelector("#view-playlist");
+console.log(viewPlaylist);
+
+const focusMode = document.querySelector("#focus-mode");
+console.log(focusMode);
+
+const fullPlaylist = document.querySelector("#full-playlist");
+console.log(fullPlaylist);
+
+// is playlist view active; set initial to false
+let viewList = 0;
+
+// event listeners
+viewPlaylist.addEventListener("click", showPlaylist);
+focusMode.addEventListener("click", toggleFullScreen);
+
+// functions
+// VIEW FULL PLAYLIST
+function showPlaylist() {
+  console.log("show full playlist clicked.");
+
+  if (viewList === 0) {
+    // turn playlist view active
+    for (let i = 0; i < songs.length; i++) {
+      fullPlaylist.textContent += "- " + songs[i].name + "\n";
+    }
+  }
+}
+
+// FOCUS MODE
+// resizes to only show video at full screen
+function toggleFullScreen() {
+  console.log("focus mode clicked.");
+
+  if (!document.fullscreenElement) {
+    //  turn focus mode on
+    currentVideo.requestFullscreen();
+  } else if (miniPlayerStatus === 1) {
+    // exit focus mode
+    document.exitFullscreen;
+  }
 }
