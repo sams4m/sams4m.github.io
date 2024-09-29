@@ -84,8 +84,21 @@ footer {
   text-align: center;
   width: 100%;
 
+  /* paragraph text style */
   p {
     font-size: 0.7rem;
+    line-height: 1.6;
+  }
+
+  /* link style */
+  a {
+    color: var(--highlight-color);
+    text-decoration: none;
+  }
+
+  /* link hover style */
+  a:hover {
+    text-decoration: underline;
   }
 }
 

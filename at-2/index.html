@@ -23,7 +23,7 @@
       <h1>✨🎀🤍 s t u d y &nbsp; w i t h &nbsp; m e 🤍🎀✨</h1>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN CONTENT CONTAINER -->
     <main class="full-container">
       <!-- <img src="static/firefly-sunset.jpg" alt="peaceful light of sunset on the sea and tree branches"> -->
       <!-- VISUAL -->
@@ -34,6 +34,7 @@
         </video>
       </section>
       <!-- CHANGE VISUAL BUTTONS -->
+      <!-- allowing users to change the visuals to one that appeals to them -->
       <section class="visual-btns">
         <button id="rain-btn" class="visual-btn-style">🌧️</button>
         <button id="flower-btn" class="visual-btn-style">🌼</button>
@@ -42,10 +43,9 @@
       </section>
       <!-- MEDIA CONTROLS -->
       <section class="media-ctrl">
-        <!-- 
-        all icons sourced from icons8, from the same family "Material Rounded"
-        https://icons8.com/icon/set/media-controls/material-rounded -->
-        <!-- ADD TO FAVOURITES BUTTON -->
+        <!-- all icons sourced from icons8, all are rounded in shape for to promote kind harmonious visual -->
+        <!-- The width/height vary as the icon sizes vary. This is to keep them visually even. -->
+        <!-- HEART BUTTON -->
         <button id="heart-btn">
           <img
             id="heart-img"
@@ -56,6 +56,7 @@
             class="media-ctrl-inactive"
           />
         </button>
+
         <!-- PREVIOUS BUTTON -->
         <button id="prev-btn">
           <img
@@ -113,19 +114,18 @@
         <span id="current-song"></span>
       </section>
 
-      <!-- OTHER GESTURES -->
+      <!-- OTHER GESTURES: playlist and focus mode -->
       <section class="gestures">
         <!-- VIEW PLAYLIST -->
         <button id="view-playlist">▶️ 🗒️ view full playlist</button>
 
         <!-- FOCUS MODE -->
         <button id="focus-mode">▶ 💿 Focus Mode</button>
-        <!-- focus mode obly has the video visuals, removing all the buttons etc. 
-         This is to remove distractions. User can keep the visuals as calming imagery, 
-         acting like a body double method. -->
+        <!-- focus mode only has the video visuals, removing all the buttons etc. 
+         This is to remove distractions. Visuals stay as calming imagery, acting like a body double method. -->
       </section>
 
-      <!-- FULL PLAYLIST WHEN VIEW FULL PLAYLIST ACTIVE -->
+      <!-- PLAYLIST WHEN VIEW FULL PLAYLIST ACTIVE -->
       <section class="playlist">
         <span id="full-playlist"></span>
       </section>
@@ -134,8 +134,13 @@
     <!-- FOOTER -->
     <footer>
       <p>
-        Videos sourced from Pixabay free for use under the Pixabay Content
-        License
+        &copy; 2024 Study Media Player Website by Samantha Lugay. All rights
+        reserved.
+      </p>
+      <p>All icons by <a href="https://icons8.com/icons">Icons8</a></p>
+      <p>
+        All video visuals sourced from
+        <a href="https://pixabay.com/videos/">Pixabay</a>
       </p>
     </footer>
   </body>
