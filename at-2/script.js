@@ -63,7 +63,7 @@ rainbowBtn.addEventListener("click", function () {
   chooseVisual(3);
 });
 
-//function
+//function to change the visual
 function chooseVisual(no) {
   currentVideo.src = visuals[no].src;
   console.log(currentVideo.src);
@@ -80,7 +80,7 @@ const songs = [
     songIndex: "1",
     name: "Rain Thoughts",
     src: "audio/rain-thoughts.mp3",
-    // Song by
+    // Music by Blue Sirens - Rain Thoughts - https://thmatc.co/?l=A3BD6D2E
   },
 
   {
@@ -88,7 +88,7 @@ const songs = [
     name: "Blue Ginger",
     src: "audio/blue-ginger.mp3",
 
-    // Song by
+    // Music by Citrus Avenue - Blue Ginger - https://thmatc.co/?l=62CC050E
   },
 
   {
@@ -96,7 +96,7 @@ const songs = [
     name: "Saltwater and Sunscreen",
     src: "audio/saltwater-and-sunscreen.mp3",
 
-    // Song by
+    // Music by Citrus Avenue - Saltwater and Sunscreen - https://thmatc.co/?l=79486965
   },
 
   {
@@ -104,7 +104,7 @@ const songs = [
     name: "Chill out",
     src: "audio/chill-out.mp3",
 
-    // Song by
+    // Music by cold winter breeze - chill out - https://thmatc.co/?l=3F87C14E
   },
 
   {
@@ -112,42 +112,50 @@ const songs = [
     name: "Parachute",
     src: "audio/parachute.mp3",
 
-    // Song by
+    // Music by Mykyl - Parachute - https://thmatc.co/?l=FF4A8662
   },
 ];
 
+// All music sourced from Thematic, free for use with an affiliated account.
+
 //----------------------------------------------------------------------------------------//
 // MEDIA CONTROLS
-// initial song playing by default -- rain
+// Currently playing song; set initial song playing by default -- rain
 const playingSong = new Audio("audio/rain-thoughts.mp3");
 console.log(playingSong);
 
 // initial song array index = 0
 let songi = 0;
 
-// initial heart button status
+// initial heart button status; inactive
 let heartStatus = 0;
 
 // link to html id
+// heart button
 const heartBtn = document.querySelector("#heart-btn");
 console.log(heartBtn);
 const heartImg = document.querySelector("#heart-img");
 
+// Song name; appears when heart button active
 const currentSong = document.querySelector("#current-song");
 console.log(currentSong);
 
+// previous button
 const prevBtn = document.querySelector("#prev-btn");
 console.log(prevBtn);
 const prevImg = document.querySelector("#prev-img");
 
+// play button
 const playBtn = document.querySelector("#play-btn");
 console.log(playBtn);
 const playImg = document.querySelector("#play-img");
 
+// skip button
 const skipBtn = document.querySelector("#skip-btn");
 console.log(skipBtn);
 const skipImg = document.querySelector("#skip-img");
 
+// loop button
 const loopBtn = document.querySelector("#loop-btn");
 console.log(loopBtn);
 const loopImg = document.querySelector("#loop-img");
@@ -180,6 +188,7 @@ loopBtn.addEventListener("click", loopSong);
 // AUTO PLAY NEXT SONG
 function playNext() {
   songi++;
+  console.log("next song playing.");
 
   playingSong.src = songs[songi].src;
 
@@ -197,9 +206,10 @@ function playNext() {
 
 // HEART BUTTON
 function activeHeart() {
-  console.log("add to favourites button clicked.");
+  console.log("heart button clicked.");
 
   if (heartStatus === 0) {
+    // heart button activated
     heartStatus = 1;
 
     //opacity 100%
@@ -212,6 +222,7 @@ function activeHeart() {
     // show song name
     currentSong.textContent = songs[songi].name;
   } else if (heartStatus === 1) {
+    // heart button deactivated
     heartStatus = 0;
 
     //opacity 50%
@@ -229,7 +240,9 @@ function activeHeart() {
 // PREVIOUS
 function togglePrev(num) {
   console.log("previous button clicked.");
-  if (num < 6 && num > 0) {
+
+  if (num <= songs.length && num > 0) {
+    // if the current song index is between 1 to max length
     playingSong.src = songs[num - 1].src;
 
     playingSong.load();
@@ -237,27 +250,35 @@ function togglePrev(num) {
 
     // checking heart button status
     if (heartStatus === 1) {
+      // if heart button active, update song name
       currentSong.textContent = songs[num - 1].name;
     } else if (heartStatus === 0) {
+      // otherwise empty
       currentSong.textContent = null;
     }
 
+    //update song index
     songi = num - 1;
   } else if (num === 0) {
-    num = 4;
-    playingSong.src = songs[num].src;
+    // if current song index is 0; first song, previous song = last song
+    //update num to be the last song array index
+    //num = songs.length;
+    playingSong.src = songs[songs.length].src;
 
     playingSong.load();
     playingSong.play();
 
     // checking heart button status
     if (heartStatus === 1) {
+      // if heart button active, update song name
       currentSong.textContent = songs[num].name;
     } else if (heartStatus === 0) {
+      // otherwise empty
       currentSong.textContent = null;
     }
 
-    songi = num;
+    //update song index
+    songi = songs.length;
   }
   // ensure pause icon active
   playImg.src =
@@ -268,12 +289,14 @@ function togglePrev(num) {
 function togglePlay() {
   console.log("play button clicked.");
   if (playingSong.paused || playingSong.ended) {
+    // if audio not active, play audio
     playingSong.play();
 
     // change to pause icon
     playImg.src =
       "https://img.icons8.com/?size=100&id=85963&format=png&color=74412e";
   } else {
+    // if audio active, pause audio
     playingSong.pause();
 
     // revert to play icon
@@ -285,7 +308,8 @@ function togglePlay() {
 // SKIP
 function toggleSkip(num) {
   console.log("skip button clicked.");
-  if (num < 5) {
+  if (num < songs.length) {
+    // if song index less than or equal to array length
     playingSong.src = songs[num].src;
 
     playingSong.load();
@@ -299,7 +323,8 @@ function toggleSkip(num) {
     }
 
     songi++;
-  } else if (num === 5) {
+  } else if (num === songs.length) {
+    // if song index equal to array length, ie. last song, go back to first
     num = 0;
     playingSong.src = songs[num].src;
 
