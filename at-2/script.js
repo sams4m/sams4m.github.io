@@ -31,6 +31,12 @@ const visuals = [
     src: "https://cdn.pixabay.com/video/2019/02/16/21460-318172490_large.mp4",
     // Video by Christian Bodhi from Pixabay
   },
+
+  {
+    name: "jelly",
+    src: "https://cdn.pixabay.com/video/2024/05/25/213617_large.mp4",
+    // Video by Christian Bodhi from Pixabay
+  },
 ];
 // visuals sourced from Pixabay free for use under the Pixabay Content License
 
@@ -49,6 +55,9 @@ console.log(waterBtn);
 const rainbowBtn = document.querySelector("#rainbow-btn");
 console.log(rainbowBtn);
 
+const jellyBtn = document.querySelector("#jelly-btn");
+console.log(rainbowBtn);
+
 // event listeners
 rainBtn.addEventListener("click", function () {
   chooseVisual(0); //first video
@@ -61,6 +70,10 @@ waterBtn.addEventListener("click", function () {
 });
 rainbowBtn.addEventListener("click", function () {
   chooseVisual(3);
+});
+
+jellyBtn.addEventListener("click", function () {
+  chooseVisual(4);
 });
 
 //function to change the visual
