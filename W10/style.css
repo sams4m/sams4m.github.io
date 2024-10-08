@@ -1,0 +1,176 @@
+/* https://colorhunt.co/palette/1a120b3c2a21d5cea3e5e5cb */
+
+header,
+footer {
+  width: 100%;
+  height: 60px;
+  background-color: cornsilk;
+  color: #1d1d1d;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  gap: 20px;
+}
+body {
+  background-color: #1a120b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+
+  /* text */
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: #e5e5cb;
+  /* color: #3c2a21; */
+  font-size: 1.1rem;
+}
+
+.outer {
+  border: 2px dashed #e5e5cb7a;
+  width: 400px;
+  min-height: 200px;
+  padding: 10px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CAT HOVER EXAMPLE ---------------------------------------*/
+
+button {
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: aliceblue;
+  color: #1d1d1d;
+  border-radius: 15px;
+
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+button:hover {
+  background-color: cornsilk;
+  /* scale: 0.95; */
+}
+
+.inner {
+  background-color: #d5cea3;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* display none hides item */
+  display: none;
+  /* use z index to move infront or behind */
+  z-index: 1;
+}
+.inner p {
+  color: #3c2a21;
+}
+
+#more-info.show {
+  display: block;
+}
+
+/* converts cursor to pointer upon img hover; good UI practice */
+.outer img {
+  cursor: pointer;
+}
+
+/* PROFILE BUTTON */
+
+#profile-btn {
+  border: 1px solid #1d1d1d;
+  margin-right: 10px;
+  background-color: antiquewhite;
+  color: #1d1d1d;
+}
+
+#profile-content {
+  position: absolute;
+  top: 100%;
+  background-color: cornsilk;
+  right: 10px;
+  width: 106px;
+  padding: 1%;
+
+  display: none;
+}
+
+#profile-content ul > li {
+  padding: 2%;
+  border-bottom: 1px solid #1d1d1d;
+  cursor: pointer;
+}
+
+#profile-content ul > li:hover {
+  background-color: bisque;
+}
+
+#profile-content.show {
+  display: block;
+}
+
+/* SCROLLING EXAMPLE --------------------------------- */
+#scroll-content {
+  border: 2px dashed #e5e5cb7a;
+  width: 400px;
+  height: 200px;
+  overflow: auto;
+}
+
+#long-text {
+  width: 700px;
+  height: 700px;
+}
+
+/* SLIDESHOW EXAMPLE ----------------------------------- */
+#slides-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: auto;
+}
+
+.slides {
+  border: 1px dashed dimgray;
+  height: 100vh;
+  /* vh = viewport height, 100vh means the whole window height */
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  background-color: aliceblue;
+  color: #3c2a21;
+}
+
+#navigaiton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+/* DRAG AND DROP EXAMPLE ----------------------------------- */
+#purple-box {
+  background-color: plum;
+  color: #1d1d1d;
+  cursor: pointer;
+}
+
+#drop-box {
+  cursor: pointer;
+}
