@@ -1,0 +1,118 @@
+/* GLOBAL STYLE */
+* {
+  /* global font montserrat */
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+
+  margin: 0;
+  padding: 0;
+
+  background-color: lightslategray;
+}
+/* Montserrat was chosen as a simple and high readability font. It will allow for accessibility
+  whilst keeping the design itself minimal and distraction minimal. */
+
+/* ------------------------------------------------------------------------------------------- */
+
+body {
+  margin: auto;
+  margin-top: 7%;
+  margin-bottom: 7%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+}
+
+h1 {
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  overflow: hidden;
+  margin: 0;
+  width: 800px;
+  height: 515px;
+  position: relative;
+
+  /* shadow */
+  border-radius: 1vh;
+  box-shadow: 0 2vh 4vh #1d1d1d;
+  display: flex;
+
+  border-radius: 10px 10px 10px 10px;
+  margin-top: 10px;
+  transition-duration: 1s;
+  perspective: 1500;
+}
+
+.page {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+
+  border-radius: 0 10px 10px 0;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition-duration: 1.5s;
+}
+
+.front-page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  /* should not see back page when facing user */
+  box-sizing: border-box;
+}
+.back-page {
+  transform: rotateY(180deg);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  z-index: 99;
+}
+
+.current-left {
+  top: 0;
+  left: 0;
+  /* shadow at spine */
+  box-shadow: 0 2vh 6vh #1d1d1d;
+}
+
+.current-left:hover,
+.current-right:hover {
+  cursor: pointer;
+  filter: brightness(75%);
+  transition: 1s;
+}
+
+.current-right {
+  top: 0;
+  left: 50%;
+}
+
+#one {
+  z-index: 3;
+}
+
+#two {
+  z-index: 2;
+  transition: transform 0.8s ease-in-out;
+}
+#three {
+  z-index: 1;
+}
