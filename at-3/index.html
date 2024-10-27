@@ -7,40 +7,42 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Space+Grotesk&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cutive+Mono&family=Danfo&family=Gruppo&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Nag+Mundari:wght@400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
       rel="stylesheet"
     />
-    <link rel="resetstyle" href="reset.css" />
+
+    <link rel="stylesheet" href="/reset.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="container">
-      <!-- PAGE 1 -->
-      <div class="page current-left" id="one">
-        <div class="front-page">
-          <img src="static/01.png" alt="Page 1." />
-        </div>
-      </div>
-      <!-- PAGE 2 -->
-      <div class="page current-right" id="two">
-        <div class="front-page">
-          <img src="static/02.png" alt="Page 2." />
-        </div>
+    <h1 id="tap">🩵 tap the image to flip 🩵</h1>
 
-        <div class="back-page">
-          <img src="static/03.png" alt="Page 3." />
+    <div>
+      <section>
+        <div class="left spread-three" id="spread-three">
+          <img src="static/05.png" alt="Image 3" />
         </div>
-      </div>
-      <!-- PAGE 3 -->
-      <div class="page" id="three">
-        <div class="front-page">
-          <img src="static/04.png" alt="Page 4." />
+        <div class="right spread-three" id="spread-three">
+          <img src="static/06.png" alt="Image 4" />
         </div>
-      </div>
+        <div class="left spread-two" id="spread-two">
+          <img src="static/03.png" alt="Image 3" />
+        </div>
+        <div class="right spread-two" id="spread-two">
+          <img src="static/04.png" alt="Image 4" />
+        </div>
+        <div class="left spread-one" id="spread-one">
+          <img src="static/01.png" alt="Image 1" />
+        </div>
+        <div class="right spread-one" id="spread-one">
+          <img src="static/02.png" alt="Image 2" />
+        </div>
+      </section>
+
+      <button id="toggle-btn">👻 toggle 👻</button>
     </div>
-
-    <h1 id="title">🩵 tap the image to flip 🩵</h1>
   </body>
 </html>

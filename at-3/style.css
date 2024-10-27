@@ -1,118 +1,230 @@
-/* GLOBAL STYLE */
+/* Written by: Samantha Lugay
+Student Number: s4087814 */
+/* ------------------------------------------------------------------------------------------- */
+/* Foreword:
+This was meant to be a full Zine flip book experience bought online. Unfortunately due to time 
+constraint and multiple due dates clashing I wasn't able to complete it to the standard I had hoped
+(primarily the logistics to get the pages to flip to the next pages continuously and then flip back).
+I understand that the logistics would surround around z-index for visibility hierarchy.
+
+Instead of creating something that could kind of work, I tried to emphasise the experience between
+flipping back and forth between the two spreads. I incorporated ideas given by fellow peers: making 
+the zine bigger, and having a button to navigate. With only two spreads I made it a toggle button 
+rather than specific numbers. 
+
+The guide to interaction "tap image to flip" was added as an overlay, so that it could be completely
+removed after initial interaction so that it doesn't take up necessary space so that the experience 
+can be purely focused on the zine itself. 
+
+Trying to incorporate an element of fun that would build off of a purely page flipping experience, as 
+suggested by the teacher, I incorporated a scaling "bouncy" effect to make the interaction a but more 
+fun, to match the nature of a zine. 
+
+Font choice was similarly made on the basis of "fun". 
+
+All images used are my own works I had previously created, also for fun :D
+*/
+
+/* ------------------------------------------------------------------------------------------- */
+/* GLOBAL STYLING */
+:root {
+  --colour-1: #595758;
+  --colour-2: #fffaf6;
+  --colour-3: #bacdde;
+}
+
 * {
-  /* global font montserrat */
-  font-family: "Montserrat", sans-serif;
+  /* 'Danfo' is used as global font sourced from Google fonts */
+  font-family: "Danfo", serif;
   font-optical-sizing: auto;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
+  font-variation-settings: "ELSH" 0;
 
   margin: 0;
   padding: 0;
 
-  background-color: lightslategray;
+  background-color: var(--colour-3);
 }
-/* Montserrat was chosen as a simple and high readability font. It will allow for accessibility
-  whilst keeping the design itself minimal and distraction minimal. */
 
-/* ------------------------------------------------------------------------------------------- */
+/* ELEMENT STYLING */
+html,
+body,
+div {
+  height: 100%;
+}
 
 body {
-  margin: auto;
-  margin-top: 7%;
-  margin-bottom: 7%;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   align-items: center;
-  max-width: 1000px;
   width: 100%;
 }
 
-h1 {
-  padding-bottom: 5%;
-  padding-top: 5%;
-}
-
-img {
-  max-width: 100%;
-}
-
-.container {
-  overflow: hidden;
-  margin: 0;
-  width: 800px;
-  height: 515px;
-  position: relative;
-
-  /* shadow */
-  border-radius: 1vh;
-  box-shadow: 0 2vh 4vh #1d1d1d;
+/* section holding the zine */
+section {
+  animation: bounce-back 1000ms ease-in-out;
+  box-shadow: 0 2vh 2vh var(--colour-1);
   display: flex;
-
-  border-radius: 10px 10px 10px 10px;
-  margin-top: 10px;
-  transition-duration: 1s;
-  perspective: 1500;
+  justify-content: center;
+  perspective: 2000px;
+  position: relative;
+  transform: scale(0.8);
+  width: 1400px;
+  height: 910px;
 }
 
-.page {
-  position: absolute;
-  width: 50%;
-  height: 100%;
+/* HEADER 1 */
+h1 {
+  font-size: 6vh;
+  color: var(--colour-2);
+  background-color: var(--colour-1);
+  opacity: 75%;
 
-  border-radius: 0 10px 10px 0;
-  transform-origin: left;
-  transform-style: preserve-3d;
-  transform: rotateY(0deg);
-  transition-duration: 1.5s;
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
 
-.front-page {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  /* should not see back page when facing user */
-  box-sizing: border-box;
-}
-.back-page {
-  transform: rotateY(180deg);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
   z-index: 99;
+
+  transition: opacity 500ms ease-out;
+  width: 100%;
+  height: 100%;
 }
 
-.current-left {
-  top: 0;
-  left: 0;
-  /* shadow at spine */
-  box-shadow: 0 2vh 6vh #1d1d1d;
+h1.h1-zero {
+  z-index: 0;
 }
 
-.current-left:hover,
-.current-right:hover {
+button {
+  color: var(--colour-1);
+  background-color: var(--colour-2);
+  border-radius: 1.5vh;
+  border: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  padding-left: 15px;
+  padding-right: 15px;
+
+  box-shadow: 0 1vh 3vh var(--colour-1);
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: var(--colour-1);
+  color: var(--colour-2);
+  transition: 0.4s;
+}
+
+/* ------------------------------------------------------ */
+/* ZOOMY ANIMATION */
+@keyframes bounce-forward {
+  0%,
+  100% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(0.6);
+    box-shadow: 0 1vh 3vh var(--colour-1);
+  }
+}
+
+@keyframes bounce-back {
+  0%,
+  100% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(0.6);
+    box-shadow: 0 1vh 3vh var(--colour-1);
+  }
+}
+
+/* UI HOVER */
+.left:hover,
+.right:hover {
   cursor: pointer;
   filter: brightness(75%);
-  transition: 1s;
+  transition: 1000 ms;
 }
 
-.current-right {
+/* copy animation to get it to go again */
+section.flip1 {
+  animation: bounce-forward 1000ms ease-in-out;
+}
+
+/* left and right of page */
+.left,
+.right {
+  backface-visibility: hidden;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+
+  position: absolute;
   top: 0;
-  left: 50%;
+  transition-property: transform;
+  transition-duration: 500ms;
+  width: 50%;
 }
 
-#one {
-  z-index: 3;
+.left {
+  left: 0;
+  transform-origin: 100% 50%;
 }
 
-#two {
-  z-index: 2;
-  transition: transform 0.8s ease-in-out;
+.right {
+  right: 0;
+  transform-origin: 0% 50%;
 }
-#three {
-  z-index: 1;
+
+/* ------------------------------------------------------ */
+/* page flipping transformation */
+.spread-two.left {
+  transform: rotateY(90deg);
+  transition-delay: 0ms;
+  transition-timing-function: ease-in;
+  z-index: 9;
 }
+
+.spread-one.right {
+  transform: rotateY(0deg);
+  transition-delay: 500ms;
+  transition-timing-function: ease-out;
+}
+
+.flip1 .spread-one.right {
+  transform: rotateY(-90deg);
+  transition-delay: 0ms;
+  transition-timing-function: ease-in;
+}
+
+.flip1 .spread-two.left {
+  transform: rotateY(0deg);
+  transition-delay: 500ms;
+  transition-timing-function: ease-out;
+}
+
+/* .spread-two.right {
+    transform: rotateY(0deg);
+    transition-delay: 500ms;
+    transition-timing-function: ease-out;
+} */
+
+/* .flip2 .spread-two.right {
+    transform: rotateY(-90deg);
+    transition-delay: 0ms;
+    transition-timing-function: ease-in;
+
+}  */
+
+/* .spread-three.left {
+    transform: rotateY(90deg);
+    transition-delay: 0ms;
+    transition-timing-function: ease-in;
+} */
