@@ -121,7 +121,7 @@ button:hover {
   scale: 1.1;
   background-color: var(--colour-1);
   color: var(--colour-2);
-  transition: 500 ms ease-in-out;
+  transition: 500ms ease-in-out;
 }
 
 /* copy animation to get it to go again */
@@ -158,7 +158,7 @@ button.click {
 .right:hover {
   cursor: pointer;
   filter: brightness(75%);
-  transition: 500 ms ease-in-out;
+  transition: 500ms ease-in-out;
 }
 
 /* copy animation to get it to go again */
