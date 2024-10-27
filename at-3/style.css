@@ -111,7 +111,7 @@ button {
   padding-left: 15px;
   padding-right: 15px;
 
-  box-shadow: 0 1vh 3vh var(--colour-1);
+  box-shadow: 0 1vh 2vh var(--colour-1);
 }
 
 button:hover {
