@@ -7,7 +7,9 @@ const tap = document.querySelector("#tap");
 tap.addEventListener("click", startInteraction);
 
 function startInteraction() {
+  // makes it invisible
   document.getElementById("tap").style.opacity = 0;
+  // sets z-index to 0 so its at the very back
   tap.classList.add("h1-zero");
 }
 
@@ -15,7 +17,7 @@ function startInteraction() {
 //link to zine pages
 const section = document.querySelector("section");
 console.log(section);
-
+// activates flip
 section.addEventListener("click", () => {
   section.classList.toggle("flip1");
 });
@@ -25,6 +27,7 @@ section.addEventListener("click", () => {
 const toggleBtn = document.querySelector("#toggle-btn");
 console.log(toggleBtn);
 
+// activates flip
 toggleBtn.addEventListener("click", () => {
   section.classList.toggle("flip1");
 });
