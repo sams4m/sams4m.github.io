@@ -17,21 +17,27 @@ function startInteraction() {
 //link to zine pages
 const section = document.querySelector("section");
 console.log(section);
-// activates flip
-section.addEventListener("click", () => {
-  section.classList.toggle("flip1");
-});
 
-// -------------------------------------------------------------------
-
+//link to toggle button
 const toggleBtn = document.querySelector("#toggle-btn");
 console.log(toggleBtn);
 
-// activates flip
-toggleBtn.addEventListener("click", () => {
-  console.log("toggle button pressed.");
+// activates flip from zine
+section.addEventListener("click", toggleFlip);
+
+// activates flip from button
+toggleBtn.addEventListener("click", toggleFlipBtn);
+
+function toggleFlip() {
+  console.log("toggled.");
   section.classList.toggle("flip1");
-});
+}
+
+function toggleFlipBtn() {
+  console.log("toggled.");
+  section.classList.toggle("flip1");
+  toggleBtn.classList.toggle("click");
+}
 
 //----------------------------------------------------------------------------------------//
 // let count = 1;

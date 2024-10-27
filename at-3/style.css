@@ -100,24 +100,33 @@ h1.h1-zero {
 }
 
 button {
+  z-index: 9;
   color: var(--colour-1);
   background-color: var(--colour-2);
   border-radius: 1.5vh;
-  border: none;
+  border: transparent;
+
   padding-top: 4px;
   padding-bottom: 4px;
-
   padding-left: 15px;
   padding-right: 15px;
 
+  animation: bounce-back 1000ms ease-in-out;
   box-shadow: 0 1vh 2vh var(--colour-1);
+
+  cursor: pointer;
 }
 
 button:hover {
-  cursor: pointer;
+  scale: 1.1;
   background-color: var(--colour-1);
   color: var(--colour-2);
-  transition: 400 ms;
+  transition: 500 ms ease-in-out;
+}
+
+/* copy animation to get it to go again */
+button.click {
+  animation: bounce-forward 1000ms ease-in-out;
 }
 
 /* ------------------------------------------------------ */
@@ -149,7 +158,7 @@ button:hover {
 .right:hover {
   cursor: pointer;
   filter: brightness(75%);
-  transition: 1000 ms;
+  transition: 500 ms ease-in-out;
 }
 
 /* copy animation to get it to go again */
