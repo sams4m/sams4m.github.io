@@ -29,6 +29,7 @@ console.log(toggleBtn);
 
 // activates flip
 toggleBtn.addEventListener("click", () => {
+  console.log("toggle button pressed.");
   section.classList.toggle("flip1");
 });
 
