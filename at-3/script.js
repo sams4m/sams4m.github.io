@@ -22,12 +22,41 @@ console.log(section);
 const toggleBtn = document.querySelector("#toggle-btn");
 console.log(toggleBtn);
 
+// link Sound Effects
+const sfx = document.querySelector("#sfx");
+console.log(sfx);
+
+// Sound effects list
+const sounds = [
+  {
+    songIndex: "1",
+    name: "push",
+    src: "sound/push.wav",
+    // Sound created myself
+  },
+
+  {
+    songIndex: "2",
+    name: "splash",
+    src: "sound/splash.wav",
+    // Sound created myself
+  },
+];
+
+// Sound Count
+let soundCount = 0;
+
 // activates flip from zine
 section.addEventListener("click", toggleFlip);
+section.addEventListener("click", playSound);
 
 // activates flip from button
 toggleBtn.addEventListener("click", toggleFlipBtn);
+toggleBtn.addEventListener("click", playSound);
 
+//----------------------------------------------------------------------------------------//
+// FUNCTIONS
+//flip
 function toggleFlip() {
   console.log("toggled.");
   section.classList.toggle("flip1");
@@ -37,6 +66,23 @@ function toggleFlipBtn() {
   console.log("toggled.");
   section.classList.toggle("flip1");
   toggleBtn.classList.toggle("click");
+}
+
+// sound
+function playSound() {
+  if (soundCount == 0) {
+    sfx.src = sounds[soundCount].src;
+
+    sfx.play();
+
+    soundCount = 1;
+  } else if (soundCount == 1) {
+    sfx.src = sounds[soundCount].src;
+
+    sfx.play();
+
+    soundCount = 0;
+  }
 }
 
 //----------------------------------------------------------------------------------------//
