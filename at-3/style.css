@@ -113,10 +113,12 @@ h1 {
   height: 100%;
 }
 
+/* class added to push text to back */
 h1.h1-zero {
   z-index: 0;
 }
 
+/* BUTTON */
 button {
   z-index: 10;
   color: var(--colour-1);
@@ -135,6 +137,7 @@ button {
   cursor: pointer;
 }
 
+/* Hover interaction */
 button:hover {
   scale: 1.05;
   background-color: var(--colour-1);
@@ -142,6 +145,7 @@ button:hover {
   transition: 500ms ease-in-out;
 }
 
+/* Click animation */
 /* copy animation to get it to go again */
 button.click {
   animation: bounce-forward 1000ms ease-in-out;
@@ -171,7 +175,7 @@ button.click {
   }
 }
 
-/* UI HOVER */
+/* Book UI HOVER */
 .left:hover,
 .right:hover {
   cursor: pointer;
@@ -236,6 +240,9 @@ section.flip1 {
   transition-timing-function: ease-out;
 }
 
+/* the styling has been adjusted to specifically work for 2 spreads */
+
+/* ------------------------------------------------------ */
 /* .spread-two.right {
     transform: rotateY(0deg);
     transition-delay: 500ms;
