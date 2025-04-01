@@ -1,3 +1,4 @@
+// CANVAS AP1
 document.body.style.margin = 0;
 document.body.style.overflow = `hidden`;
 
@@ -7,3 +8,4 @@ cnv.height = window.innerHeight;
 document.body.appendChild(cnv);
 
 const ctx = cnv.getContext("2d");
+cnv.style.backgroundColor = "cornsilk";
