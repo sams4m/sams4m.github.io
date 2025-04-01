@@ -14,34 +14,23 @@ ctx.fillStyle = "pink";
 // ctx.beginPath();
 // ctx.fillRect(100, 100, 100, 100);
 
-const numstars = 500;
-const cols = 11;
-const colw = cnv.width / cols;
+const col = 5;
+const rows = 8;
 
-for (let j = 0; j < cols; j++) {
-  for (let i = 0; i < numstars; i++) {
-    drawStar(i + (j - 8) * colw, cnv.height / 5 + i * 1.5, 10, 15, 7);
+let colSize = cnv.width / col;
+let rowSize = cnv.height / rows;
+
+//nested for loop
+//COLS
+for (let i = 0; i < col; i++) {
+  //ROWS
+  for (let j = 0; j < rows; j++) {
+    let randr1 = Math.random(rowSize / 5, rowSize / 4);
+    let randr2 = Math.random(rowSize / 2, rowSize);
+    let randpoint = Math.random(5, 10);
+    drawStar((i + 0.5) * colSize, (j + 0.5) * rowSize, randr1, randr2, 7);
   }
 }
-
-ctx.beginPath();
-//ctx.fillStyle = 'pink';
-ctx.lineWidth = 10;
-let x = cnv.width / 2;
-ctx.arc(x, x, 50, 0, Math.PI * 2, true); // Outer circle
-ctx.fill();
-ctx.strokeStyle = "blue";
-ctx.moveTo(x - 10, x - 10);
-ctx.arc(x - 15, x - 10, 5, 0, Math.PI * 2, true); // Left eye
-
-ctx.moveTo(x + 20, x - 10);
-ctx.arc(x + 15, x - 10, 5, 0, Math.PI * 2, true); // Right eye
-
-ctx.moveTo(x + 4, x);
-ctx.arc(x, x, 4, 0, Math.PI, false); // Mouth (clockwise)
-
-ctx.stroke();
-ctx.endShape(CLOSE);
 
 // ---------------------------------------------------------
 function drawStar(cx, cy, r1, r2, point) {
