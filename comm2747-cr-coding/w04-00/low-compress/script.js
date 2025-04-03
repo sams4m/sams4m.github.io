@@ -15,7 +15,7 @@ ctx.fillStyle = "pink";
 // ctx.fillRect(100, 100, 100, 100);
 
 const numstars = 500;
-const cols = 11;
+const cols = 15;
 const colw = cnv.width / cols;
 
 for (let j = 0; j < cols; j++) {
