@@ -47,17 +47,22 @@ const add_glitch = () => {
 };
 
 let is_glitching = false;
+
+cnv.addEventListener("mouseenter", () => {
+  is_glitching = true;
+});
+
+cnv.addEventListener("mouseleave", () => {
+  is_glitching = false;
+});
+
 let glitch_i = 0;
 
 const draw_frame = () => {
-  if (is_glitching) draw(glitch_arr[glitch_i]);
-  else draw(img);
-
-  const prob = is_glitching ? 0.05 : 0.02;
-  if (Math.random() < prob) {
+  if (is_glitching) {
     glitch_i = rand_int(glitch_arr.length);
-    is_glitching = !is_glitching;
+  } else {
+    draw(img);
   }
-
   requestAnimationFrame(draw_frame);
 };
