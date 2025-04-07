@@ -61,6 +61,7 @@ let glitch_i = 0;
 const draw_frame = () => {
   if (is_glitching) {
     glitch_i = rand_int(glitch_arr.length);
+    draw(glitch_arr[glitch_i]);
   } else {
     draw(img);
   }
