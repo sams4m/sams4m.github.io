@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        overflow: hidden;
+      }
+      .cave {
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(#000, #111, #222);
+      }
+      .tooltip {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tooltip" id="tooltip"></div>
+    <svg class="cave" viewBox="0 0 1000 600">
+      <!-- Cave Background -->
+      <defs>
+        <radialGradient id="caveBg" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stop-color="#333" />
+          <stop offset="70%" stop-color="#222" />
+          <stop offset="100%" stop-color="#111" />
+        </radialGradient>
+        <radialGradient
+          id="fireLight"
+          cx="50%"
+          cy="50%"
+          r="50%"
+          fx="50%"
+          fy="50%"
+        >
+          <stop offset="0%" stop-color="#ff7700" />
+          <stop offset="40%" stop-color="#ff3300" />
+          <stop offset="100%" stop-color="#660000" stop-opacity="0" />
+        </radialGradient>
+        <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+          <feOffset dx="2" dy="2" />
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="0.5" />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="waterEffect" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.01"
+            numOctaves="2"
+            result="turbulence"
+            seed="0"
+          >
+            <animate
+              attributeName="seed"
+              from="0"
+              to="100"
+              dur="10s"
+              repeatCount="indefinite"
+            />
+          </feTurbulence>
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="turbulence"
+            scale="10"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </defs>
+      <!-- Cave Interior -->
+      <path d="M0,0 L1000,0 L1000,600 L0,600 Z" fill="url(#caveBg)" />
+      <!-- Cave Walls -->
+      <path
+        class="wall"
+        d="M0,0 C100,100 200,50 300,150 C400,250 500,200 600,250 C700,300 800,280 900,200 L1000,0 Z"
+        fill="#333"
+        stroke="#222"
+        stroke-width="5"
+      />
+      <path
+        class="wall"
+        d="M0,600 C100,550 200,580 300,500 C400,450 500,480 600,500 C750,530 850,570 950,550 L1000,600 Z"
+        fill="#333"
+        stroke="#222"
+        stroke-width="5"
+      />
+      <!-- Left Side Wall -->
+      <path
+        class="wall"
+        d="M0,0 C50,150 30,300 60,450 C90,550 0,580 0,600 Z"
+        fill="#2a2a2a"
+        stroke="#222"
+        stroke-width="3"
+      />
+      <!-- Right Side Wall -->
+      <path
+        class="wall"
+        d="M1000,0 C950,100 970,300 940,450 C900,550 1000,580 1000,600 Z"
+        fill="#2a2a2a"
+        stroke="#222"
+        stroke-width="3"
+      />
+      <!-- Underground Pool -->
+      <ellipse
+        class="water"
+        cx="500"
+        cy="500"
+        rx="250"
+        ry="70"
+        fill="#003366"
+        opacity="0.7"
+        filter="url(#waterEffect)"
+      />
+      <!-- Stalagmites -->
+      <path
+        class="stalagmite"
+        d="M150,500 L170,380 L190,500 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+      <path
+        class="stalagmite"
+        d="M700,500 L720,350 L740,500 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+      <path
+        class="stalagmite"
+        d="M800,500 L820,420 L840,500 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+      <!-- Stalactites -->
+      <path
+        class="stalactite"
+        d="M100,0 L120,100 L140,0 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+      <path
+        class="stalactite"
+        d="M400,0 L420,150 L440,0 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+      <path
+        class="stalactite"
+        d="M750,0 L770,120 L790,0 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+      <!-- Rocks -->
+      <circle
+        class="rock"
+        cx="250"
+        cy="480"
+        r="30"
+        fill="#555"
+        stroke="#444"
+        stroke-width="2"
+      />
+      <circle
+        class="rock"
+        cx="280"
+        cy="490"
+        r="20"
+        fill="#555"
+        stroke="#444"
+        stroke-width="2"
+      />
+      <circle
+        class="rock"
+        cx="650"
+        cy="490"
+        r="25"
+        fill="#555"
+        stroke="#444"
+        stroke-width="2"
+      />
+      <!-- Campfire -->
+      <circle
+        class="campfire-base"
+        cx="350"
+        cy="450"
+        r="30"
+        fill="#333"
+        stroke="#222"
+        stroke-width="2"
+      />
+      <circle
+        class="campfire-light"
+        cx="350"
+        cy="450"
+        r="100"
+        fill="url(#fireLight)"
+        opacity="0.6"
+      >
+        <animate
+          attributeName="opacity"
+          values="0.5;0.7;0.5"
+          dur="2s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <!-- Campfire Flames -->
+      <g class="fire" transform="translate(350, 440)">
+        <path
+          d="M-15,10 C-15,-10 0,-30 0,-30 C0,-30 15,-10 15,10 C15,20 -15,20 -15,10 Z"
+          fill="#ff3300"
+        >
+          <animate
+            attributeName="d"
+            values="M-15,10 C-15,-10 0,-30 0,-30 C0,-30 15,-10 15,10 C15,20 -15,20 -15,10 Z; M-13,10 C-16,-15 0,-28 0,-28 C0,-28 16,-15 13,10 C13,18 -13,18 -13,10 Z; M-15,10 C-15,-10 0,-30 0,-30 C0,-30 15,-10 15,10 C15,20 -15,20 -15,10 Z"
+            dur="1.5s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <path
+          d="M-10,10 C-10,-5 0,-20 0,-20 C0,-20 10,-5 10,10 C10,15 -10,15 -10,10 Z"
+          fill="#ffcc00"
+        >
+          <animate
+            attributeName="d"
+            values="M-10,10 C-10,-5 0,-20 0,-20 C0,-20 10,-5 10,10 C10,15 -10,15 -10,10 Z; M-8,10 C-12,-8 0,-18 0,-18 C0,-18 12,-8 8,10 C8,13 -8,13 -8,10 Z; M-10,10 C-10,-5 0,-20 0,-20 C0,-20 10,-5 10,10 C10,15 -10,15 -10,10 Z"
+            dur="1s"
+            repeatCount="indefinite"
+          />
+        </path>
+      </g>
+      <!-- Cave Paintings -->
+      <g class="cave-paintings" transform="translate(800, 300)">
+        <circle
+          cx="0"
+          cy="0"
+          r="30"
+          fill="none"
+          stroke="#993300"
+          stroke-width="2"
+        />
+        <line
+          x1="-20"
+          y1="-20"
+          x2="20"
+          y2="20"
+          stroke="#993300"
+          stroke-width="2"
+        />
+        <line
+          x1="20"
+          y1="-20"
+          x2="-20"
+          y2="20"
+          stroke="#993300"
+          stroke-width="2"
+        />
+        <path
+          d="M-50,-10 L-40,0 L-50,10"
+          fill="none"
+          stroke="#993300"
+          stroke-width="2"
+        />
+        <path
+          d="M50,-10 L40,0 L50,10"
+          fill="none"
+          stroke="#993300"
+          stroke-width="2"
+        />
+      </g>
+      <!-- Crystal Formations -->
+      <g class="crystals" transform="translate(600, 350)">
+        <polygon
+          points="0,0 10,-30 20,-10 30,-40 40,-5 50,-25 60,0"
+          fill="#99ccff"
+          opacity="0.7"
+        />
+        <polygon
+          points="10,0 20,-20 30,-5 40,-25 50,0"
+          fill="#7799ff"
+          opacity="0.8"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.7;0.9;0.7"
+          dur="3s"
+          repeatCount="indefinite"
+        />
+      </g>
+      <!-- Treasure Chest -->
+      <g class="treasure" transform="translate(180, 440)">
+        <rect
+          x="-25"
+          y="-15"
+          width="50"
+          height="30"
+          fill="#996633"
+          stroke="#663300"
+          stroke-width="2"
+        />
+        <path
+          d="M-25,-15 C-25,-25 25,-25 25,-15"
+          fill="none"
+          stroke="#663300"
+          stroke-width="2"
+        />
+        <rect
+          x="-20"
+          y="-2"
+          width="40"
+          height="4"
+          fill="#ffcc00"
+          stroke="#cc9900"
+          stroke-width="1"
+        />
+      </g>
+      <!-- Cave Creature Eyes -->
+      <g class="creature-eyes" transform="translate(100, 350)">
+        <circle cx="-10" cy="0" r="5" fill="#ff0000" opacity="0.8">
+          <animate
+            attributeName="opacity"
+            values="0.8;0;0.8"
+            dur="5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="10" cy="0" r="5" fill="#ff0000" opacity="0.8">
+          <animate
+            attributeName="opacity"
+            values="0.8;0;0.8"
+            dur="5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+      <!-- Bat Silhouettes -->
+      <g class="bats">
+        <path
+          d="M450,100 C440,90 430,110 420,100 C410,90 400,110 390,100 L400,110 L410,100 L420,110 L430,100 L440,110 L450,100"
+          fill="#000"
+          opacity="0.7"
+        >
+          <animate
+            attributeName="transform"
+            type="translate"
+            from="0,0"
+            to="50,20"
+            dur="10s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <path
+          d="M480,120 C470,110 460,130 450,120 C440,110 430,130 420,120 L430,130 L440,120 L450,130 L460,120 L470,130 L480,120"
+          fill="#000"
+          opacity="0.7"
+        >
+          <animate
+            attributeName="transform"
+            type="translate"
+            from="0,0"
+            to="-30,10"
+            dur="15s"
+            repeatCount="indefinite"
+          />
+        </path>
+      </g>
+    </svg>
+    <script>
+      // Interactive elements const interactiveElements = [ { selector: '.campfire-base, .fire', message: 'The warmth of the campfire provides light and comfort in the dark cave.' }, { selector: '.water', message: 'The mysterious underground pool reflects the light with an eerie blue glow.' }, { selector: '.stalagmite', message: 'Stalagmites rise from the cave floor, formed over thousands of years.' }, { selector: '.stalactite', message: 'Stalactites hang from the ceiling like stone icicles.' }, { selector: '.cave-paintings', message: 'Ancient cave paintings tell stories of people who lived here long ago.' }, { selector: '.crystals', message: 'Glowing crystals illuminate this part of the cave with an otherworldly light.' }, { selector: '.treasure', message: 'A treasure chest! What secrets might it contain?' }, { selector: '.creature-eyes', message: 'Something watches from the shadows...' }, { selector: '.rock', message: 'Large boulders have fallen from the ceiling ages ago.' }, { selector: '.bats', message: 'Bats flutter in the darkness of the cave ceiling.' } ]; // Setup tooltip and interactivity const tooltip = document.getElementById('tooltip'); interactiveElements.forEach(item => { const elements = document.querySelectorAll(item.selector); elements.forEach(element => { element.style.cursor = 'pointer'; element.addEventListener('mouseenter', (e) => { tooltip.textContent = item.message; tooltip.style.opacity = '1'; updateTooltipPosition(e); }); element.addEventListener('mousemove', updateTooltipPosition); element.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; }); element.addEventListener('click', () => { // Animation on click element.style.filter = 'brightness(1.5)'; setTimeout(() => { element.style.filter = ''; }, 300); }); }); }); function updateTooltipPosition(e) { tooltip.style.left = (e.clientX + 10) + 'px'; tooltip.style.top = (e.clientY + 10) + 'px'; } // Add some ambient sounds let ambientSounds = false; document.addEventListener('click', () => { if (!ambientSounds) { // This would create ambient sounds if we could play audio ambientSounds = true; console.log("Cave ambient sounds would play here if implemented"); } }); // Add light following mouse const svg = document.querySelector('svg'); let flashlight = document.createElementNS("http://www.w3.org/2000/svg", "circle"); flashlight.setAttribute("cx", "0"); flashlight.setAttribute("cy", "0"); flashlight.setAttribute("r", "100"); flashlight.setAttribute("fill", "rgba(255, 255, 200, 0.1)"); flashlight.setAttribute("filter", "blur(10px)"); svg.appendChild(flashlight); svg.addEventListener('mousemove', (e) => { const rect = svg.getBoundingClientRect(); const x = (e.clientX - rect.left) * (svg.viewBox.baseVal.width / rect.width); const y = (e.clientY - rect.top) * (svg.viewBox.baseVal.height / rect.height); flashlight.setAttribute("cx", x); flashlight.setAttribute("cy", y); });
+    </script>
+  </body>
+</html>
