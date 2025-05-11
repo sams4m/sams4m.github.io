@@ -1,402 +1,1065 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-        }
-        .cave {
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(#000, #111, #222);
-        }
-        .info-panel {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0,0,0,0.7);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            text-align: center;
-            max-width: 80%;
-            transition: opacity 1s;
-        }
-        .controls-info {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0,0,0,0.7);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            text-align: center;
-            z-index: 100;
-        }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+      }
+      .cave {
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(#000, #111, #222);
+      }
+      .info-panel {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        text-align: center;
+        max-width: 80%;
+        transition: opacity 1s;
+      }
+      .controls-info {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        text-align: center;
+        z-index: 100;
+      }
     </style>
-</head>
-<body>
-    <div class="controls-info">WASD or Arrow keys to move | Space to interact</div>
-    <div class="info-panel" id="infoPanel">Welcome to the animated cave. Watch as the environment comes to life...</div>
+  </head>
+  <body>
+    <div class="controls-info">
+      WASD or Arrow keys to move | Space to interact
+    </div>
+    <div class="info-panel" id="infoPanel">
+      Welcome to the animated cave. Watch as the environment comes to life...
+    </div>
     <svg class="cave" viewBox="0 0 1000 600" id="caveSvg">
-        <!-- Cave Background and Gradients -->
-        <defs>
-            <radialGradient id="caveBg" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                <stop offset="0%" stop-color="#333">
-                    <animate attributeName="stop-color" values="#333;#2a2a2a;#333" dur="30s" repeatCount="indefinite" />
-                </stop>
-                <stop offset="70%" stop-color="#222">
-                    <animate attributeName="stop-color" values="#222;#1a1a1a;#222" dur="30s" repeatCount="indefinite" />
-                </stop>
-                <stop offset="100%" stop-color="#111">
-                    <animate attributeName="stop-color" values="#111;#0a0a0a;#111" dur="30s" repeatCount="indefinite" />
-                </stop>
-            </radialGradient>
-            
-            <radialGradient id="fireLight" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                <stop offset="0%" stop-color="#ff7700" />
-                <stop offset="40%" stop-color="#ff3300" />
-                <stop offset="100%" stop-color="#660000" stop-opacity="0" />
-            </radialGradient>
-            
-            <radialGradient id="crystalLight" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                <stop offset="0%" stop-color="#99ffff">
-                    <animate attributeName="stop-color" values="#99ffff;#66ccff;#99ffff" dur="5s" repeatCount="indefinite" />
-                </stop>
-                <stop offset="100%" stop-color="#0066cc" stop-opacity="0">
-                    <animate attributeName="stop-color" values="#0066cc;#0033cc;#0066cc" dur="5s" repeatCount="indefinite" />
-                </stop>
-            </radialGradient>
-            
-            <radialGradient id="avatarLight" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
-                <stop offset="0%" stop-color="#ffcc66" />
-                <stop offset="100%" stop-color="#ffcc00" stop-opacity="0" />
-            </radialGradient>
+      <!-- Cave Background and Gradients -->
+      <defs>
+        <radialGradient id="caveBg" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stop-color="#333">
+            <animate
+              attributeName="stop-color"
+              values="#333;#2a2a2a;#333"
+              dur="30s"
+              repeatCount="indefinite"
+            />
+          </stop>
+          <stop offset="70%" stop-color="#222">
+            <animate
+              attributeName="stop-color"
+              values="#222;#1a1a1a;#222"
+              dur="30s"
+              repeatCount="indefinite"
+            />
+          </stop>
+          <stop offset="100%" stop-color="#111">
+            <animate
+              attributeName="stop-color"
+              values="#111;#0a0a0a;#111"
+              dur="30s"
+              repeatCount="indefinite"
+            />
+          </stop>
+        </radialGradient>
 
-            <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-                <feOffset dx="2" dy="2" />
-                <feComponentTransfer>
-                    <feFuncA type="linear" slope="0.5" />
-                </feComponentTransfer>
-                <feMerge>
-                    <feMergeNode />
-                    <feMergeNode in="SourceGraphic" />
-                </feMerge>
-            </filter>
-            
-            <filter id="waterEffect" x="-20%" y="-20%" width="140%" height="140%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="turbulence">
-                    <animate attributeName="baseFrequency" values="0.01;0.015;0.01" dur="10s" repeatCount="indefinite" />
-                </feTurbulence>
-                <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="10" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-            
-            <filter id="glowEffect" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="5" result="blur" />
-                <feBlend in="SourceGraphic" in2="blur" mode="screen" />
-            </filter>
+        <radialGradient
+          id="fireLight"
+          cx="50%"
+          cy="50%"
+          r="50%"
+          fx="50%"
+          fy="50%"
+        >
+          <stop offset="0%" stop-color="#ff7700" />
+          <stop offset="40%" stop-color="#ff3300" />
+          <stop offset="100%" stop-color="#660000" stop-opacity="0" />
+        </radialGradient>
 
-            <filter id="avatarGlow" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
-                <feBlend in="SourceGraphic" in2="blur" mode="screen" />
-            </filter>
-        </defs>
+        <radialGradient
+          id="crystalLight"
+          cx="50%"
+          cy="50%"
+          r="50%"
+          fx="50%"
+          fy="50%"
+        >
+          <stop offset="0%" stop-color="#99ffff">
+            <animate
+              attributeName="stop-color"
+              values="#99ffff;#66ccff;#99ffff"
+              dur="5s"
+              repeatCount="indefinite"
+            />
+          </stop>
+          <stop offset="100%" stop-color="#0066cc" stop-opacity="0">
+            <animate
+              attributeName="stop-color"
+              values="#0066cc;#0033cc;#0066cc"
+              dur="5s"
+              repeatCount="indefinite"
+            />
+          </stop>
+        </radialGradient>
 
-        <!-- Cave Interior -->
-        <path d="M0,0 L1000,0 L1000,600 L0,600 Z" fill="url(#caveBg)" />
+        <radialGradient
+          id="avatarLight"
+          cx="50%"
+          cy="50%"
+          r="70%"
+          fx="50%"
+          fy="50%"
+        >
+          <stop offset="0%" stop-color="#ffcc66" />
+          <stop offset="100%" stop-color="#ffcc00" stop-opacity="0" />
+        </radialGradient>
 
-        <!-- Cave Walls -->
-        <path class="wall" d="M0,0 C100,100 200,50 300,150 C400,250 500,200 600,250 C700,300 800,280 900,200 L1000,0 Z" 
-              fill="#333" stroke="#222" stroke-width="5">
-              <animate attributeName="d" 
-                  values="M0,0 C100,100 200,50 300,150 C400,250 500,200 600,250 C700,300 800,280 900,200 L1000,0 Z;
+        <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+          <feOffset dx="2" dy="2" />
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="0.5" />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        <filter id="waterEffect" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.01"
+            numOctaves="2"
+            result="turbulence"
+          >
+            <animate
+              attributeName="baseFrequency"
+              values="0.01;0.015;0.01"
+              dur="10s"
+              repeatCount="indefinite"
+            />
+          </feTurbulence>
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="turbulence"
+            scale="10"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+
+        <filter id="glowEffect" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="5" result="blur" />
+          <feBlend in="SourceGraphic" in2="blur" mode="screen" />
+        </filter>
+
+        <filter id="avatarGlow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feBlend in="SourceGraphic" in2="blur" mode="screen" />
+        </filter>
+      </defs>
+
+      <!-- Cave Interior -->
+      <path d="M0,0 L1000,0 L1000,600 L0,600 Z" fill="url(#caveBg)" />
+
+      <!-- Cave Walls -->
+      <path
+        class="wall"
+        d="M0,0 C100,100 200,50 300,150 C400,250 500,200 600,250 C700,300 800,280 900,200 L1000,0 Z"
+        fill="#333"
+        stroke="#222"
+        stroke-width="5"
+      >
+        <animate
+          attributeName="d"
+          values="M0,0 C100,100 200,50 300,150 C400,250 500,200 600,250 C700,300 800,280 900,200 L1000,0 Z;
                          M0,0 C100,120 200,70 300,170 C400,270 500,220 600,270 C700,320 800,300 900,220 L1000,0 Z;
-                         M0,0 C100,100 200,50 300,150 C400,250 500,200 600,250 C700,300 800,280 900,200 L1000,0 Z" 
-                  dur="60s" repeatCount="indefinite" />
-        </path>
-        
-        <path class="wall" d="M0,600 C100,550 200,580 300,500 C400,450 500,480 600,500 C750,530 850,570 950,550 L1000,600 Z" 
-              fill="#333" stroke="#222" stroke-width="5">
-              <animate attributeName="d" 
-                  values="M0,600 C100,550 200,580 300,500 C400,450 500,480 600,500 C750,530 850,570 950,550 L1000,600 Z;
+                         M0,0 C100,100 200,50 300,150 C400,250 500,200 600,250 C700,300 800,280 900,200 L1000,0 Z"
+          dur="60s"
+          repeatCount="indefinite"
+        />
+      </path>
+
+      <path
+        class="wall"
+        d="M0,600 C100,550 200,580 300,500 C400,450 500,480 600,500 C750,530 850,570 950,550 L1000,600 Z"
+        fill="#333"
+        stroke="#222"
+        stroke-width="5"
+      >
+        <animate
+          attributeName="d"
+          values="M0,600 C100,550 200,580 300,500 C400,450 500,480 600,500 C750,530 850,570 950,550 L1000,600 Z;
                          M0,600 C100,530 200,560 300,480 C400,430 500,460 600,480 C750,510 850,550 950,530 L1000,600 Z;
-                         M0,600 C100,550 200,580 300,500 C400,450 500,480 600,500 C750,530 850,570 950,550 L1000,600 Z" 
-                  dur="50s" repeatCount="indefinite" />
-        </path>
-        
-        <!-- Left Side Wall -->
-        <path class="wall" d="M0,0 C50,150 30,300 60,450 C90,550 0,580 0,600 Z" 
-              fill="#2a2a2a" stroke="#222" stroke-width="3">
-              <animate attributeName="d" 
-                  values="M0,0 C50,150 30,300 60,450 C90,550 0,580 0,600 Z;
+                         M0,600 C100,550 200,580 300,500 C400,450 500,480 600,500 C750,530 850,570 950,550 L1000,600 Z"
+          dur="50s"
+          repeatCount="indefinite"
+        />
+      </path>
+
+      <!-- Left Side Wall -->
+      <path
+        class="wall"
+        d="M0,0 C50,150 30,300 60,450 C90,550 0,580 0,600 Z"
+        fill="#2a2a2a"
+        stroke="#222"
+        stroke-width="3"
+      >
+        <animate
+          attributeName="d"
+          values="M0,0 C50,150 30,300 60,450 C90,550 0,580 0,600 Z;
                          M0,0 C60,150 40,300 70,450 C100,550 0,580 0,600 Z;
-                         M0,0 C50,150 30,300 60,450 C90,550 0,580 0,600 Z" 
-                  dur="45s" repeatCount="indefinite" />
-        </path>
-              
-        <!-- Right Side Wall -->
-        <path class="wall" d="M1000,0 C950,100 970,300 940,450 C900,550 1000,580 1000,600 Z" 
-              fill="#2a2a2a" stroke="#222" stroke-width="3">
-              <animate attributeName="d" 
-                  values="M1000,0 C950,100 970,300 940,450 C900,550 1000,580 1000,600 Z;
+                         M0,0 C50,150 30,300 60,450 C90,550 0,580 0,600 Z"
+          dur="45s"
+          repeatCount="indefinite"
+        />
+      </path>
+
+      <!-- Right Side Wall -->
+      <path
+        class="wall"
+        d="M1000,0 C950,100 970,300 940,450 C900,550 1000,580 1000,600 Z"
+        fill="#2a2a2a"
+        stroke="#222"
+        stroke-width="3"
+      >
+        <animate
+          attributeName="d"
+          values="M1000,0 C950,100 970,300 940,450 C900,550 1000,580 1000,600 Z;
                          M1000,0 C940,100 960,300 930,450 C890,550 1000,580 1000,600 Z;
-                         M1000,0 C950,100 970,300 940,450 C900,550 1000,580 1000,600 Z" 
-                  dur="55s" repeatCount="indefinite" />
-        </path>
+                         M1000,0 C950,100 970,300 940,450 C900,550 1000,580 1000,600 Z"
+          dur="55s"
+          repeatCount="indefinite"
+        />
+      </path>
 
-        <!-- Underground Pool -->
-        <ellipse class="water" cx="500" cy="500" rx="250" ry="70" fill="#003366" opacity="0.7" filter="url(#waterEffect)">
-            <animate attributeName="opacity" values="0.7;0.9;0.7" dur="8s" repeatCount="indefinite" />
-            <animate attributeName="rx" values="250;260;250" dur="20s" repeatCount="indefinite" />
-            <animate attributeName="ry" values="70;75;70" dur="15s" repeatCount="indefinite" />
-        </ellipse>
-        
-        <!-- Water Ripples -->
-        <circle cx="420" cy="500" r="0" fill="none" stroke="#6699cc" stroke-width="1" opacity="0">
-            <animate attributeName="r" values="0;50" dur="4s" begin="2s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.8;0" dur="4s" begin="2s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="550" cy="500" r="0" fill="none" stroke="#6699cc" stroke-width="1" opacity="0">
-            <animate attributeName="r" values="0;40" dur="5s" begin="5s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.8;0" dur="5s" begin="5s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="480" cy="500" r="0" fill="none" stroke="#6699cc" stroke-width="1" opacity="0">
-            <animate attributeName="r" values="0;45" dur="6s" begin="8s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.8;0" dur="6s" begin="8s" repeatCount="indefinite" />
-        </circle>
-        
-        <!-- Stalagmites -->
-        <path class="stalagmite" d="M150,500 L170,380 L190,500 Z" fill="#444" stroke="#333" stroke-width="2" />
-        <path class="stalagmite" d="M700,500 L720,350 L740,500 Z" fill="#444" stroke="#333" stroke-width="2" />
-        <path class="stalagmite" d="M800,500 L820,420 L840,500 Z" fill="#444" stroke="#333" stroke-width="2" />
-        
-        <!-- Growing Stalagmite -->
-        <path class="stalagmite-growing" d="M250,500 L260,500 L270,500 Z" fill="#444" stroke="#333" stroke-width="2">
-            <animate attributeName="d" 
-                values="M250,500 L260,500 L270,500 Z;
+      <!-- Underground Pool -->
+      <ellipse
+        class="water"
+        cx="500"
+        cy="500"
+        rx="250"
+        ry="70"
+        fill="#003366"
+        opacity="0.7"
+        filter="url(#waterEffect)"
+      >
+        <animate
+          attributeName="opacity"
+          values="0.7;0.9;0.7"
+          dur="8s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="rx"
+          values="250;260;250"
+          dur="20s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="ry"
+          values="70;75;70"
+          dur="15s"
+          repeatCount="indefinite"
+        />
+      </ellipse>
+
+      <!-- Water Ripples -->
+      <circle
+        cx="420"
+        cy="500"
+        r="0"
+        fill="none"
+        stroke="#6699cc"
+        stroke-width="1"
+        opacity="0"
+      >
+        <animate
+          attributeName="r"
+          values="0;50"
+          dur="4s"
+          begin="2s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.8;0"
+          dur="4s"
+          begin="2s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle
+        cx="550"
+        cy="500"
+        r="0"
+        fill="none"
+        stroke="#6699cc"
+        stroke-width="1"
+        opacity="0"
+      >
+        <animate
+          attributeName="r"
+          values="0;40"
+          dur="5s"
+          begin="5s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.8;0"
+          dur="5s"
+          begin="5s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle
+        cx="480"
+        cy="500"
+        r="0"
+        fill="none"
+        stroke="#6699cc"
+        stroke-width="1"
+        opacity="0"
+      >
+        <animate
+          attributeName="r"
+          values="0;45"
+          dur="6s"
+          begin="8s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.8;0"
+          dur="6s"
+          begin="8s"
+          repeatCount="indefinite"
+        />
+      </circle>
+
+      <!-- Stalagmites -->
+      <path
+        class="stalagmite"
+        d="M150,500 L170,380 L190,500 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+      <path
+        class="stalagmite"
+        d="M700,500 L720,350 L740,500 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+      <path
+        class="stalagmite"
+        d="M800,500 L820,420 L840,500 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+
+      <!-- Growing Stalagmite -->
+      <path
+        class="stalagmite-growing"
+        d="M250,500 L260,500 L270,500 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      >
+        <animate
+          attributeName="d"
+          values="M250,500 L260,500 L270,500 Z;
                        M250,500 L260,470 L270,500 Z;
-                       M250,500 L260,440 L270,500 Z;" 
-                dur="60s" repeatCount="1" fill="freeze" />
-        </path>
-        
-        <!-- Stalactites -->
-        <path class="stalactite" d="M100,0 L120,100 L140,0 Z" fill="#444" stroke="#333" stroke-width="2" />
-        <path class="stalactite" d="M400,0 L420,150 L440,0 Z" fill="#444" stroke="#333" stroke-width="2" />
-        <path class="stalactite" d="M750,0 L770,120 L790,0 Z" fill="#444" stroke="#333" stroke-width="2" />
-        
-        <!-- Dripping Water from Stalactites -->
-        <circle cx="120" cy="100" r="2" fill="#99ccff" opacity="0.8">
-            <animate attributeName="cy" values="100;500" dur="3s" begin="0s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.8;0" dur="3s" begin="0s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="420" cy="150" r="2" fill="#99ccff" opacity="0.8">
-            <animate attributeName="cy" values="150;500" dur="5s" begin="2s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.8;0" dur="5s" begin="2s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="770" cy="120" r="2" fill="#99ccff" opacity="0.8">
-            <animate attributeName="cy" values="120;500" dur="4s" begin="1s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.8;0" dur="4s" begin="1s" repeatCount="indefinite" />
-        </circle>
-        
-        <!-- Rocks -->
-        <circle class="rock" cx="250" cy="480" r="30" fill="#555" stroke="#444" stroke-width="2" />
-        <circle class="rock" cx="280" cy="490" r="20" fill="#555" stroke="#444" stroke-width="2" />
-        <circle class="rock" cx="650" cy="490" r="25" fill="#555" stroke="#444" stroke-width="2" />
-        
-        <!-- Campfire -->
-        <circle class="campfire-base" cx="350" cy="450" r="30" fill="#333" stroke="#222" stroke-width="2" />
-        <circle class="campfire-light" cx="350" cy="450" r="180" fill="url(#fireLight)" opacity="0.3">
-            <animate attributeName="opacity" values="0.3;0.5;0.3" dur="2s" repeatCount="indefinite" />
-            <animate attributeName="r" values="180;200;180" dur="5s" repeatCount="indefinite" />
-        </circle>
-        
-        <!-- Campfire Flames -->
-        <g class="fire" transform="translate(350, 440)">
-            <path d="M-15,10 C-15,-10 0,-30 0,-30 C0,-30 15,-10 15,10 C15,20 -15,20 -15,10 Z" fill="#ff3300">
-                <animate attributeName="d" 
-                    values="M-15,10 C-15,-10 0,-30 0,-30 C0,-30 15,-10 15,10 C15,20 -15,20 -15,10 Z;
+                       M250,500 L260,440 L270,500 Z;"
+          dur="60s"
+          repeatCount="1"
+          fill="freeze"
+        />
+      </path>
+
+      <!-- Stalactites -->
+      <path
+        class="stalactite"
+        d="M100,0 L120,100 L140,0 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+      <path
+        class="stalactite"
+        d="M400,0 L420,150 L440,0 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+      <path
+        class="stalactite"
+        d="M750,0 L770,120 L790,0 Z"
+        fill="#444"
+        stroke="#333"
+        stroke-width="2"
+      />
+
+      <!-- Dripping Water from Stalactites -->
+      <circle cx="120" cy="100" r="2" fill="#99ccff" opacity="0.8">
+        <animate
+          attributeName="cy"
+          values="100;500"
+          dur="3s"
+          begin="0s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.8;0"
+          dur="3s"
+          begin="0s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle cx="420" cy="150" r="2" fill="#99ccff" opacity="0.8">
+        <animate
+          attributeName="cy"
+          values="150;500"
+          dur="5s"
+          begin="2s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.8;0"
+          dur="5s"
+          begin="2s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle cx="770" cy="120" r="2" fill="#99ccff" opacity="0.8">
+        <animate
+          attributeName="cy"
+          values="120;500"
+          dur="4s"
+          begin="1s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.8;0"
+          dur="4s"
+          begin="1s"
+          repeatCount="indefinite"
+        />
+      </circle>
+
+      <!-- Rocks -->
+      <circle
+        class="rock"
+        cx="250"
+        cy="480"
+        r="30"
+        fill="#555"
+        stroke="#444"
+        stroke-width="2"
+      />
+      <circle
+        class="rock"
+        cx="280"
+        cy="490"
+        r="20"
+        fill="#555"
+        stroke="#444"
+        stroke-width="2"
+      />
+      <circle
+        class="rock"
+        cx="650"
+        cy="490"
+        r="25"
+        fill="#555"
+        stroke="#444"
+        stroke-width="2"
+      />
+
+      <!-- Campfire -->
+      <circle
+        class="campfire-base"
+        cx="350"
+        cy="450"
+        r="30"
+        fill="#333"
+        stroke="#222"
+        stroke-width="2"
+      />
+      <circle
+        class="campfire-light"
+        cx="350"
+        cy="450"
+        r="180"
+        fill="url(#fireLight)"
+        opacity="0.3"
+      >
+        <animate
+          attributeName="opacity"
+          values="0.3;0.5;0.3"
+          dur="2s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="r"
+          values="180;200;180"
+          dur="5s"
+          repeatCount="indefinite"
+        />
+      </circle>
+
+      <!-- Campfire Flames -->
+      <g class="fire" transform="translate(350, 440)">
+        <path
+          d="M-15,10 C-15,-10 0,-30 0,-30 C0,-30 15,-10 15,10 C15,20 -15,20 -15,10 Z"
+          fill="#ff3300"
+        >
+          <animate
+            attributeName="d"
+            values="M-15,10 C-15,-10 0,-30 0,-30 C0,-30 15,-10 15,10 C15,20 -15,20 -15,10 Z;
                            M-13,10 C-16,-15 0,-28 0,-28 C0,-28 16,-15 13,10 C13,18 -13,18 -13,10 Z;
-                           M-15,10 C-15,-10 0,-30 0,-30 C0,-30 15,-10 15,10 C15,20 -15,20 -15,10 Z" 
-                    dur="1.5s" repeatCount="indefinite" />
-            </path>
-            <path d="M-10,10 C-10,-5 0,-20 0,-20 C0,-20 10,-5 10,10 C10,15 -10,15 -10,10 Z" fill="#ffcc00">
-                <animate attributeName="d" 
-                    values="M-10,10 C-10,-5 0,-20 0,-20 C0,-20 10,-5 10,10 C10,15 -10,15 -10,10 Z;
+                           M-15,10 C-15,-10 0,-30 0,-30 C0,-30 15,-10 15,10 C15,20 -15,20 -15,10 Z"
+            dur="1.5s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <path
+          d="M-10,10 C-10,-5 0,-20 0,-20 C0,-20 10,-5 10,10 C10,15 -10,15 -10,10 Z"
+          fill="#ffcc00"
+        >
+          <animate
+            attributeName="d"
+            values="M-10,10 C-10,-5 0,-20 0,-20 C0,-20 10,-5 10,10 C10,15 -10,15 -10,10 Z;
                            M-8,10 C-12,-8 0,-18 0,-18 C0,-18 12,-8 8,10 C8,13 -8,13 -8,10 Z;
-                           M-10,10 C-10,-5 0,-20 0,-20 C0,-20 10,-5 10,10 C10,15 -10,15 -10,10 Z" 
-                    dur="1s" repeatCount="indefinite" />
-            </path>
-            <!-- Sparks -->
-            <circle cx="0" cy="-15" r="1" fill="#ffcc00">
-                <animate attributeName="cx" values="0;15;30" dur="2s" begin="0.5s" repeatCount="indefinite" />
-                <animate attributeName="cy" values="-15;-40;-30" dur="2s" begin="0.5s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="1;0" dur="2s" begin="0.5s" repeatCount="indefinite" />
-            </circle>
-            <circle cx="0" cy="-15" r="1" fill="#ffcc00">
-                <animate attributeName="cx" values="0;-20;-25" dur="3s" begin="1s" repeatCount="indefinite" />
-                <animate attributeName="cy" values="-15;-35;-25" dur="3s" begin="1s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="1;0" dur="3s" begin="1s" repeatCount="indefinite" />
-            </circle>
-            <circle cx="0" cy="-15" r="1" fill="#ffcc00">
-                <animate attributeName="cx" values="0;10;5" dur="2.5s" begin="2s" repeatCount="indefinite" />
-                <animate attributeName="cy" values="-15;-45;-35" dur="2.5s" begin="2s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="1;0" dur="2.5s" begin="2s" repeatCount="indefinite" />
-            </circle>
-        </g>
+                           M-10,10 C-10,-5 0,-20 0,-20 C0,-20 10,-5 10,10 C10,15 -10,15 -10,10 Z"
+            dur="1s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <!-- Sparks -->
+        <circle cx="0" cy="-15" r="1" fill="#ffcc00">
+          <animate
+            attributeName="cx"
+            values="0;15;30"
+            dur="2s"
+            begin="0.5s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cy"
+            values="-15;-40;-30"
+            dur="2s"
+            begin="0.5s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="opacity"
+            values="1;0"
+            dur="2s"
+            begin="0.5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="0" cy="-15" r="1" fill="#ffcc00">
+          <animate
+            attributeName="cx"
+            values="0;-20;-25"
+            dur="3s"
+            begin="1s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cy"
+            values="-15;-35;-25"
+            dur="3s"
+            begin="1s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="opacity"
+            values="1;0"
+            dur="3s"
+            begin="1s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="0" cy="-15" r="1" fill="#ffcc00">
+          <animate
+            attributeName="cx"
+            values="0;10;5"
+            dur="2.5s"
+            begin="2s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cy"
+            values="-15;-45;-35"
+            dur="2.5s"
+            begin="2s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="opacity"
+            values="1;0"
+            dur="2.5s"
+            begin="2s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
 
-        <!-- Cave Paintings -->
-        <g class="cave-paintings" transform="translate(800, 300)">
-            <circle cx="0" cy="0" r="30" fill="none" stroke="#993300" stroke-width="2" opacity="0">
-                <animate attributeName="opacity" values="0;1" dur="10s" begin="20s" fill="freeze" />
-            </circle>
-            <line x1="-20" y1="-20" x2="20" y2="20" stroke="#993300" stroke-width="2" opacity="0">
-                <animate attributeName="opacity" values="0;1" dur="5s" begin="22s" fill="freeze" />
-            </line>
-            <line x1="20" y1="-20" x2="-20" y2="20" stroke="#993300" stroke-width="2" opacity="0">
-                <animate attributeName="opacity" values="0;1" dur="5s" begin="24s" fill="freeze" />
-            </line>
-            <path d="M-50,-10 L-40,0 L-50,10" fill="none" stroke="#993300" stroke-width="2" opacity="0">
-                <animate attributeName="opacity" values="0;1" dur="5s" begin="26s" fill="freeze" />
-            </path>
-            <path d="M50,-10 L40,0 L50,10" fill="none" stroke="#993300" stroke-width="2" opacity="0">
-                <animate attributeName="opacity" values="0;1" dur="5s" begin="28s" fill="freeze" />
-            </path>
-        </g>
+      <!-- Cave Paintings -->
+      <g class="cave-paintings" transform="translate(800, 300)">
+        <circle
+          cx="0"
+          cy="0"
+          r="30"
+          fill="none"
+          stroke="#993300"
+          stroke-width="2"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;1"
+            dur="10s"
+            begin="20s"
+            fill="freeze"
+          />
+        </circle>
+        <line
+          x1="-20"
+          y1="-20"
+          x2="20"
+          y2="20"
+          stroke="#993300"
+          stroke-width="2"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;1"
+            dur="5s"
+            begin="22s"
+            fill="freeze"
+          />
+        </line>
+        <line
+          x1="20"
+          y1="-20"
+          x2="-20"
+          y2="20"
+          stroke="#993300"
+          stroke-width="2"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;1"
+            dur="5s"
+            begin="24s"
+            fill="freeze"
+          />
+        </line>
+        <path
+          d="M-50,-10 L-40,0 L-50,10"
+          fill="none"
+          stroke="#993300"
+          stroke-width="2"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;1"
+            dur="5s"
+            begin="26s"
+            fill="freeze"
+          />
+        </path>
+        <path
+          d="M50,-10 L40,0 L50,10"
+          fill="none"
+          stroke="#993300"
+          stroke-width="2"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;1"
+            dur="5s"
+            begin="28s"
+            fill="freeze"
+          />
+        </path>
+      </g>
 
-        <!-- Crystal Formations -->
-        <g class="crystals" transform="translate(600, 350)">
-            <polygon points="0,0 10,-30 20,-10 30,-40 40,-5 50,-25 60,0" fill="#99ccff" opacity="0.7" filter="url(#glowEffect)">
-                <animate attributeName="opacity" values="0.7;0.9;0.7" dur="3s" repeatCount="indefinite" />
-            </polygon>
-            <polygon points="10,0 20,-20 30,-5 40,-25 50,0" fill="#7799ff" opacity="0.8" filter="url(#glowEffect)">
-                <animate attributeName="opacity" values="0.8;1;0.8" dur="4s" repeatCount="indefinite" />
-            </polygon>
-            <circle cx="30" cy="-20" r="80" fill="url(#crystalLight)" opacity="0.3">
-                <animate attributeName="opacity" values="0.3;0.5;0.3" dur="5s" repeatCount="indefinite" />
-            </circle>
-        </g>
+      <!-- Crystal Formations -->
+      <g class="crystals" transform="translate(600, 350)">
+        <polygon
+          points="0,0 10,-30 20,-10 30,-40 40,-5 50,-25 60,0"
+          fill="#99ccff"
+          opacity="0.7"
+          filter="url(#glowEffect)"
+        >
+          <animate
+            attributeName="opacity"
+            values="0.7;0.9;0.7"
+            dur="3s"
+            repeatCount="indefinite"
+          />
+        </polygon>
+        <polygon
+          points="10,0 20,-20 30,-5 40,-25 50,0"
+          fill="#7799ff"
+          opacity="0.8"
+          filter="url(#glowEffect)"
+        >
+          <animate
+            attributeName="opacity"
+            values="0.8;1;0.8"
+            dur="4s"
+            repeatCount="indefinite"
+          />
+        </polygon>
+        <circle cx="30" cy="-20" r="80" fill="url(#crystalLight)" opacity="0.3">
+          <animate
+            attributeName="opacity"
+            values="0.3;0.5;0.3"
+            dur="5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
 
-        <!-- More Crystals -->
-        <g class="crystals-2" transform="translate(200, 200)">
-            <polygon points="0,0 5,-15 10,-5 15,-20 20,-2 25,-12 30,0" fill="#99ccff" opacity="0" filter="url(#glowEffect)">
-                <animate attributeName="opacity" values="0;0.7;0.8;0.7" dur="20s" begin="15s" fill="freeze" />
-                <animate attributeName="opacity" values="0.7;0.9;0.7" dur="3s" begin="35s" repeatCount="indefinite" />
-            </polygon>
-            <circle cx="15" cy="-10" r="40" fill="url(#crystalLight)" opacity="0">
-                <animate attributeName="opacity" values="0;0.3" dur="20s" begin="15s" fill="freeze" />
-                <animate attributeName="opacity" values="0.3;0.5;0.3" dur="5s" begin="35s" repeatCount="indefinite" />
-            </circle>
-        </g>
+      <!-- More Crystals -->
+      <g class="crystals-2" transform="translate(200, 200)">
+        <polygon
+          points="0,0 5,-15 10,-5 15,-20 20,-2 25,-12 30,0"
+          fill="#99ccff"
+          opacity="0"
+          filter="url(#glowEffect)"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.7;0.8;0.7"
+            dur="20s"
+            begin="15s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.7;0.9;0.7"
+            dur="3s"
+            begin="35s"
+            repeatCount="indefinite"
+          />
+        </polygon>
+        <circle cx="15" cy="-10" r="40" fill="url(#crystalLight)" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.3"
+            dur="20s"
+            begin="15s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.3;0.5;0.3"
+            dur="5s"
+            begin="35s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
 
-        <!-- Treasure Chest -->
-        <g class="treasure" transform="translate(180, 440)">
-            <rect x="-25" y="-15" width="50" height="30" fill="#996633" stroke="#663300" stroke-width="2" />
-            <path d="M-25,-15 C-25,-25 25,-25 25,-15" fill="none" stroke="#663300" stroke-width="2" />
-            <rect x="-20" y="-2" width="40" height="4" fill="#ffcc00" stroke="#cc9900" stroke-width="1" />
-            <!-- Treasure sparkles -->
-            <circle cx="-10" cy="0" r="1" fill="#ffff00">
-                <animate attributeName="opacity" values="0;1;0" dur="2s" begin="10s" repeatCount="indefinite" />
-            </circle>
-            <circle cx="10" cy="0" r="1" fill="#ffff00">
-                <animate attributeName="opacity" values="0;1;0" dur="2s" begin="11s" repeatCount="indefinite" />
-            </circle>
-            <circle cx="0" cy="-5" r="1" fill="#ffff00">
-                <animate attributeName="opacity" values="0;1;0" dur="2s" begin="12s" repeatCount="indefinite" />
-            </circle>
-        </g>
+      <!-- Treasure Chest -->
+      <g class="treasure" transform="translate(180, 440)">
+        <rect
+          x="-25"
+          y="-15"
+          width="50"
+          height="30"
+          fill="#996633"
+          stroke="#663300"
+          stroke-width="2"
+        />
+        <path
+          d="M-25,-15 C-25,-25 25,-25 25,-15"
+          fill="none"
+          stroke="#663300"
+          stroke-width="2"
+        />
+        <rect
+          x="-20"
+          y="-2"
+          width="40"
+          height="4"
+          fill="#ffcc00"
+          stroke="#cc9900"
+          stroke-width="1"
+        />
+        <!-- Treasure sparkles -->
+        <circle cx="-10" cy="0" r="1" fill="#ffff00">
+          <animate
+            attributeName="opacity"
+            values="0;1;0"
+            dur="2s"
+            begin="10s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="10" cy="0" r="1" fill="#ffff00">
+          <animate
+            attributeName="opacity"
+            values="0;1;0"
+            dur="2s"
+            begin="11s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="0" cy="-5" r="1" fill="#ffff00">
+          <animate
+            attributeName="opacity"
+            values="0;1;0"
+            dur="2s"
+            begin="12s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
 
-        <!-- Cave Creature Eyes -->
-        <g class="creature-eyes" transform="translate(100, 350)">
-            <circle cx="-10" cy="0" r="5" fill="#ff0000" opacity="0">
-                <animate attributeName="opacity" values="0;0.8;0" dur="8s" begin="30s" repeatCount="indefinite" />
-            </circle>
-            <circle cx="10" cy="0" r="5" fill="#ff0000" opacity="0">
-                <animate attributeName="opacity" values="0;0.8;0" dur="8s" begin="30s" repeatCount="indefinite" />
-            </circle>
-        </g>
+      <!-- Cave Creature Eyes -->
+      <g class="creature-eyes" transform="translate(100, 350)">
+        <circle cx="-10" cy="0" r="5" fill="#ff0000" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.8;0"
+            dur="8s"
+            begin="30s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="10" cy="0" r="5" fill="#ff0000" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.8;0"
+            dur="8s"
+            begin="30s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
 
-        <!-- Bat Silhouettes -->
-        <g class="bats">
-            <path d="M450,100 C440,90 430,110 420,100 C410,90 400,110 390,100 L400,110 L410,100 L420,110 L430,100 L440,110 L450,100" 
-                  fill="#000" opacity="0.7">
-                <animate attributeName="transform" type="translate" 
-                         from="0,0" to="200,50" dur="20s" repeatCount="indefinite" />
-            </path>
-            <path d="M480,120 C470,110 460,130 450,120 C440,110 430,130 420,120 L430,130 L440,120 L450,130 L460,120 L470,130 L480,120" 
-                  fill="#000" opacity="0.7">
-                <animate attributeName="transform" type="translate" 
-                         from="0,0" to="-180,30" dur="25s" repeatCount="indefinite" />
-            </path>
-            <path d="M520,90 C510,80 500,100 490,90 C480,80 470,100 460,90 L470,100 L480,90 L490,100 L500,90 L510,100 L520,90" 
-                  fill="#000" opacity="0">
-                <animate attributeName="opacity" values="0;0.7" dur="5s" begin="40s" fill="freeze" />
-                <animate attributeName="transform" type="translate" 
-                         from="0,0" to="150,40" dur="15s" begin="45s" repeatCount="indefinite" />
-            </path>
-        </g>
-        
-        <!-- Ambient Fog -->
-        <g class="fog">
-            <path d="M0,300 Q250,250 500,300 T1000,300 L1000,400 Q750,450 500,400 T0,400 Z" fill="white" opacity="0.03">
-                <animate attributeName="d" 
-                    values="M0,300 Q250,250 500,300 T1000,300 L1000,400 Q750,450 500,400 T0,400 Z;
+      <!-- Bat Silhouettes -->
+      <g class="bats">
+        <path
+          d="M450,100 C440,90 430,110 420,100 C410,90 400,110 390,100 L400,110 L410,100 L420,110 L430,100 L440,110 L450,100"
+          fill="#000"
+          opacity="0.7"
+        >
+          <animate
+            attributeName="transform"
+            type="translate"
+            from="0,0"
+            to="200,50"
+            dur="20s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <path
+          d="M480,120 C470,110 460,130 450,120 C440,110 430,130 420,120 L430,130 L440,120 L450,130 L460,120 L470,130 L480,120"
+          fill="#000"
+          opacity="0.7"
+        >
+          <animate
+            attributeName="transform"
+            type="translate"
+            from="0,0"
+            to="-180,30"
+            dur="25s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <path
+          d="M520,90 C510,80 500,100 490,90 C480,80 470,100 460,90 L470,100 L480,90 L490,100 L500,90 L510,100 L520,90"
+          fill="#000"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.7"
+            dur="5s"
+            begin="40s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="transform"
+            type="translate"
+            from="0,0"
+            to="150,40"
+            dur="15s"
+            begin="45s"
+            repeatCount="indefinite"
+          />
+        </path>
+      </g>
+
+      <!-- Ambient Fog -->
+      <g class="fog">
+        <path
+          d="M0,300 Q250,250 500,300 T1000,300 L1000,400 Q750,450 500,400 T0,400 Z"
+          fill="white"
+          opacity="0.03"
+        >
+          <animate
+            attributeName="d"
+            values="M0,300 Q250,250 500,300 T1000,300 L1000,400 Q750,450 500,400 T0,400 Z;
                            M0,300 Q250,350 500,300 T1000,300 L1000,400 Q750,350 500,400 T0,400 Z;
-                           M0,300 Q250,250 500,300 T1000,300 L1000,400 Q750,450 500,400 T0,400 Z" 
-                    dur="30s" repeatCount="indefinite" />
-            </path>
-            <path d="M0,150 Q250,100 500,150 T1000,150 L1000,250 Q750,300 500,250 T0,250 Z" fill="white" opacity="0.02">
-                <animate attributeName="d" 
-                    values="M0,150 Q250,100 500,150 T1000,150 L1000,250 Q750,300 500,250 T0,250 Z;
+                           M0,300 Q250,250 500,300 T1000,300 L1000,400 Q750,450 500,400 T0,400 Z"
+            dur="30s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <path
+          d="M0,150 Q250,100 500,150 T1000,150 L1000,250 Q750,300 500,250 T0,250 Z"
+          fill="white"
+          opacity="0.02"
+        >
+          <animate
+            attributeName="d"
+            values="M0,150 Q250,100 500,150 T1000,150 L1000,250 Q750,300 500,250 T0,250 Z;
                            M0,150 Q250,200 500,150 T1000,150 L1000,250 Q750,200 500,250 T0,250 Z;
-                           M0,150 Q250,100 500,150 T1000,150 L1000,250 Q750,300 500,250 T0,250 Z" 
-                    dur="40s" repeatCount="indefinite" />
-            </path>
-        </g>
+                           M0,150 Q250,100 500,150 T1000,150 L1000,250 Q750,300 500,250 T0,250 Z"
+            dur="40s"
+            repeatCount="indefinite"
+          />
+        </path>
+      </g>
 
-        <!-- Player Avatar -->
-        <g id="playerAvatar" transform="translate(500, 300)">
-            <!-- Light aura around the player -->
-            <circle cx="0" cy="0" r="50" fill="url(#avatarLight)" opacity="0.5">
-                <animate attributeName="opacity" values="0.4;0.6;0.4" dur="3s" repeatCount="indefinite" />
-                <animate attributeName="r" values="45;50;45" dur="4s" repeatCount="indefinite" />
-            </circle>
-            
-            <!-- Avatar body -->
-            <circle cx="0" cy="0" r="15" fill="#e6e6e6" stroke="#cccccc" stroke-width="2" filter="url(#avatarGlow)" />
-            
-            <!-- Avatar features - simple face -->
-            <circle cx="-5" cy="-3" r="2" fill="#333" />
-            <circle cx="5" cy="-3" r="2" fill="#333" />
-            <path d="M-5,5 Q0,8 5,5" fill="none" stroke="#333" stroke-width="1.5" stroke-linecap="round" />
-            
-            <!-- Direction indicator (showing which way the avatar is facing) -->
-            <path id="directionIndicator" d="M0,-15 L7,-5 L-7,-5 Z" fill="#b3b3b3" stroke="#999999" stroke-width="1" />
-        </g>
+      <!-- Player Avatar -->
+      <g id="playerAvatar" transform="translate(500, 300)">
+        <!-- Light aura around the player -->
+        <circle cx="0" cy="0" r="50" fill="url(#avatarLight)" opacity="0.5">
+          <animate
+            attributeName="opacity"
+            values="0.4;0.6;0.4"
+            dur="3s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="r"
+            values="45;50;45"
+            dur="4s"
+            repeatCount="indefinite"
+          />
+        </circle>
 
-        <!-- Interaction hint that will appear when near interactive objects -->
-        <text id="interactionHint" x="500" y="250" text-anchor="middle" font-size="14" fill="#ffffff" opacity="0" stroke="#000000" stroke-width="0.5">
-            Press SPACE to interact
-        </text>
+        <!-- Avatar body -->
+        <circle
+          cx="0"
+          cy="0"
+          r="15"
+          fill="#e6e6e6"
+          stroke="#cccccc"
+          stroke-width="2"
+          filter="url(#avatarGlow)"
+        />
+
+        <!-- Avatar features - simple face -->
+        <circle cx="-5" cy="-3" r="2" fill="#333" />
+        <circle cx="5" cy="-3" r="2" fill="#333" />
+        <path
+          d="M-5,5 Q0,8 5,5"
+          fill="none"
+          stroke="#333"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+
+        <!-- Direction indicator (showing which way the avatar is facing) -->
+        <path
+          id="directionIndicator"
+          d="M0,-15 L7,-5 L-7,-5 Z"
+          fill="#b3b3b3"
+          stroke="#999999"
+          stroke-width="1"
+        />
+      </g>
+
+      <!-- Interaction hint that will appear when near interactive objects -->
+      <text
+        id="interactionHint"
+        x="500"
+        y="250"
+        text-anchor="middle"
+        font-size="14"
+        fill="#ffffff"
+        opacity="0"
+        stroke="#000000"
+        stroke-width="0.5"
+      >
+        Press SPACE to interact
+      </text>
     </svg>
 
     <script>
-        // Text descriptions that will cycle through automatically
-        const descriptions = [
-            "Welcome to the animated cave. Use WASD or Arrow keys to explore.",
-            "Water drips from stalactites high above, slowly forming new stone structures over thousands of years.",
-            "The underground pool's surface ripples as water drops create expanding circles.",
-            "A campfire flickers, casting dancing shadows on the cave walls.",
-            "Ancient cave paintings begin to reveal themselves on the distant wall.",
-            "Mysterious blue crystals glow with an otherworldly light, illuminating parts of the cave.",
-            "A treasure chest sits partially hidden, its golden contents occasionally catching the light.",
-            "In the darkness, something watches with glowing red eyes...",
-            "Bats fly sil
+      // Text descriptions that will cycle through automatically
+      const descriptions = [
+        "Welcome to the animated cave. Watch as the environment comes to life...",
+        "Water drips from stalactites high above, slowly forming new stone structures over thousands of years.",
+        "The underground pool's surface ripples as water drops create expanding circles.",
+        "A campfire flickers, casting dancing shadows on the cave walls.",
+        "Ancient cave paintings begin to reveal themselves on the distant wall.",
+        "Mysterious blue crystals glow with an otherworldly light, illuminating parts of the cave.",
+        "A treasure chest sits partially hidden, its golden contents occasionally catching the light.",
+        "In the darkness, something watches with glowing red eyes...",
+        "Bats fly silently overhead, navigating the cave's ceiling.",
+        "New crystal formations emerge, adding to the cave's mysterious beauty.",
+        "The cave breathes with ancient energy, telling stories of millennia past...",
+      ];
+
+      const infoPanel = document.getElementById("infoPanel");
+      let currentDescription = 0;
+
+      // Update the information panel text
+      function updateInfoPanel() {
+        infoPanel.style.opacity = "0";
+
+        setTimeout(() => {
+          infoPanel.textContent = descriptions[currentDescription];
+          infoPanel.style.opacity = "1";
+
+          currentDescription = (currentDescription + 1) % descriptions.length;
+        }, 1000);
+      }
+
+      // Start cycling through descriptions
+      updateInfoPanel();
+      setInterval(updateInfoPanel, 8000);
+    </script>
+  </body>
+</html>
