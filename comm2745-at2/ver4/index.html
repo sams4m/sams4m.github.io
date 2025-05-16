@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        overflow: hidden;
+        font-family: "Georgia", serif;
+      }
+      .cave {
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(#041428, #082040, #0a2550);
+      }
+      .info-panel {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #e5f2ff;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 18px;
+        font-style: italic;
+        text-align: center;
+        max-width: 80%;
+        transition: opacity 1s;
+        border: 1px solid rgba(165, 218, 255, 0.3);
+        box-shadow: 0 0 15px rgba(120, 200, 255, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="info-panel" id="infoPanel">
+      Welcome to the enchanted crystal cave. A place where magic and wonder
+      await...
+    </div>
+    <svg class="cave" viewBox="0 0 1000 600">
+      <!-- Cave Background and Gradients -->
+      <defs>
+        <radialGradient id="caveBg" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+          <stop offset="0%" stop-color="#0e2a4f">
+            <animate
+              attributeName="stop-color"
+              values="#0e2a4f;#0a1f3a;#0e2a4f"
+              dur="30s"
+              repeatCount="indefinite"
+            />
+          </stop>
+          <stop offset="70%" stop-color="#081832">
+            <animate
+              attributeName="stop-color"
+              values="#081832;#061222;#081832"
+              dur="30s"
+              repeatCount="indefinite"
+            />
+          </stop>
+          <stop offset="100%" stop-color="#040f24">
+            <animate
+              attributeName="stop-color"
+              values="#040f24;#020814;#040f24"
+              dur="30s"
+              repeatCount="indefinite"
+            />
+          </stop>
+        </radialGradient>
+
+        <radialGradient
+          id="crystalLight1"
+          cx="50%"
+          cy="50%"
+          r="50%"
+          fx="50%"
+          fy="50%"
+        >
+          <stop offset="0%" stop-color="#7fffff">
+            <animate
+              attributeName="stop-color"
+              values="#7fffff;#50e5ff;#7fffff"
+              dur="5s"
+              repeatCount="indefinite"
+            />
+          </stop>
+          <stop offset="100%" stop-color="#00a0cc" stop-opacity="0">
+            <animate
+              attributeName="stop-color"
+              values="#00a0cc;#0080aa;#00a0cc"
+              dur="5s"
+              repeatCount="indefinite"
+            />
+          </stop>
+        </radialGradient>
+
+        <radialGradient
+          id="crystalLight2"
+          cx="50%"
+          cy="50%"
+          r="50%"
+          fx="50%"
+          fy="50%"
+        >
+          <stop offset="0%" stop-color="#ffb5ff">
+            <animate
+              attributeName="stop-color"
+              values="#ffb5ff;#ff80ff;#ffb5ff"
+              dur="6s"
+              repeatCount="indefinite"
+            />
+          </stop>
+          <stop offset="100%" stop-color="#aa00aa" stop-opacity="0">
+            <animate
+              attributeName="stop-color"
+              values="#aa00aa;#800080;#aa00aa"
+              dur="6s"
+              repeatCount="indefinite"
+            />
+          </stop>
+        </radialGradient>
+
+        <radialGradient
+          id="crystalLight3"
+          cx="50%"
+          cy="50%"
+          r="50%"
+          fx="50%"
+          fy="50%"
+        >
+          <stop offset="0%" stop-color="#b5ffb5">
+            <animate
+              attributeName="stop-color"
+              values="#b5ffb5;#80ff80;#b5ffb5"
+              dur="7s"
+              repeatCount="indefinite"
+            />
+          </stop>
+          <stop offset="100%" stop-color="#00aa00" stop-opacity="0">
+            <animate
+              attributeName="stop-color"
+              values="#00aa00;#008000;#00aa00"
+              dur="7s"
+              repeatCount="indefinite"
+            />
+          </stop>
+        </radialGradient>
+
+        <radialGradient id="sunbeam" cx="50%" cy="0%" r="100%" fx="50%" fy="0%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.7" />
+          <stop offset="40%" stop-color="#a0e5ff" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="#80c0ff" stop-opacity="0" />
+        </radialGradient>
+
+        <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+          <feOffset dx="2" dy="2" />
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="0.5" />
+          </feComponentTransfer>
+          <feMerge>
+            <feMergeNode />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        <filter id="waterEffect" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.01"
+            numOctaves="2"
+            result="turbulence"
+          >
+            <animate
+              attributeName="baseFrequency"
+              values="0.01;0.015;0.01"
+              dur="10s"
+              repeatCount="indefinite"
+            />
+          </feTurbulence>
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="turbulence"
+            scale="10"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+
+        <filter id="glowEffect" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="5" result="blur" />
+          <feBlend in="SourceGraphic" in2="blur" mode="screen" />
+        </filter>
+
+        <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="10" result="blur" />
+          <feBlend in="SourceGraphic" in2="blur" mode="screen" />
+        </filter>
+      </defs>
+
+      <!-- Cave Interior -->
+      <path d="M0,0 L1000,0 L1000,600 L0,600 Z" fill="url(#caveBg)" />
+
+      <!-- Cave Opening with Sunbeam -->
+      <ellipse cx="500" cy="50" rx="250" ry="80" fill="url(#sunbeam)">
+        <animate
+          attributeName="ry"
+          values="80;85;80"
+          dur="20s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.7;0.9;0.7"
+          dur="15s"
+          repeatCount="indefinite"
+        />
+      </ellipse>
+
+      <!-- Cave Walls -->
+      <path
+        class="wall"
+        d="M0,0 C100,100 200,50 300,150 C400,250 500,200 600,250 C700,300 800,280 900,200 L1000,0 Z"
+        fill="#0a2550"
+        stroke="#051a40"
+        stroke-width="5"
+        opacity="0.8"
+      >
+        <animate
+          attributeName="d"
+          values="M0,0 C100,100 200,50 300,150 C400,250 500,200 600,250 C700,300 800,280 900,200 L1000,0 Z;
+                       M0,0 C100,120 200,70 300,170 C400,270 500,220 600,270 C700,320 800,300 900,220 L1000,0 Z;
+                       M0,0 C100,100 200,50 300,150 C400,250 500,200 600,250 C700,300 800,280 900,200 L1000,0 Z"
+          dur="60s"
+          repeatCount="indefinite"
+        />
+      </path>
+
+      <path
+        class="wall"
+        d="M0,600 C100,550 200,580 300,500 C400,450 500,480 600,500 C750,530 850,570 950,550 L1000,600 Z"
+        fill="#0a2550"
+        stroke="#051a40"
+        stroke-width="5"
+        opacity="0.8"
+      >
+        <animate
+          attributeName="d"
+          values="M0,600 C100,550 200,580 300,500 C400,450 500,480 600,500 C750,530 850,570 950,550 L1000,600 Z;
+                       M0,600 C100,530 200,560 300,480 C400,430 500,460 600,480 C750,510 850,550 950,530 L1000,600 Z;
+                       M0,600 C100,550 200,580 300,500 C400,450 500,480 600,500 C750,530 850,570 950,550 L1000,600 Z"
+          dur="50s"
+          repeatCount="indefinite"
+        />
+      </path>
+
+      <!-- Left Side Wall -->
+      <path
+        class="wall"
+        d="M0,0 C50,150 30,300 60,450 C90,550 0,580 0,600 Z"
+        fill="#072045"
+        stroke="#051530"
+        stroke-width="3"
+        opacity="0.9"
+      >
+        <animate
+          attributeName="d"
+          values="M0,0 C50,150 30,300 60,450 C90,550 0,580 0,600 Z;
+                         M0,0 C60,150 40,300 70,450 C100,550 0,580 0,600 Z;
+                         M0,0 C50,150 30,300 60,450 C90,550 0,580 0,600 Z"
+          dur="45s"
+          repeatCount="indefinite"
+        />
+      </path>
+
+      <!-- Right Side Wall -->
+      <path
+        class="wall"
+        d="M1000,0 C950,100 970,300 940,450 C900,550 1000,580 1000,600 Z"
+        fill="#072045"
+        stroke="#051530"
+        stroke-width="3"
+        opacity="0.9"
+      >
+        <animate
+          attributeName="d"
+          values="M1000,0 C950,100 970,300 940,450 C900,550 1000,580 1000,600 Z;
+                         M1000,0 C940,100 960,300 930,450 C890,550 1000,580 1000,600 Z;
+                         M1000,0 C950,100 970,300 940,450 C900,550 1000,580 1000,600 Z"
+          dur="55s"
+          repeatCount="indefinite"
+        />
+      </path>
+
+      <!-- Underground Stream - Rounded Water Pool -->
+      <ellipse
+        cx="550"
+        cy="400"
+        rx="300"
+        ry="100"
+        fill="#00cccc"
+        opacity="0.7"
+        filter="url(#waterEffect)"
+      >
+        <animate
+          attributeName="opacity"
+          values="0.7;0.9;0.7"
+          dur="8s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="ry"
+          values="100;105;100"
+          dur="15s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="rx"
+          values="300;305;300"
+          dur="12s"
+          repeatCount="indefinite"
+        />
+      </ellipse>
+
+      <!-- Rounded Water Edge -->
+      <path
+        class="water-edge"
+        d="M250,400 C350,380 450,420 550,400 C650,380 750,420 850,400"
+        stroke="#80ffff"
+        stroke-width="2"
+        fill="none"
+        opacity="0.4"
+      >
+        <animate
+          attributeName="opacity"
+          values="0.4;0.6;0.4"
+          dur="8s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="d"
+          values="M250,400 C350,380 450,420 550,400 C650,380 750,420 850,400;
+                       M250,400 C350,390 450,410 550,400 C650,390 750,410 850,400;
+                       M250,400 C350,380 450,420 550,400 C650,380 750,420 850,400"
+          dur="12s"
+          repeatCount="indefinite"
+        />
+      </path>
+
+      <!-- Water Ripples -->
+      <circle
+        cx="420"
+        cy="400"
+        r="0"
+        fill="none"
+        stroke="#80ffff"
+        stroke-width="1"
+        opacity="0"
+      >
+        <animate
+          attributeName="r"
+          values="0;30"
+          dur="4s"
+          begin="2s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.8;0"
+          dur="4s"
+          begin="2s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle
+        cx="550"
+        cy="380"
+        r="0"
+        fill="none"
+        stroke="#80ffff"
+        stroke-width="1"
+        opacity="0"
+      >
+        <animate
+          attributeName="r"
+          values="0;25"
+          dur="5s"
+          begin="5s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.8;0"
+          dur="5s"
+          begin="5s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <circle
+        cx="650"
+        cy="420"
+        r="0"
+        fill="none"
+        stroke="#80ffff"
+        stroke-width="1"
+        opacity="0"
+      >
+        <animate
+          attributeName="r"
+          values="0;20"
+          dur="6s"
+          begin="8s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0.8;0"
+          dur="6s"
+          begin="8s"
+          repeatCount="indefinite"
+        />
+      </circle>
+
+      <!-- Plants and Vegetation -->
+      <!-- Fern 1 -->
+      <g transform="translate(300,350) scale(0.8)" opacity="0">
+        <animate
+          attributeName="opacity"
+          values="0;0.9"
+          dur="10s"
+          fill="freeze"
+        />
+        <path d="M0,0 C5,-10 10,-15 15,-10 C10,-5 5,-3 0,0" fill="#006644" />
+        <path d="M0,0 C10,-15 20,-20 25,-15 C20,-10 10,-5 0,0" fill="#008855" />
+        <path
+          d="M0,0 C-5,-10 -10,-15 -15,-10 C-10,-5 -5,-3 0,0"
+          fill="#006644"
+        />
+        <path
+          d="M0,0 C-10,-15 -20,-20 -25,-15 C-20,-10 -10,-5 0,0"
+          fill="#008855"
+        />
+        <path
+          d="M0,0 C0,-5 0,-20 0,-30"
+          stroke="#006644"
+          stroke-width="2"
+          fill="none"
+        />
+      </g>
+
+      <!-- Fern 2 -->
+      <g transform="translate(750,370) scale(0.6)" opacity="0">
+        <animate
+          attributeName="opacity"
+          values="0;0.9"
+          dur="15s"
+          fill="freeze"
+        />
+        <path d="M0,0 C5,-10 10,-15 15,-10 C10,-5 5,-3 0,0" fill="#006644" />
+        <path d="M0,0 C10,-15 20,-20 25,-15 C20,-10 10,-5 0,0" fill="#008855" />
+        <path
+          d="M0,0 C-5,-10 -10,-15 -15,-10 C-10,-5 -5,-3 0,0"
+          fill="#006644"
+        />
+        <path
+          d="M0,0 C-10,-15 -20,-20 -25,-15 C-20,-10 -10,-5 0,0"
+          fill="#008855"
+        />
+        <path
+          d="M0,0 C0,-5 0,-20 0,-30"
+          stroke="#006644"
+          stroke-width="2"
+          fill="none"
+        />
+      </g>
+
+      <!-- Small Mushrooms -->
+      <g transform="translate(280,460)">
+        <circle cx="0" cy="0" r="10" fill="#ff99cc" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.9"
+            dur="8s"
+            begin="5s"
+            fill="freeze"
+          />
+        </circle>
+        <rect x="-2" y="0" width="4" height="10" fill="#ffccee" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.9"
+            dur="8s"
+            begin="5s"
+            fill="freeze"
+          />
+        </rect>
+      </g>
+
+      <g transform="translate(720,480)">
+        <circle cx="0" cy="0" r="8" fill="#ccaaff" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.9"
+            dur="12s"
+            begin="10s"
+            fill="freeze"
+          />
+        </circle>
+        <rect x="-2" y="0" width="4" height="8" fill="#eeccff" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.9"
+            dur="12s"
+            begin="10s"
+            fill="freeze"
+          />
+        </rect>
+      </g>
+
+      <!-- Glowing Flowers -->
+      <g transform="translate(350,450)">
+        <circle
+          cx="0"
+          cy="0"
+          r="5"
+          fill="#ffff99"
+          filter="url(#softGlow)"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.9"
+            dur="8s"
+            begin="7s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="r"
+            values="5;6;5"
+            dur="3s"
+            begin="15s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <path
+          d="M-8,-8 C-4,-4 4,-4 8,-8 C4,-4 4,4 8,8 C4,4 -4,4 -8,8 C-4,4 -4,-4 -8,-8"
+          stroke="#ffff00"
+          stroke-width="1"
+          fill="none"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.9"
+            dur="8s"
+            begin="7s"
+            fill="freeze"
+          />
+        </path>
+        <rect x="-1" y="0" width="2" height="15" fill="#00aa00" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.9"
+            dur="8s"
+            begin="7s"
+            fill="freeze"
+          />
+        </rect>
+      </g>
+
+      <g transform="translate(680,440)">
+        <circle
+          cx="0"
+          cy="0"
+          r="6"
+          fill="#ff88ff"
+          filter="url(#softGlow)"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.9"
+            dur="10s"
+            begin="12s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="r"
+            values="6;7;6"
+            dur="4s"
+            begin="22s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <path
+          d="M-10,-10 C-5,-5 5,-5 10,-10 C5,-5 5,5 10,10 C5,5 -5,5 -10,10 C-5,5 -5,-5 -10,-10"
+          stroke="#ff00ff"
+          stroke-width="1"
+          fill="none"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.9"
+            dur="10s"
+            begin="12s"
+            fill="freeze"
+          />
+        </path>
+        <rect x="-1" y="0" width="2" height="18" fill="#00aa00" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.9"
+            dur="10s"
+            begin="12s"
+            fill="freeze"
+          />
+        </rect>
+      </g>
+
+      <!-- Large Crystals -->
+      <!-- Crystal 1 - Aqua -->
+      <g transform="translate(200,350)">
+        <polygon
+          points="0,0 20,-120 40,-90 60,-140 80,-60 100,-100 120,0"
+          fill="#40e0d0"
+          opacity="0.7"
+          filter="url(#glowEffect)"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.7"
+            dur="5s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.7;0.9;0.7"
+            dur="8s"
+            begin="5s"
+            repeatCount="indefinite"
+          />
+        </polygon>
+        <circle
+          cx="60"
+          cy="-70"
+          r="150"
+          fill="url(#crystalLight1)"
+          opacity="0.3"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.3"
+            dur="5s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.3;0.5;0.3"
+            dur="8s"
+            begin="5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      <!-- Crystal 2 - Pink -->
+      <g transform="translate(800,300)">
+        <polygon
+          points="0,0 15,-100 30,-70 45,-130 60,-50 75,-90 90,0"
+          fill="#ff80ff"
+          opacity="0.7"
+          filter="url(#glowEffect)"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.7"
+            dur="5s"
+            begin="3s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.7;0.9;0.7"
+            dur="9s"
+            begin="8s"
+            repeatCount="indefinite"
+          />
+        </polygon>
+        <circle
+          cx="45"
+          cy="-70"
+          r="130"
+          fill="url(#crystalLight2)"
+          opacity="0.3"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.3"
+            dur="5s"
+            begin="3s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.3;0.5;0.3"
+            dur="9s"
+            begin="8s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      <!-- Crystal 3 - Green -->
+      <g transform="translate(500,250)">
+        <polygon
+          points="0,0 10,-80 20,-50 30,-110 40,-35 50,-70 60,0"
+          fill="#80ff80"
+          opacity="0.7"
+          filter="url(#glowEffect)"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.7"
+            dur="5s"
+            begin="6s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.7;0.9;0.7"
+            dur="7s"
+            begin="11s"
+            repeatCount="indefinite"
+          />
+        </polygon>
+        <circle
+          cx="30"
+          cy="-55"
+          r="110"
+          fill="url(#crystalLight3)"
+          opacity="0.3"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.3"
+            dur="5s"
+            begin="6s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.3;0.5;0.3"
+            dur="7s"
+            begin="11s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      <!-- Small Crystal Clusters -->
+      <g class="crystals-1" transform="translate(150,400) scale(0.5)">
+        <polygon
+          points="0,0 10,-30 20,-10 30,-40 40,-5 50,-25 60,0"
+          fill="#80ffff"
+          opacity="0"
+          filter="url(#glowEffect)"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.8"
+            dur="10s"
+            begin="2s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.8;1;0.8"
+            dur="4s"
+            begin="12s"
+            repeatCount="indefinite"
+          />
+        </polygon>
+        <circle cx="30" cy="-20" r="50" fill="url(#crystalLight1)" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.4"
+            dur="10s"
+            begin="2s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.4;0.6;0.4"
+            dur="4s"
+            begin="12s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      <g class="crystals-2" transform="translate(850,420) scale(0.4)">
+        <polygon
+          points="0,0 10,-30 20,-10 30,-40 40,-5 50,-25 60,0"
+          fill="#ffb0ff"
+          opacity="0"
+          filter="url(#glowEffect)"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.8"
+            dur="10s"
+            begin="5s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.8;1;0.8"
+            dur="5s"
+            begin="15s"
+            repeatCount="indefinite"
+          />
+        </polygon>
+        <circle cx="30" cy="-20" r="50" fill="url(#crystalLight2)" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.4"
+            dur="10s"
+            begin="5s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.4;0.6;0.4"
+            dur="5s"
+            begin="15s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      <g class="crystals-3" transform="translate(350,380) scale(0.3)">
+        <polygon
+          points="0,0 10,-30 20,-10 30,-40 40,-5 50,-25 60,0"
+          fill="#b0ffb0"
+          opacity="0"
+          filter="url(#glowEffect)"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.8"
+            dur="10s"
+            begin="8s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.8;1;0.8"
+            dur="6s"
+            begin="18s"
+            repeatCount="indefinite"
+          />
+        </polygon>
+        <circle cx="30" cy="-20" r="50" fill="url(#crystalLight3)" opacity="0">
+          <animate
+            attributeName="opacity"
+            values="0;0.4"
+            dur="10s"
+            begin="8s"
+            fill="freeze"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.4;0.6;0.4"
+            dur="6s"
+            begin="18s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      <!-- Fireflies -->
+      <g class="fireflies">
+        <circle
+          cx="300"
+          cy="250"
+          r="2"
+          fill="#ffffaa"
+          filter="url(#softGlow)"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;1;0"
+            dur="8s"
+            begin="5s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cx"
+            values="300;320;310;290;300"
+            dur="8s"
+            begin="5s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cy"
+            values="250;230;210;240;250"
+            dur="8s"
+            begin="5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle
+          cx="400"
+          cy="300"
+          r="2"
+          fill="#ffffaa"
+          filter="url(#softGlow)"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;1;0"
+            dur="10s"
+            begin="7s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cx"
+            values="400;430;450;420;400"
+            dur="10s"
+            begin="7s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cy"
+            values="300;280;310;330;300"
+            dur="10s"
+            begin="7s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle
+          cx="600"
+          cy="200"
+          r="2"
+          fill="#ffffaa"
+          filter="url(#softGlow)"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;1;0"
+            dur="7s"
+            begin="9s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cx"
+            values="600;580;550;590;600"
+            dur="7s"
+            begin="9s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cy"
+            values="200;220;200;180;200"
+            dur="7s"
+            begin="9s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle
+          cx="700"
+          cy="350"
+          r="2"
+          fill="#ffffaa"
+          filter="url(#softGlow)"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;1;0"
+            dur="12s"
+            begin="3s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cx"
+            values="700;720;740;710;700"
+            dur="12s"
+            begin="3s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cy"
+            values="350;330;360;380;350"
+            dur="12s"
+            begin="3s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle
+          cx="500"
+          cy="150"
+          r="2"
+          fill="#ffffaa"
+          filter="url(#softGlow)"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;1;0"
+            dur="9s"
+            begin="6s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cx"
+            values="500;480;460;490;500"
+            dur="9s"
+            begin="6s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="cy"
+            values="150;130;150;170;150"
+            dur="9s"
+            begin="6s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      <!-- Fairy Silhouettes -->
+      <g class="fairy1" opacity="0">
+        <animate
+          attributeName="opacity"
+          values="0;0.8"
+          dur="10s"
+          begin="20s"
+          fill="freeze"
+        />
+        <animate
+          attributeName="transform"
+          type="translate"
+          from="400,200"
+          to="600,150"
+          dur="30s"
+          begin="30s"
+          repeatCount="indefinite"
+        />
+        <circle cx="0" cy="0" r="3" fill="#ffffff" filter="url(#softGlow)" />
+        <path
+          d="M0,-3 C2,-8 10,-5 5,0 C10,5 2,8 0,3 C-2,8 -10,5 -5,0 C-10,-5 -2,-8 0,-3"
+          fill="none"
+          stroke="#ffffff"
+          stroke-width="1"
+          opacity="0.5"
+        >
+          <animate
+            attributeName="opacity"
+            values="0.5;0.8;0.5"
+            dur="3s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <!-- Fairy Dust Trail -->
+        <circle cx="-2" cy="-2" r="1" fill="#ffffff" opacity="0.6">
+          <animate
+            attributeName="opacity"
+            values="0.6;0;0.6"
+            dur="4s"
+            begin="30s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="-4" cy="-1" r="0.8" fill="#ffffff" opacity="0.5">
+          <animate
+            attributeName="opacity"
+            values="0.5;0;0.5"
+            dur="3s"
+            begin="30.5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="-6" cy="-3" r="0.6" fill="#ffffff" opacity="0.4">
+          <animate
+            attributeName="opacity"
+            values="0.4;0;0.4"
+            dur="2s"
+            begin="31s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      <!-- Additional Fairy Silhouette -->
+      <g class="fairy2" opacity="0">
+        <animate
+          attributeName="opacity"
+          values="0;0.8"
+          dur="10s"
+          begin="25s"
+          fill="freeze"
+        />
+        <animate
+          attributeName="transform"
+          type="translate"
+          from="700,300"
+          to="400,250"
+          dur="40s"
+          begin="35s"
+          repeatCount="indefinite"
+        />
+        <circle cx="0" cy="0" r="2.5" fill="#ffccff" filter="url(#softGlow)" />
+        <path
+          d="M0,-2 C1.5,-6 8,-4 4,0 C8,4 1.5,6 0,2 C-1.5,6 -8,4 -4,0 C-8,-4 -1.5,-6 0,-2"
+          fill="none"
+          stroke="#ffccff"
+          stroke-width="1"
+          opacity="0.5"
+        >
+          <animate
+            attributeName="opacity"
+            values="0.5;0.8;0.5"
+            dur="2.5s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <!-- Fairy Dust Trail -->
+        <circle cx="-2" cy="-1" r="0.9" fill="#ffccff" opacity="0.6">
+          <animate
+            attributeName="opacity"
+            values="0.6;0;0.6"
+            dur="3.5s"
+            begin="35s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="-3.5" cy="-2" r="0.7" fill="#ffccff" opacity="0.5">
+          <animate
+            attributeName="opacity"
+            values="0.5;0;0.5"
+            dur="2.5s"
+            begin="35.5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="-5" cy="-1" r="0.5" fill="#ffccff" opacity="0.4">
+          <animate
+            attributeName="opacity"
+            values="0.4;0;0.4"
+            dur="1.5s"
+            begin="36s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      <!-- Third Fairy Silhouette -->
+      <g class="fairy3" opacity="0">
+        <animate
+          attributeName="opacity"
+          values="0;0.8"
+          dur="10s"
+          begin="15s"
+          fill="freeze"
+        />
+        <animate
+          attributeName="transform"
+          type="translate"
+          from="300,150"
+          to="550,300"
+          dur="35s"
+          begin="25s"
+          repeatCount="indefinite"
+        />
+        <circle cx="0" cy="0" r="2" fill="#aaffff" filter="url(#softGlow)" />
+        <path
+          d="M0,-2 C1,-5 7,-3.5 3.5,0 C7,3.5 1,5 0,2 C-1,5 -7,3.5 -3.5,0 C-7,-3.5 -1,-5 0,-2"
+          fill="none"
+          stroke="#aaffff"
+          stroke-width="0.8"
+          opacity="0.5"
+        >
+          <animate
+            attributeName="opacity"
+            values="0.5;0.8;0.5"
+            dur="3.5s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <!-- Fairy Dust Trail -->
+        <circle cx="-1.5" cy="-1.5" r="0.8" fill="#aaffff" opacity="0.6">
+          <animate
+            attributeName="opacity"
+            values="0.6;0;0.6"
+            dur="3s"
+            begin="25s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="-3" cy="-0.5" r="0.6" fill="#aaffff" opacity="0.5">
+          <animate
+            attributeName="opacity"
+            values="0.5;0;0.5"
+            dur="2s"
+            begin="25.5s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="-4.5" cy="-1" r="0.4" fill="#aaffff" opacity="0.4">
+          <animate
+            attributeName="opacity"
+            values="0.4;0;0.4"
+            dur="1s"
+            begin="26s"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+
+      <!-- Fairy Group in the Distance -->
+      <g
+        class="fairy-group"
+        transform="translate(550,100) scale(0.4)"
+        opacity="0"
+      >
+        <animate
+          attributeName="opacity"
+          values="0;0.6"
+          dur="15s"
+          begin="30s"
+          fill="freeze"
+        />
+        <animate
+          attributeName="transform"
+          values="translate(550,100) scale(0.4);translate(530,110) scale(0.4);translate(570,90) scale(0.4);translate(550,100) scale(0.4)"
+          dur="20s"
+          begin="45s"
+          repeatCount="indefinite"
+        />
+
+        <!-- Small cluster of fairies -->
+        <circle cx="0" cy="0" r="2" fill="#ffffff" filter="url(#softGlow)" />
+        <circle cx="5" cy="-3" r="1.5" fill="#ffccff" filter="url(#softGlow)" />
+        <circle
+          cx="-4"
+          cy="-5"
+          r="1.8"
+          fill="#aaffff"
+          filter="url(#softGlow)"
+        />
+        <circle cx="3" cy="4" r="1.3" fill="#ffffaa" filter="url(#softGlow)" />
+        <circle cx="-5" cy="2" r="1.6" fill="#ffaaff" filter="url(#softGlow)" />
+
+        <!-- Connecting light trails -->
+        <path
+          d="M0,0 C2,-1 4,-2 5,-3"
+          stroke="#ffffff"
+          stroke-width="0.3"
+          opacity="0.3"
+        >
+          <animate
+            attributeName="opacity"
+            values="0.3;0.6;0.3"
+            dur="3s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <path
+          d="M0,0 C-2,-3 -3,-4 -4,-5"
+          stroke="#aaffff"
+          stroke-width="0.3"
+          opacity="0.3"
+        >
+          <animate
+            attributeName="opacity"
+            values="0.3;0.6;0.3"
+            dur="2.5s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <path
+          d="M0,0 C1,2 2,3 3,4"
+          stroke="#ffffaa"
+          stroke-width="0.3"
+          opacity="0.3"
+        >
+          <animate
+            attributeName="opacity"
+            values="0.3;0.6;0.3"
+            dur="3.5s"
+            repeatCount="indefinite"
+          />
+        </path>
+        <path
+          d="M0,0 C-2,1 -4,1.5 -5,2"
+          stroke="#ffaaff"
+          stroke-width="0.3"
+          opacity="0.3"
+        >
+          <animate
+            attributeName="opacity"
+            values="0.3;0.6;0.3"
+            dur="4s"
+            repeatCount="indefinite"
+          />
+        </path>
+      </g>
+    </svg>
+  </body>
+</html>
