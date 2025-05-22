@@ -1,0 +1,64 @@
+/* GLOBAL STYLING */
+:root {
+  --colour-white: #fefefe;
+  --colour-black: #1e1e1e;
+  /* pink */
+  --colour-1: #f0b5bb;
+  /* purple */
+  --colour-2: #ebd5ec;
+  /* green */
+  --colour-3: #d2dc97;
+}
+
+* {
+  /* 'Montserrat' is used as global font sourced from Google fonts */
+
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--colour-black);
+
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 0.5rem;
+  column-gap: 1rem;
+
+  width: 100%;
+
+  border-bottom: 0.1rem solid;
+}
+
+body {
+  background: radial-gradient(
+    circle at center,
+    var(--colour-1),
+    var(--colour-white)
+  );
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.window {
+  border: 0.08rem solid;
+  border-color: var(--colour-black);
+  width: 50%;
+  height: 300px;
+}
