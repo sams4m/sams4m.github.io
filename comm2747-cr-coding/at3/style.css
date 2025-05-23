@@ -1,4 +1,4 @@
-/* GLOBAL STYLING */
+/* GLOBAL VARS ----------------------------------------------------------------------*/
 :root {
   --colour-white: #fefefe;
   --colour-black: #1e1e1e;
@@ -10,6 +10,7 @@
   --colour-3: #d2dc97;
 }
 
+/* GLOBAL STYLING ----------------------------------------------------------------------*/
 * {
   /* 'Montserrat' is used as global font sourced from Google fonts */
 
@@ -21,8 +22,17 @@
 
   margin: 0;
   padding: 0;
+  background-color: var(--colour-white);
 }
 
+/* FONTS ----------------------------------------------------------------------*/
+.notable-regular {
+  font-family: "Notable", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* DOM ----------------------------------------------------------------------*/
 header {
   display: flex;
   flex-direction: row;
@@ -36,29 +46,112 @@ header {
 }
 
 body {
-  background: radial-gradient(
-    circle at center,
-    var(--colour-1),
-    var(--colour-white)
-  );
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  width: 100%;
+h1 {
+  font-family: "Notable", sans-serif;
+  font-weight: 400;
+  font-size: 3rem;
 }
 
+h2 {
+  font-weight: 300;
+  font-size: 3rem;
+  line-height: 2.2rem;
+}
+
+/* BACKGROUND ----------------------------------------------------------------------*/
+.background {
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50rem;
+  height: 50rem;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    var(--colour-1) 0%,
+    var(--colour-1) 30%,
+    var(--colour-3) 40%,
+    var(--colour-white) 50%
+  );
+  z-index: 1;
+
+  animation: growcircle 7s cubic-bezier(0.175, 0.885, 0.32, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes growcircle {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 150%;
+    height: 150%;
+    opacity: 0.1;
+  }
+}
+
+/* WINDOW ----------------------------------------------------------------------*/
 .window {
-  border: 0.08rem solid;
+  border: 0.1rem solid;
   border-color: var(--colour-black);
   width: 50%;
   height: 300px;
+  z-index: 2;
+}
+
+.navbar {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  border-bottom: 0.1rem var(--colour-black) solid;
+
+  font-size: 0.8rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+}
+
+.bar {
+  width: 100%;
+  height: 0.005rem;
+  background-color: var(--colour-black);
+}
+
+.creative-pourtfolio {
+  width: 100%;
+  margin-top: 10%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.pourtfolio {
+  display: flex;
+  flex-direction: row;
+
+  line-height: 1.5rem;
+}
+
+.folder-btn {
+  border: none;
+  max-width: 6rem;
+  padding: 0;
+}
+
+.folder-p {
+  font-size: 0.7rem;
 }
