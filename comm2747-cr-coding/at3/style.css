@@ -72,7 +72,15 @@ a {
   cursor: pointer;
 
   background-color: transparent;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 450;
+}
+
+a:hover {
+  scale: 1.1;
+  transition: 500ms ease-in-out;
+  cursor: pointer;
+  color: var(--colour-4);
 }
 
 /* BACKGROUND ----------------------------------------------------------------------*/
@@ -171,11 +179,4 @@ a {
   display: flex;
   column-gap: 5rem;
   justify-content: center;
-}
-
-a:hover {
-  scale: 1.1;
-  transition: 500ms ease-in-out;
-  cursor: pointer;
-  color: var(--colour-4);
 }
