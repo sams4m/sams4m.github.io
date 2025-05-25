@@ -26,13 +26,6 @@
   padding: 0;
 }
 
-/* FONTS ----------------------------------------------------------------------*/
-.notable-regular {
-  font-family: "Notable", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 /* DOM ----------------------------------------------------------------------*/
 header {
   z-index: 100;
@@ -157,4 +150,23 @@ button :hover {
   font-size: 0.8rem;
   padding-left: 0.2rem;
   padding-right: 0.2rem;
+}
+
+/* FOOTER NOTE ----------------------------------------------------------------------*/
+.ps {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  opacity: 0.5;
+  color: var(--colour-white);
+  text-align: right;
+}
+
+.psb {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  opacity: 0.5;
+  color: var(--colour-black);
+  text-align: center;
 }

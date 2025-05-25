@@ -41,15 +41,6 @@ p {
   text-align: center;
 }
 
-.ps {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  opacity: 0.5;
-  color: var(--colour-white);
-  text-align: right;
-}
-
 /* YOUTUBE VIDEO ------------------------------------------------------------- */
 /* video styling */
 .vid {
@@ -73,6 +64,7 @@ p {
   justify-content: center;
 }
 
+/* IMAGE GRID */
 .row {
   width: 100%;
   display: flex;
