@@ -64,3 +64,24 @@ p {
   height: 100%;
   object-fit: fill;
 }
+
+/* JIWON */
+.images {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.column {
+  flex: 50%;
+
+  padding: 0 4px;
+}
