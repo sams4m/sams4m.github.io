@@ -35,6 +35,7 @@
 
 /* DOM ----------------------------------------------------------------------*/
 header {
+  z-index: 100;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -83,6 +84,28 @@ a:hover {
   color: var(--colour-4);
 }
 
+button {
+  border: none;
+  max-width: 7rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  column-gap: 5rem;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+
+  background-color: transparent;
+  font-size: 0.75rem;
+  font-weight: 450;
+}
+
+button :hover {
+  scale: 0.95;
+  transition: 5ms ease-in-out;
+}
+
 /* BACKGROUND ----------------------------------------------------------------------*/
 .background {
   position: fixed;
@@ -90,8 +113,8 @@ a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50rem;
-  height: 50rem;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
 
   background: radial-gradient(
@@ -105,14 +128,6 @@ a:hover {
 
   animation: growcircle 7s cubic-bezier(0.175, 0.885, 0.32, 1) infinite;
   pointer-events: none;
-}
-
-.starbg {
-  position: fixed;
-  z-index: -1;
-
-  width: 100%;
-  height: 100%;
 }
 
 @keyframes growcircle {
@@ -129,16 +144,7 @@ a:hover {
   }
 }
 
-/* WINDOW ----------------------------------------------------------------------*/
-.window {
-  border: 0.1rem solid;
-  border-color: var(--colour-black);
-  width: 80%;
-  z-index: 2;
-  background-color: var(--colour-white);
-  box-shadow: 0.15rem 0.15rem var(--colour-black);
-}
-
+/* WINDOW BAR ----------------------------------------------------------------------*/
 .navbar {
   width: 100%;
 
@@ -151,32 +157,4 @@ a:hover {
   font-size: 0.8rem;
   padding-left: 0.2rem;
   padding-right: 0.2rem;
-}
-
-.bar {
-  width: 100%;
-  height: 0.005rem;
-  background-color: var(--colour-black);
-}
-
-.creative-pourtfolio {
-  width: 100%;
-  margin-top: 10%;
-
-  display: flex;
-  justify-content: center;
-}
-
-.pourtfolio {
-  display: flex;
-  flex-direction: row;
-
-  line-height: 1.5rem;
-}
-
-.folder-cont {
-  padding: 15%;
-  display: flex;
-  column-gap: 5rem;
-  justify-content: center;
 }

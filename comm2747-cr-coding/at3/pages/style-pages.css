@@ -1,0 +1,65 @@
+/* GLOBAL PAGES STYLE ------------------------------------------------------------ */
+/* info card */
+.card {
+  /* styling */
+  position: absolute;
+  top: 3rem;
+  left: 2rem;
+  padding: 2rem;
+  width: 25%;
+  background-color: var(--colour-white);
+  opacity: 0.8;
+
+  /* display */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.icon {
+  /* styling */
+  width: 5rem;
+  height: 5rem;
+  background: var(--colour-4);
+  border-radius: 50%;
+
+  /* size of emoji */
+  font-size: 2.5rem;
+
+  /* display */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+p {
+  font-size: 0.7rem;
+}
+
+.ps {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  opacity: 0.5;
+  color: var(--colour-white);
+  text-align: right;
+}
+
+/* SANTINO VIDEO ------------------------------------------------------------- */
+/* video styling */
+.vid {
+  position: fixed;
+
+  height: 100%;
+  width: 100%;
+}
+
+#video {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
