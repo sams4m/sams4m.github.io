@@ -20,6 +20,9 @@ console.log(vanfan);
 const adrian = document.getElementById(`adrian`);
 console.log(adrian);
 
+const theresa = document.getElementById(`theresa`);
+console.log(theresa);
+
 // LINK TO CONTAINER ------------------------------------------------------
 const container = document.getElementById(`container`);
 console.log(container);
@@ -31,6 +34,7 @@ makeDraggable(kunzy);
 makeDraggable(jiwon);
 makeDraggable(vanfan);
 makeDraggable(adrian);
+makeDraggable(theresa);
 
 // FUNC: DRAGGABLE ------------------------------------------------------
 function makeDraggable(element) {
