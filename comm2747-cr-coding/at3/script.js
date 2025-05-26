@@ -2,6 +2,9 @@
 // Student Number: s4087814
 //----------------------------------------------------------------------------------------//
 // LINK TO FOLDERS ------------------------------------------------------
+const sam = document.getElementById(`sam`);
+console.log(sam);
+
 const santino = document.getElementById(`santino`);
 console.log(santino);
 
@@ -22,6 +25,7 @@ const container = document.getElementById(`container`);
 console.log(container);
 
 // calling draggable function
+makeDraggable(sam);
 makeDraggable(santino);
 makeDraggable(kunzy);
 makeDraggable(jiwon);
