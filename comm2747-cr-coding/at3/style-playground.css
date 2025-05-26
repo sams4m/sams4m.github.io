@@ -1,3 +1,25 @@
+button {
+  border: none;
+  max-width: 7rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  column-gap: 5rem;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+
+  background-color: transparent;
+  font-size: 0.75rem;
+  font-weight: 450;
+}
+
+button :hover {
+  scale: 0.95;
+  transition: 5ms ease-in-out;
+}
+
 /* WINDOW ----------------------------------------------------------------------*/
 .window {
   border: 0.1rem solid;
