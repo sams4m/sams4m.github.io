@@ -59,6 +59,10 @@ h2 {
   line-height: 3.5rem;
 }
 
+h4 {
+  font-weight: 600;
+}
+
 a {
   text-align: center;
   text-decoration: none;
