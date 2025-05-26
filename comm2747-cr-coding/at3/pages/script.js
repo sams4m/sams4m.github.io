@@ -1,65 +1,29 @@
-let player;
-let isMuted = true;
-let muteBtn;
+// link card and btn
+const card = document.getElementById(`card`);
+console.log(card);
 
-// Load YouTube API
-const tag = document.createElement("script");
-tag.src = "https://www.youtube.com/iframe_api";
-const firstScriptTag = document.getElementsByTagName("script")[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+const minCard = document.getElementById(`min-card`);
+console.log(card);
 
-// YouTube API ready callback
-window.onYouTubeIframeAPIReady = function () {
-  player = new YT.Player("video", {
-    height: "100%",
-    width: "100%",
-    videoId: "kTzshk4B-Qs",
-    playerVars: {
-      autoplay: 1,
-      mute: 1,
-      loop: 1,
-    },
-    events: {
-      onReady: onPlayerReady,
-    },
-  });
-};
+const closeBtn = document.getElementById(`close-btn`);
+console.log(closeBtn);
 
-function onPlayerReady(event) {
-  // link to mutebtn
-  muteBtn = document.querySelector(".mute-btn");
+// close btn event listener
+closeBtn.addEventListener(`click`, closeCard);
+minCard.addEventListener(`click`, openCard);
 
-  if (muteBtn) {
-    muteBtn.addEventListener("click", volumeToggle);
-  }
+function closeCard() {
+  console.log(`close button clicked`);
+
+  // remove / add active class
+  card.classList.remove(`active`);
+  minCard.classList.add(`active`);
 }
 
-function volumeToggle() {
-  console.log(`button clicked`);
-  if (!player) {
-    console.log("Player not ready yet");
-    return;
-  }
+function openCard() {
+  console.log(`min card clicked`);
 
-  if (isMuted) {
-    console.log(`unmuted`);
-    isMuted = false;
-    player.unMute();
-    muteBtn.textContent = "click to mute";
-  } else {
-    console.log(`muted`);
-    isMuted = true;
-    player.mute();
-    muteBtn.textContent = "click to unmute";
-  }
+  // remove / add active class
+  card.classList.add(`active`);
+  minCard.classList.remove(`active`);
 }
-
-//   if (video.muted) {
-//     console.log(`unmuted`);
-//     video.muted = false;
-//     muteBtn.textContent = "click to mute";
-//   } else {
-//     console.log(`muted`);
-//     video.muted = true;
-//     muteBtn.textContent = "click to unmute";
-//   }

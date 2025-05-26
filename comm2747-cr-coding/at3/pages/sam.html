@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/reset.css" />
     <link rel="stylesheet" href="../style-global.css" />
     <link rel="stylesheet" href="style-pages.css" />
+
+    <script src="script.js" defer></script>
   </head>
   <header>
     <!-- apple -->
@@ -41,7 +43,11 @@
     <!-- work -->
     <!-- PRINT MAKING -->
     <div class="row">
-      <img src="../static/sam/print-1.jpg" alt="00" />
+      <span>
+        <p class="samps">print making ✨</p>
+        <img src="../static/sam/print-1.jpg" class="samimg" alt="00" />
+      </span>
+
       <span class="column">
         <img src="../static/sam/print-2.jpg" class="samimg" alt="00" />
         <img src="../static/sam/print-6.jpg" class="samimg" alt="00" />
@@ -56,9 +62,7 @@
     <!-- SCREEN PRINTING -->
     <div class="row">
       <span>
-        <p style="position: absolute; z-index: 100; opacity: 0.8">
-          print making
-        </p>
+        <p class="samps">screen printing ✨</p>
         <img src="../static/sam/screen-2.jpg" alt="00" />
       </span>
 
@@ -74,6 +78,7 @@
 
     <!-- PHOTOGRAPHY -->
     <div class="row">
+      <p class="samps">japanese film cinematography; Mono No Aware ✨</p>
       <!-- col 1 -->
       <span class="col4">
         <img src="../static/sam/photog-01.jpg" class="samimg" alt="00" />
@@ -104,14 +109,32 @@
       </span>
     </div>
 
+    <!-- GRAFFITI -->
+    <span>
+      <p class="samps">hoiser lane project ✨</p>
+      <img src="../static/sam/graffiti.jpg" class="samimg" alt="00" />
+    </span>
+
     <!-- info card -->
-    <div class="card">
+    <div class="card active" id="card">
       <span class="icon">👻</span>
       <h3>sam</h3>
       <p>
         exploring different media -- always curious to expand the (witch)craft
         🧙🏻‍♀️
       </p>
+      <button id="close-btn">close</button>
+    </div>
+
+    <!-- minimised info card -->
+    <div class="minCard" id="min-card">
+      <p>👻</p>
     </div>
   </body>
+  <footer>
+    <p>
+      i have more photography @ https://sjoice-photog.myportfolio.com (ㅅ´ ˘
+      `)♡+..｡*ﾟ+
+    </p>
+  </footer>
 </html>
