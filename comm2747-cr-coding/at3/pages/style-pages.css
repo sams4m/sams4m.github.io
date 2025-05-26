@@ -93,7 +93,7 @@ p {
 }
 
 /* button */
-button {
+.close-btn {
   /* text style */
   font-size: 0.7rem;
 
@@ -115,7 +115,7 @@ button {
   transition: 5ms ease-in-out;
 }
 
-button:hover {
+.close-btn:hover {
   scale: 1.05;
   opacity: 0.9;
 }
