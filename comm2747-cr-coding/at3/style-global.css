@@ -165,7 +165,7 @@ button :hover {
 .psb {
   position: absolute;
   bottom: 2rem;
-  right: 2rem;
+  right: 50%;
   opacity: 0.5;
   color: var(--colour-black);
   text-align: center;
