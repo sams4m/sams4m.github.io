@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/reset.css" />
     <link rel="stylesheet" href="../style-global.css" />
     <link rel="stylesheet" href="style-pages.css" />
+
+    <script src="script-pages.js" defer></script>
   </head>
   <header>
     <!-- apple -->
@@ -44,7 +46,7 @@
     </div>
 
     <!-- info card -->
-    <div class="card">
+    <div class="card active">
       <span class="icon">🧚</span>
       <h3>kunzy</h3>
       <p>
@@ -54,11 +56,12 @@
         story. Whether it's playful, nostalgic, or personal, I hope my work
         feels like a glimpse into who I am.
       </p>
+      <button id="close-btn">close</button>
     </div>
 
-    <!-- <p class="ps">
-      want to know more? <br />
-      check out the work @ https://a4ruit.xyz
-    </p> -->
+    <!-- minimised info card -->
+    <div class="minCard" id="min-card">
+      <p>🧚</p>
+    </div>
   </body>
 </html>

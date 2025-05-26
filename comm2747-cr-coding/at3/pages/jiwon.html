@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/reset.css" />
     <link rel="stylesheet" href="../style-global.css" />
     <link rel="stylesheet" href="style-pages.css" />
+
+    <script src="script-pages.js" defer></script>
   </head>
   <header>
     <!-- apple -->
@@ -46,7 +48,7 @@
     </div>
 
     <!-- info card -->
-    <div class="card">
+    <div class="card active">
       <span class="icon">🐙</span>
       <h3>jiwoony</h3>
       <p>
@@ -59,6 +61,12 @@
         my work for too long i hate it and never wanna go back to it again and
         end up giving up at a certain point :)
       </p>
+      <button id="close-btn">close</button>
+    </div>
+
+    <!-- minimised info card -->
+    <div class="minCard" id="min-card">
+      <p>🐙</p>
     </div>
   </body>
 </html>

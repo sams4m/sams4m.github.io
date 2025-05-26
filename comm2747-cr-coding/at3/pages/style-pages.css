@@ -1,4 +1,7 @@
 /* GLOBAL PAGES STYLE ------------------------------------------------------------ */
+header {
+  z-index: 100;
+}
 /* info card */
 .card {
   /* styling */
@@ -20,7 +23,7 @@
   gap: 1.5rem;
 
   /* transition  */
-  transition: all 0.3s ease;
+  transition: all 5ms ease;
 }
 
 .card.active {
@@ -49,6 +52,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
+  transition: all 5ms ease;
+}
+
+.minCard:hover {
+  scale: 1.05;
 }
 
 .minCard.active {
@@ -113,8 +123,7 @@ button:hover {
 /* YOUTUBE VIDEO ------------------------------------------------------------- */
 /* video styling */
 .vid {
-  position: fixed;
-
+  position: absolute;
   height: 100%;
   width: 100%;
 }
