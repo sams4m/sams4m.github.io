@@ -49,6 +49,6 @@ button :hover {
 }
 
 .back-btn:hover {
-  scale: 0.95;
+  color: var(--colour-4);
   transition: 5ms ease-in-out;
 }
