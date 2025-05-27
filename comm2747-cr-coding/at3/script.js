@@ -23,6 +23,9 @@ console.log(adrian);
 const theresa = document.getElementById(`theresa`);
 console.log(theresa);
 
+const lam = document.getElementById(`lam`);
+console.log(lam);
+
 // LINK TO CONTAINER ------------------------------------------------------
 const container = document.getElementById(`container`);
 console.log(container);
@@ -35,6 +38,7 @@ makeDraggable(jiwon);
 makeDraggable(vanfan);
 makeDraggable(adrian);
 makeDraggable(theresa);
+makeDraggable(lam);
 
 // FUNC: DRAGGABLE ------------------------------------------------------
 function makeDraggable(element) {

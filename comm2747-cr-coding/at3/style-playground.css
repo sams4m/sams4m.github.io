@@ -43,3 +43,12 @@ button :hover {
   transform: rotate(5deg);
   transition: 5ms ease-in-out;
 }
+
+.back-btn {
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  scale: 0.95;
+  transition: 5ms ease-in-out;
+}
