@@ -151,3 +151,8 @@ a:hover {
   color: var(--colour-black);
   text-align: center;
 }
+
+.abtwindow {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
