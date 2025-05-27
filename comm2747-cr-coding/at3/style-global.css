@@ -143,6 +143,16 @@ a:hover {
   text-align: right;
 }
 
+/* BACK BUTTON ----------------------------------------------------------------------*/
+.back-btn {
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  color: var(--colour-4);
+  transition: 5ms ease-in-out;
+}
+
 .psb {
   position: absolute;
   bottom: 1rem;
