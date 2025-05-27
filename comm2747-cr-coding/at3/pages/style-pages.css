@@ -124,6 +124,7 @@ button:hover {
 /* video styling */
 .vid {
   position: absolute;
+  top: 1rem;
   height: 100%;
   width: 100%;
 }
